@@ -1,0 +1,54 @@
+{
+  "$id": "http://gpaybank.com/mt500_schema.json",
+  "title": "MT500",
+  "description": "MT500报文",
+  "type": "object",
+  "properties": {
+    "SequenceA": {
+      "title": "A分页",
+      "type": "object",
+      "properties": {
+        "TAG16R": {
+          "title": ":16R:",
+          "type": "string"
+        },
+        "TAG20C": {
+          "title": ":16R:",
+          "type": "string"
+        },
+        "TAG23G": {
+          "type": "string"
+        },
+        "TAG98a": {
+          "type": "string"
+        },
+        "TAG22F": {
+          "type": "string"
+        },
+        "SequenceA1": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "TAG16R": {
+                "type": "string"
+              },
+              "TAG22F": {
+                "type": "string"
+              },
+              "TAG13a": {
+                "type": "string"
+              },
+              "TAG20C": {
+                "type": "string"
+              },
+              "TAG16S": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
