@@ -4,7 +4,7 @@
   "description": "MT500报文",
   "type": "object",
   "properties": {
-    "SequenceA": {
+    "sequenceA": {
       "title": "A分页",
       "type": "object",
       "properties": {
@@ -13,39 +13,190 @@
           "type": "string"
         },
         "TAG20C": {
-          "title": ":16R:",
+          "title": ":20C:",
           "type": "string"
         },
         "TAG23G": {
+          "title": ":23G:",
           "type": "string"
         },
         "TAG98a": {
+          "option": [
+            ":98A:",
+            ":98C:",
+            ":98E:"
+          ],
           "type": "string"
         },
         "TAG22F": {
+          "title": ":22F:",
           "type": "string"
         },
-        "SequenceA1": {
+        "subsequenceA1": {
+          "title": "A1子分页",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "TAG16R": {
+                "title": ":16R:",
                 "type": "string"
               },
               "TAG22F": {
+                "title": ":22F:",
                 "type": "string"
               },
               "TAG13a": {
+                "option": [
+                  ":13A:",
+                  ":13B"
+                ],
                 "type": "string"
               },
               "TAG20C": {
+                "title": ":20C:",
                 "type": "string"
               },
               "TAG16S": {
+                "title": ":16S:",
                 "type": "string"
               }
             }
+          }
+        },
+        "TAG16S": {
+          "title": ":16S:",
+          "type": "string"
+        }
+      }
+    },
+    "SequenceB": {
+      "title": "B分页",
+      "type": "object",
+      "properties": {
+        "TAG16R": {
+          "title": ":16R:",
+          "type": "string"
+        },
+        "TAG20D": {
+          "title": ":20D:",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "TAG22F": {
+          "title": ":22F:",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "TAG98a": {
+          "option": [
+            ":98A:",
+            ":98C:"
+          ],
+          "type": "string"
+        },
+        "TAG35B": {
+          "title": ":35B:",
+          "type": "string"
+        },
+        "TAG70C": {
+          "title": ":70C:",
+          "type": "string"
+        }
+      },
+      "subsequenceB1": {
+        "title": "B1分页",
+        "type": "object",
+        "properties": {
+          "TAG16R": {
+            "title": ":16R:",
+            "type": "string"
+          },
+          "TAG94B": {
+            "title": ":94B:",
+            "type": "string"
+          },
+          "TAG22F": {
+            "title": ":22F:",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "TAG12a": {
+            "option": [
+              ":12A:",
+              ":12B:",
+              ":12C:"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "TAG11A": {
+            "title": ":11A:",
+            "type": "string"
+          },
+          "TAG98A": {
+            "title": ":98A:",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "TAG92A": {
+            "title": ":92A:",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "TAG13a": {
+            "option": [
+              ":13A:",
+              ":13B:"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "TAG17B": {
+            "title": ":17B:",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "TAG90a": {
+            "option": [
+              ":90A:",
+              ":90B:"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "TAG36B": {
+            "title": ":36B:",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "TAG70E": {
+            "title": ":70E:",
+            "type": "string"
+          },
+          "TAG16S": {
+            "title": ":16S:",
+            "type": "string"
           }
         }
       }
