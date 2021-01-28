@@ -134,9 +134,8 @@ public class J2htmlApplication {
                 }
 
 
-                 if("string".equals(type)){
-                     td2.append("<input type=\"text\" name=\""+key+"\">");
-                }
+                 td2.append("<input type=\"text\" name=\""+key+"\">");
+
                 td2.appendTo(tr);
                 if("array".equals(type)){
                     Element addBtnTd = new Element("td");
@@ -159,17 +158,11 @@ public class J2htmlApplication {
                 subsequenceTitleTd.attr("colspan","3");
                 subsequenceTitleTd.text(elements.get("title").toString());
                 subsequenceTitleTd.appendTo(subsequenceTitleTr);
-
+                subsequenceTitleTr.appendTo(parent);
                 if("object".equals(subsequenceType)){
-
                         createSequence(parent,elements);
-
                 }else if("array".equals(subsequenceType)){
-
-
                         createSequence(parent,elements.getJSONObject("items"));
-
-
                 }
 
 
