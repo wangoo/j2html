@@ -125,7 +125,8 @@ public class SchemaParser {
 
                 createSequence(parent,element);
 
-
+                org.jsoup.nodes.Element subsequenceTitleTrEnd = J2htmlApplication.createSubSequenceTitleTr("End of "+description);
+                subsequenceTitleTrEnd.appendTo(parent);
             }
 
 
