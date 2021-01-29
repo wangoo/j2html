@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MT500>
+    <Sequence name="A" description="必填分页A基本信息" opt="M" repeat="false">
+        <Tag name="16R" description="Start of Block" format="GENL" opt="M"></Tag>
+        <Tag name="20C" description="Sender's Message Reference" opt="M"></Tag>
+        <Tag name="23G" description="Function of the Message" opt="M"></Tag>
+        <Tag name="98a" description="Function of the Message" opt="O">
+            <option>
+                <Tag name="98A"></Tag>
+                <Tag name="98C"></Tag>
+                <Tag name="98E"></Tag>
+            </option>
+        </Tag>
+        <Tag name="22F" opt="M"></Tag>
+        <SubSequence name="A1" description="必填分页A基本信息" opt="O" repeat="true">
+            <Tag name="16R" opt="M"></Tag>
+            <Tag name="22F" opt="O"></Tag>
+            <Tag name="13a" opt="O">
+                <option>
+                    <Tag name="13A"></Tag>
+                    <Tag name="13B"></Tag>
+                </option>
+            </Tag>
+            <Tag name="20C" opt="M"></Tag>
+            <Tag name="16S" opt="M"></Tag>
+        </SubSequence>
+        <Tag name="16S" opt="M"></Tag>
+    </Sequence>
+
+    <Sequence name="B" description="必填分页B Registration Details" opt="M" repeat="false">
+        <Tag name="16R" opt="M"></Tag>
+        <Tag name="20D" opt="M" repeat="true"></Tag>
+        <Tag name="22F" opt="M" repeat="true"></Tag>
+        <Tag name="98a" opt="O">
+            <option>
+                <Tag name="98A"></Tag>
+                <Tag name="98C"></Tag>
+            </option>
+        </Tag>
+        <Tag name="35B" opt="M"></Tag>
+        <Tag name="70C" opt="O"></Tag>
+        <SubSequence name="B1" description="必填分页A基本信息" opt="O" repeat="false">
+            <Tag name="16R" opt="M"></Tag>
+            <Tag name="94B" opt="O"></Tag>
+            <Tag name="22F" opt="O" repeat="true"></Tag>
+            <Tag name="12a" opt="O" repeat="true">
+                <option>
+                    <Tag name="12A"></Tag>
+                    <Tag name="12B"></Tag>
+                    <Tag name="12C"></Tag>
+                </option>
+            </Tag>
+            <Tag name="11A" opt="O"></Tag>
+            <Tag name="98A" opt="O" repeat="true"></Tag>
+            <Tag name="92A" opt="O" repeat="true"></Tag>
+            <Tag name="13a" opt="O" repeat="true">
+                <option>
+                    <Tag name="13A"></Tag>
+                    <Tag name="13B"></Tag>
+                </option>
+            </Tag>
+            <Tag name="17B" opt="O" repeat="true"></Tag>
+            <Tag name="90a" opt="O" repeat="true">
+                <option>
+                    <Tag name="90A"></Tag>
+                    <Tag name="90B"></Tag>
+                </option>
+            </Tag>
+            <Tag name="36B" opt="O" repeat="true"></Tag>
+            <Tag name="70E" opt="O"></Tag>
+            <Tag name="16S" opt="M"></Tag>
+        </SubSequence>
+        <SubSequence name="B2" description="Mandatory Subsequence B2 Financial Instrument/Account" opt="M"
+                     repeat="false">
+            <Tag name="16R" opt="M"></Tag>
+            <Tag name="36B" opt="M"></Tag>
+            <Tag name="95a" opt="O">
+                <option>
+                    <Tag name="95P"></Tag>
+                    <Tag name="95R"></Tag>
+                </option>
+            </Tag>
+            <Tag name="97A" opt="M"></Tag>
+            <Tag name="16S" opt="M"></Tag>
+        </SubSequence>
+        <Tag name="16S" opt="M"></Tag>
+    </Sequence>
+    <Sequence name="C" description="Optional Repetitive Sequence C Client Details" opt="O" repeat="true">
+        <Tag name="16R" opt="M"></Tag>
+        <SubSequence name="C1" description="Optional Subsequence C1 Address" opt="O" repeat="false">
+            <Tag name="16R" opt="M"></Tag>
+            <Tag name="17B" opt="M"></Tag>
+            <Tag name="22F" opt="O" repeat="true"></Tag>
+            <Tag name="95a" opt="O" repeat="true">
+                <option>
+                    <Tag name="95P"></Tag>
+                    <Tag name="95R"></Tag>
+                    <Tag name="95S"></Tag>
+                    <Tag name="95U"></Tag>
+                </option>
+            </Tag>
+            <Tag name="94a" opt="O" repeat="true">
+                <option>
+                    <Tag name="94C"></Tag>
+                    <Tag name="94D"></Tag>
+                    <Tag name="94G"></Tag>
+                </option>
+            </Tag>
+            <Tag name="13B" opt="O" repeat="true"></Tag>
+            <Tag name="70C" opt="O" repeat="true"></Tag>
+            <Tag name="16S" opt="M"></Tag>
+        </SubSequence>
+        <SubSequence name="C2" description="Optional Subsequence C2 Personal Details" opt="O" repeat="false">
+            <Tag name="16R" opt="M"></Tag>
+            <Tag name="22F" opt="O" repeat="true"></Tag>
+            <Tag name="95U" opt="O" ></Tag>
+            <Tag name="98a" opt="O" repeat="true">
+                <option>
+                    <Tag name="98A" ></Tag>
+                    <Tag name="98C" ></Tag>
+                </option>
+            </Tag>
+            <Tag name="94C" opt="O" repeat="true"></Tag>
+            <Tag name="70C" opt="O"></Tag>
+            <Tag name="16S" opt="M"></Tag>
+        </SubSequence>
+        <Tag name="16S" opt="M"></Tag>
+    </Sequence>
+    <Sequence name="D" description="Optional Sequence D Corporate Action Details" opt="O" >
+        <Tag name="16R" opt="M"></Tag>
+        <Tag name="98a" opt="O" repeat="true">
+            <option>
+                <Tag name="98A" ></Tag>
+                <Tag name="98C" ></Tag>
+            </option>
+        </Tag>
+        <Tag name="35B" opt="O"></Tag>
+        <Tag name="16S" opt="M"></Tag>
+    </Sequence>
+    <Sequence name="E" description="Optional Sequence E Additional Information" opt="O" >
+        <Tag name="16R" opt="M"></Tag>
+        <Tag name="95a" opt="O" repeat="true">
+            <option>
+                <Tag name="95P" ></Tag>
+                <Tag name="95Q" ></Tag>
+                <Tag name="95R" ></Tag>
+            </option>
+        </Tag>
+        <Tag name="16S" opt="M"></Tag>
+    </Sequence>
+</MT500>     

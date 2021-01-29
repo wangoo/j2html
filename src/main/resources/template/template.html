@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:gpb="http://www.gpaybank.com">
+<head
+        th:replace="/common/mt500template :: template(~{::title},~{::link},~{::style})">
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <title th:text="${SecondTitle}"></title>
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/css/style.css(v=#{version})}"/>
+</head>
+<body>
+<nav th:replace="common/fragment :: nav"></nav>
+<div class="page-container">
+    <div th:replace="common/fragment :: RTitle"></div>
+    <form id="sendMesg" name="sendMesg" method="post" action="/mt500/send">
+        ${template}
+    </form>
+</div>
+</body>
+
+<script type="text/javascript">
+    layui.use('element', function () {
+
+    });
+</script>
+</html>

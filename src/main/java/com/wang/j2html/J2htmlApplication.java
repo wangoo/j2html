@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,34 +29,8 @@ public class J2htmlApplication {
     public static void main(String[] args) {
         SpringApplication.run(J2htmlApplication.class, args);
 
-        try {
+        SchemaParser.parseMT(null);
 
-
-            System.out.println(J2htmlApplication.class.getClassLoader().getClass().getResource("/schema/mt500_schema.json").getPath());
-
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(String.valueOf(J2htmlApplication.class.getClassLoader().getClass().getResource("/schema/mt500_schema.json").getPath())));
-
-
-
-            StringBuilder jsonBuilder = new StringBuilder();
-            while(true){
-                String string = bufferedReader.readLine();
-                if(string==null){
-                    break;
-                }
-               jsonBuilder.append(string);
-            }
-            System.out.println(jsonBuilder.toString());
-            JSONObject schema = JSON.parseObject(jsonBuilder.toString(), Feature.OrderedField);
-
-            Element div  = new Element("div");
-            Element pages= createPage(div,schema);
-            System.out.println(pages.html());
-
-
-        } catch (IOException e) {
-            System.out.println("file not exist");
-        }
     }
 
     public static Element createPage(Element parent ,JSONObject schema){
@@ -87,6 +62,8 @@ public class J2htmlApplication {
         layui_tab_titile.appendTo(layui_tab);
         layui_tab_content.appendTo(layui_tab);
         layui_tab.appendTo(parent);
+        parent.selectFirst(".layui-tab-title li").addClass("layui-this");
+        parent.selectFirst(".layui-tab-item").addClass("layui-show");
         return parent;
     }
 
@@ -117,9 +94,7 @@ public class J2htmlApplication {
                     td1.text(elements.get("title").toString());
                 }
 
-
                 td1.appendTo(tr);
-
 
                 Element  td2 = new Element("td");
                 String type ="";
@@ -136,28 +111,18 @@ public class J2htmlApplication {
 
                  td2.append("<input type=\"text\" name=\""+key+"\">");
 
-                td2.appendTo(tr);
+
                 if("array".equals(type)){
-                    Element addBtnTd = new Element("td");
-                    addBtnTd.append("<input type=\"buttn\" value=\"添加\" name=\""+key+"\">");
-                    addBtnTd.appendTo(tr);
-                    Element deleteBtnTd = new Element("td");
 
-                    deleteBtnTd.append("<input type=\"buttn\" value=\"删除\" name=\""+key+"\">");
-                    deleteBtnTd.appendTo(tr);
+                    td2.append("<input type=\"button\" value=\"添加\" name=\""+key+"\">");
+                    td2.append("<input type=\"button\" value=\"删除\" name=\""+key+"\">");
                 }
-
+                td2.appendTo(tr);
                 tr.appendTo(parent);
             }else if(key.startsWith("subsequence")){
 
                 String subsequenceType = elements.get("type").toString();
-
-                Element subsequenceTitleTr = new Element("tr");
-                Element subsequenceTitleTd = new Element("td");
-                subsequenceTitleTd.addClass("tabL");
-                subsequenceTitleTd.attr("colspan","3");
-                subsequenceTitleTd.text(elements.get("title").toString());
-                subsequenceTitleTd.appendTo(subsequenceTitleTr);
+                Element subsequenceTitleTr = createSubSequenceTitleTr(elements.get("title").toString());
                 subsequenceTitleTr.appendTo(parent);
                 if("object".equals(subsequenceType)){
                         createSequence(parent,elements);
@@ -170,6 +135,7 @@ public class J2htmlApplication {
             }
 
         }
+
         return parent;
     }
 
@@ -179,6 +145,24 @@ public class J2htmlApplication {
         return parent;
     }
 
+
+    public static  Element createSubSequenceTitleTr(String text){
+        Element subsequenceTitleTr = new Element("tr");
+        Element subsequenceTitleTd = new Element("td");
+        subsequenceTitleTd.addClass("tabL");
+        subsequenceTitleTd.attr("colspan","4");
+        subsequenceTitleTd.attr("style","font-weight: bold; text-align: center");
+        subsequenceTitleTd.text(text);
+        subsequenceTitleTd.appendTo(subsequenceTitleTr);
+        return subsequenceTitleTr;
+    }
+
+    public static Element createBtn(){
+
+        Element btn = new Element("input");
+        btn.attr("type","button");
+        return btn;
+    }
 
 
 
