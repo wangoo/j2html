@@ -122,7 +122,7 @@ public class J2htmlApplication {
             }else if(key.startsWith("subsequence")){
 
                 String subsequenceType = elements.get("type").toString();
-                Element subsequenceTitleTr = createSubSequenceTitleTr(elements.get("title").toString());
+                Element subsequenceTitleTr = createSubSequenceTitleTr(elements.get("title").toString(),"M");
                 subsequenceTitleTr.appendTo(parent);
                 if("object".equals(subsequenceType)){
                         createSequence(parent,elements);
@@ -146,13 +146,20 @@ public class J2htmlApplication {
     }
 
 
-    public static  Element createSubSequenceTitleTr(String text){
+    public static  Element createSubSequenceTitleTr(String text,String opt){
         Element subsequenceTitleTr = new Element("tr");
         Element subsequenceTitleTd = new Element("td");
         subsequenceTitleTd.addClass("tabL");
         subsequenceTitleTd.attr("colspan","4");
         subsequenceTitleTd.attr("style","font-weight: bold; text-align: center");
-        subsequenceTitleTd.text(text);
+
+        Element textElement = subsequenceTitleTd.text(text);
+        if("M".equals(opt)){
+            org.jsoup.nodes.Element notNullSpan = new org.jsoup.nodes.Element("span");
+            notNullSpan.addClass("notnull");
+            notNullSpan.text("*");
+            textElement.append(notNullSpan.toString());
+        }
         subsequenceTitleTd.appendTo(subsequenceTitleTr);
         return subsequenceTitleTr;
     }

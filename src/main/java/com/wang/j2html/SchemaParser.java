@@ -29,7 +29,7 @@ public class SchemaParser {
             for (int i = 0; i < sequenceList.size(); i++) {
                   Element sequnceElement= sequenceList.get(i);
                   Attribute description = sequnceElement.attribute("description");
-                  Attribute opt = sequnceElement.attribute("opt");
+                  String  opt = sequnceElement.attributeValue("opt");
                     String sequenceName = sequnceElement.attributeValue("name");
 
 
@@ -42,15 +42,15 @@ public class SchemaParser {
 
                 org.jsoup.nodes.Element sequenceTable = new org.jsoup.nodes.Element("table");
                 sequenceTable.addClass("tablelist2");
-
+                sequenceTable.attr("sequencename",sequenceName);
 
                 Attribute repeat = sequnceElement.attribute("repeat");
                 if(repeat!=null&&"true".equals(repeat.getValue())){
 
-                    org.jsoup.nodes.Element subsequenceTitleTr = J2htmlApplication.createSubSequenceTitleTr(description.getValue());
+                    org.jsoup.nodes.Element subsequenceTitleTr = J2htmlApplication.createSubSequenceTitleTr(description.getValue(),opt);
                     org.jsoup.nodes.Element td = subsequenceTitleTr.select("td").first();
-                    td.append("<input type=\"button\" value=\"添加\" name=\""+sequenceName+"\">");
-                    td.append("<input type=\"button\" value=\"删除\" name=\""+sequenceName+"\">");
+                    td.append("<input class=\"addSequence\" type=\"button\" value=\"添加\" >");
+                    td.append("<input class=\"deleteSequence\" type=\"button\" value=\"删除\" >");
                     subsequenceTitleTr.appendTo(sequenceTable);
                 }
 
@@ -79,54 +79,86 @@ public class SchemaParser {
             String elementName = element.getName();
             String name = element.attributeValue("name");
             String repeat = element.attributeValue("repeat");
+            String opt = element.attributeValue("opt");
+            org.jsoup.nodes.Element notNullSpan = new org.jsoup.nodes.Element("span");
+            if("M".equals(opt)){
+                notNullSpan.addClass("notnull");
+                notNullSpan.text("*");
+            }
             if("Tag".equals(elementName)){
+
+
+
+
                 org.jsoup.nodes.Element tr = new org.jsoup.nodes.Element("tr");
+                tr.attr("tagname",name);
                 org.jsoup.nodes.Element td1 = new org.jsoup.nodes.Element("td");
                 td1.addClass("tabL");
                 if(name.endsWith("a")){
 
                     List<Element> elements = element.selectNodes("option/Tag");
                     org.jsoup.nodes.Element select = new org.jsoup.nodes.Element("select");
+                    select.addClass("tagselect");
                     for (int i = 0; i < elements.size(); i++) {
                         Element e = elements.get(i);
                         String name1 = e.attributeValue("name");
                         org.jsoup.nodes.Element option = new org.jsoup.nodes.Element("option");
-                        option.val("TAG"+name1);
-                        option.text("TAG"+name1);
+                        option.val(name1);
+                        option.text(name1);
                         option.appendTo(select);
                     }
                     select.appendTo(td1);
+                    notNullSpan.appendTo(td1);
+                    td1.appendTo(tr);
+
+                    for (int i = 0; i < elements.size(); i++) {
+                        Element e = elements.get(i);
+                        String name1 = e.attributeValue("name");
+                        org.jsoup.nodes.Element td2 = new org.jsoup.nodes.Element("td");
+                        td2.attr("tagname",name1);
+                        td2.append("<input type=\"text\" name=\""+name1+"\" value =\""+name1 + "\">");
+                        if("true".equals(repeat)){
+                            td2.append("<input class=\"addTag\" type=\"button\" value=\"添加\" >");
+                            td2.append("<input class=\"deleteTag\"  type=\"button\" value=\"删除\" >");
+                        }
+                        td2.appendTo(tr);
+                    }
+
                 }else{
-                    td1.text(name);
+                    td1.text(name).append(notNullSpan.toString());
+                    td1.appendTo(tr);
+                    org.jsoup.nodes.Element td2 = new org.jsoup.nodes.Element("td");
+                    td2.append("<input type=\"text\" name=\""+name+"\">");
+                    if("true".equals(repeat)){
+
+                        td2.append("<input class=\"addTag\" type=\"button\" value=\"添加\" >");
+                        td2.append("<input class=\"deleteTag\"  type=\"button\" value=\"删除\" >");
+                    }
+                    td2.appendTo(tr);
                 }
-                td1.appendTo(tr);
-                org.jsoup.nodes.Element td2 = new org.jsoup.nodes.Element("td");
 
-                td2.append("<input type=\"text\" name=\""+name+"\">");
 
-                if("true".equals(repeat)){
 
-                    td2.append("<input type=\"button\" value=\"添加\" name=\""+name+"\">");
-                    td2.append("<input type=\"button\" value=\"删除\" name=\""+name+"\">");
-                }
-                td2.appendTo(tr);
                 tr.appendTo(parent);
 
             }else if(elementName.equals("SubSequence")){
 
+                org.jsoup.nodes.Element tbody = new org.jsoup.nodes.Element("tbody");
+                tbody.attr("subSequenceName",name);
                 String description = element.attributeValue("description");
-                org.jsoup.nodes.Element subsequenceTitleTr = J2htmlApplication.createSubSequenceTitleTr(description);
+                org.jsoup.nodes.Element subsequenceTitleTr = J2htmlApplication.createSubSequenceTitleTr(description,opt);
                 if("true".equals(repeat)){
                     org.jsoup.nodes.Element td = subsequenceTitleTr.select("td").first();
-                    td.append("<input type=\"button\" value=\"添加\" name=\""+name+"\">");
-                    td.append("<input type=\"button\" value=\"删除\" name=\""+name+"\">");
+                    td.append("<input class=\"addSubSequence\" type=\"button\" value=\"添加\" >");
+                    td.append("<input  class=\"deleteSubSequence\" type=\"button\" value=\"删除\" >");
                 }
-                subsequenceTitleTr.appendTo(parent);
+                subsequenceTitleTr.appendTo(tbody);
 
-                createSequence(parent,element);
+                createSequence(tbody,element);
 
-                org.jsoup.nodes.Element subsequenceTitleTrEnd = J2htmlApplication.createSubSequenceTitleTr("End of "+description);
-                subsequenceTitleTrEnd.appendTo(parent);
+                org.jsoup.nodes.Element subsequenceTitleTrEnd = J2htmlApplication.createSubSequenceTitleTr("End of "+description,null);
+                subsequenceTitleTrEnd.appendTo(tbody);
+                tbody.appendTo(parent);
             }
 
 
