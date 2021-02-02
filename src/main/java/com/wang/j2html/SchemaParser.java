@@ -1,4 +1,5 @@
 package com.wang.j2html;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.dom4j.*;
 import org.dom4j.io.SAXReader;
@@ -116,7 +117,35 @@ public class SchemaParser {
                         String name1 = e.attributeValue("name");
                         org.jsoup.nodes.Element td2 = new org.jsoup.nodes.Element("td");
                         td2.attr("tagname",name1);
-                        td2.append("<input type=\"text\" name=\""+name1+"\" value =\""+name1 + "\">");
+
+                        List<Element> contentElements =  e.selectNodes("content");
+                        for (int contentIndex = 0; contentIndex < contentElements.size(); contentIndex++) {
+                            Element contetntElement = contentElements.get(contentIndex);
+                            String contentType = contetntElement.attributeValue("type");
+                            String contentText = contetntElement.getText();
+                            if("fval".equals(contentType)){
+                                org.jsoup.nodes.Element label = new org.jsoup.nodes.Element("label");
+                                label.addClass("tag-data");
+                                label.text(contentText);
+                                label.attr("data-content",contentText);
+                                label.appendTo(td2);
+                            }else if("enum".equals(contentType)){
+                                org.jsoup.nodes.Element selectElement = new org.jsoup.nodes.Element("select");
+                                selectElement.addClass("tag-data");
+                                selectElement.append("<option value=''>请选择</option>");
+                                List<String> optionValues = JSON.parseArray(contentText,String.class);
+                                for (int j = 0; j < optionValues.size(); j++) {
+                                    org.jsoup.nodes.Element option = new org.jsoup.nodes.Element("option");
+                                    String value = optionValues.get(j);
+                                    option.val(String.valueOf(value));
+                                    option.text(String.valueOf(value));
+                                    option.appendTo(selectElement);
+                                }
+                                selectElement.appendTo(td2);
+                            }else{
+                                td2.append("<input  class=\"tag-data\" type=\"text\" name=\""+name1+"\" value =\""+name1 + "\">");
+                            }
+                        }
                         if("true".equals(repeat)){
                             td2.append("<input class=\"addTag\" type=\"button\" value=\"添加\" >");
                             td2.append("<input class=\"deleteTag\"  type=\"button\" value=\"删除\" >");
@@ -128,7 +157,38 @@ public class SchemaParser {
                     td1.text(name).append(notNullSpan.toString());
                     td1.appendTo(tr);
                     org.jsoup.nodes.Element td2 = new org.jsoup.nodes.Element("td");
-                    td2.append("<input type=\"text\" name=\""+name+"\">");
+
+
+                    List<Element> contentElements =  element.selectNodes("content");
+                    for (int i = 0; i < contentElements.size(); i++) {
+                        Element e = contentElements.get(i);
+                        String contentType = e.attributeValue("type");
+                        String contentText = e.getText();
+                        if("fval".equals(contentType)){
+                            org.jsoup.nodes.Element label = new org.jsoup.nodes.Element("label");
+                            label.addClass("tag-data");
+                            label.text(contentText);
+                            label.attr("data-content",contentText);
+                            label.appendTo(td2);
+                        }else if("enum".equals(contentType)){
+                            org.jsoup.nodes.Element select = new org.jsoup.nodes.Element("select");
+                            select.addClass("tag-data");
+                            select.append("<option value=''>请选择</option>");
+                            List<String> optionValues = JSON.parseArray(contentText,String.class);
+                            for (int j = 0; j < optionValues.size(); j++) {
+                                org.jsoup.nodes.Element option = new org.jsoup.nodes.Element("option");
+                                String value = optionValues.get(j);
+                                option.val(String.valueOf(value));
+                                option.text(String.valueOf(value));
+                                option.appendTo(select);
+                            }
+                            select.appendTo(td2);
+                        }else{
+                            td2.append("<input class=\"tag-data\" type=\"text\" name=\""+name+"\" >");
+                        }
+                    }
+
+
                     if("true".equals(repeat)){
 
                         td2.append("<input class=\"addTag\" type=\"button\" value=\"添加\" >");

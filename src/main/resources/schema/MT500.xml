@@ -1,30 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MT500>
     <Sequence name="A" description="必填分页A基本信息" opt="M" repeat="false">
-        <Tag name="16R" description="Start of Block" format="GENL" opt="M"></Tag>
-        <Tag name="20C" description="Sender's Message Reference" opt="M"></Tag>
-        <Tag name="23G" description="Function of the Message" opt="M"></Tag>
+        <Tag name="16R" description="Start of Block" format="GENL" opt="M">
+            <content type="fval">GENL</content>
+        </Tag>
+        <Tag name="20C" description="Sender's Message Reference" opt="M">
+            <content type="fval">:</content>
+            <content type="enum">['SEME']</content>
+            <content type="fval">//</content>
+            <content type="string" maxlength="16" characterSet="x"></content>
+        </Tag>
+        <Tag name="23G" description="Function of the Message" opt="M">
+            <content type="enum">['CANC','NEWM']</content>
+            <content type="enum">['//CODU','//COPY','//DUPL']</content>
+        </Tag>
         <Tag name="98a" description="Function of the Message" opt="O">
             <option>
-                <Tag name="98A"></Tag>
-                <Tag name="98C"></Tag>
-                <Tag name="98E"></Tag>
+                <Tag name="98A">
+                    <content type="fval">:</content>
+                    <content type="enum">['PREP']</content>
+                    <content type="fval">//</content>
+                    <content type="datetime"></content>
+                </Tag>
+                <Tag name="98C">
+                    <content type="fval">:</content>
+                    <content type="enum">['PREP']</content>
+                    <content type="fval">//</content>
+                    <content type="datetime"></content>
+                </Tag>
+                <Tag name="98E">
+                    <content type="fval">:</content>
+                    <content type="enum">['PREP']</content>
+                    <content type="fval">//</content>
+                    <content type="datetime"></content>
+                </Tag>
             </option>
         </Tag>
-        <Tag name="22F" opt="M"></Tag>
+        <Tag name="22F" opt="M">
+            <content type="fval">:</content>
+            <content type="enum">['INST']</content>
+            <content type="fval">/</content>
+            <content type="string" maxlength="8"></content>
+            <content type="fval">/</content>
+            <content type="enum">['DERI','REGI','RERE']</content>
+        </Tag>
         <SubSequence name="A1" description="必填分页A基本信息" opt="O" repeat="true">
-            <Tag name="16R" opt="M"></Tag>
-            <Tag name="22F" opt="O"></Tag>
+            <Tag name="16R" opt="M">
+                <content type="fval">LINK</content>
+            </Tag>
+            <Tag name="22F" opt="O">
+                <content type="fval">:</content>
+                <content type="enum">['LINK']</content>
+                <content type="fval">/</content>
+                <content type="string" maxlength="8"></content>
+                <content type="fval">/</content>
+                <content type="enum">['AFTE','BEFO','INFO','WITH']</content>
+            </Tag>
             <Tag name="13a" opt="O">
                 <option>
-                    <Tag name="13A"></Tag>
-                    <Tag name="13B"></Tag>
+                    <Tag name="13A">
+                        <content type="fval">:</content>
+                        <content type="enum">['LINK']</content>
+                        <content type="fval">//</content>
+                        <content type="string" maxlength="3"></content>
+                    </Tag>
+                    <Tag name="13B">
+                        <content type="fval">:</content>
+                        <content type="enum">['LINK']</content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="8"></content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="30"></content>
+                    </Tag>
                 </option>
             </Tag>
-            <Tag name="20C" opt="M"></Tag>
-            <Tag name="16S" opt="M"></Tag>
+            <Tag name="20C" opt="M">
+                <content type="fval">:</content>
+                <content type="enum">['POOL','PREV','RELA']</content>
+                <content type="fval">//</content>
+                <content type="string" maxlength="16"></content>
+            </Tag>
+            <Tag name="16S" opt="M">
+                <content type="fval">LINK</content>
+            </Tag>
         </SubSequence>
-        <Tag name="16S" opt="M"></Tag>
+        <Tag name="16S" opt="M">
+            <content type="fval">GENL</content>
+        </Tag>
     </Sequence>
 
     <Sequence name="B" description="必填分页B Registration Details" opt="M" repeat="false">
