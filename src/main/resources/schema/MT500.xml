@@ -90,9 +90,29 @@
     </Sequence>
 
     <Sequence name="B" description="必填分页B Registration Details" opt="M" repeat="false">
-        <Tag name="16R" opt="M"></Tag>
-        <Tag name="20D" opt="M" repeat="true"></Tag>
-        <Tag name="22F" opt="M" repeat="true"></Tag>
+        <Tag name="16R" opt="M">
+            <content type="fval">REGDET</content>
+        </Tag>
+        <Tag name="20D" opt="M" repeat="true">
+            <content type="fval">:</content>
+            <content type="enum">['BREF','BPAR','SHAR']</content>
+            <content type="fval">//</content>
+            <content type="string" maxlength="25"></content>
+        </Tag>
+        <Tag name="22F" opt="M" repeat="true">
+            <content type="fval">:</content>
+            <content type="enum-data" datafor="Indicator">
+                {'OWNT':['NOMI','OWNE','TRUS']
+                ,'BENT':['INDV','LEGL']
+                ,'ADMT':['GIVE','NGIV','TIME']
+                ,'RREA':['BEAR','BONU','CAPG','DVCA','EXWA','INCR','INHE','OTHR','POSS','REGD','STAF']
+                ,'CERT':['NTBK','TOBK']}
+            </content>
+            <content type="fval">/</content>
+            <content type="string" maxlength="8"></content>
+            <content type="fval">/</content>
+            <content type="enum" contentName="Indicator"></content>
+        </Tag>
         <Tag name="98a" opt="O">
             <option>
                 <Tag name="98A"></Tag>
