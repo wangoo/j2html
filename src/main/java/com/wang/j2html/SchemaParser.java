@@ -2,6 +2,7 @@ package com.wang.j2html;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.parser.Feature;
 import org.dom4j.*;
 import org.dom4j.io.SAXReader;
 
@@ -89,16 +90,11 @@ public class SchemaParser {
                 notNullSpan.text("*");
             }
             if("Tag".equals(elementName)){
-
-
-
-
                 org.jsoup.nodes.Element tr = new org.jsoup.nodes.Element("tr");
                 tr.attr("tagname",name);
                 org.jsoup.nodes.Element td1 = new org.jsoup.nodes.Element("td");
                 td1.addClass("tabL");
                 if(name.endsWith("a")){
-
                     List<Element> elements = element.selectNodes("option/Tag");
                     org.jsoup.nodes.Element select = new org.jsoup.nodes.Element("select");
                     select.addClass("tagselect");
@@ -119,65 +115,8 @@ public class SchemaParser {
                         String name1 = tagElement.attributeValue("name");
                         org.jsoup.nodes.Element td2 = new org.jsoup.nodes.Element("td");
                         td2.attr("tagname",name1);
-
                         List<Element> contentElements =  tagElement.selectNodes("content");
-                        for (int contentIndex = 0; contentIndex < contentElements.size(); contentIndex++) {
-                            Element contetntElement = contentElements.get(contentIndex);
-                            String contentType = contetntElement.attributeValue("type");
-                            String contentText = contetntElement.getText();
-                            String contentName = contetntElement.attributeValue("contentName");
-                            if("fval".equals(contentType)){
-                                org.jsoup.nodes.Element label = new org.jsoup.nodes.Element("label");
-                                label.addClass("tag-data");
-                                label.text(contentText);
-                                label.attr("data-content",contentText);
-                                label.appendTo(td2);
-                            }else if("enum".equals(contentType)){
-                                org.jsoup.nodes.Element selectElement = new org.jsoup.nodes.Element("select");
-                                selectElement.addClass("tag-data");
-                                selectElement.append("<option value=''>请选择</option>");
-                                if(String.valueOf(contentName).length()>0){
-                                    selectElement.addClass("tag-data").attr("contentName",String.valueOf(contentName));
-                                }
-                                List<String> optionValues = JSON.parseArray(contentText,String.class);
-                                for (int j = 0; j < optionValues.size(); j++) {
-                                    org.jsoup.nodes.Element option = new org.jsoup.nodes.Element("option");
-                                    String value = optionValues.get(j);
-                                    option.val(String.valueOf(value));
-                                    option.text(String.valueOf(value));
-                                    option.appendTo(selectElement);
-                                }
-                                selectElement.appendTo(td2);
-                            }else if("enum-data".equals(contentType)){
-
-                                String datafor = contetntElement.attributeValue("datafor");
-                                org.jsoup.nodes.Element selectElement = new org.jsoup.nodes.Element("select");
-                                selectElement.addClass("tag-data");
-                                selectElement.addClass("enum-data");
-                                selectElement.attr("datafor",datafor);
-                                selectElement.append("<option value=''>请选择</option>");
-                                JSONObject optionValues = JSON.parseObject(contentText,JSONObject.class);
-                                Set<Map.Entry<String, Object>> entrySet = optionValues.entrySet();
-                                for (Iterator<Map.Entry<String, Object>> iterator1 = entrySet.iterator(); iterator1.hasNext(); ) {
-                                    Map.Entry<String,Object> entry = iterator1.next();
-                                    String key = entry.getKey();
-                                    JSONArray values = (JSONArray) entry.getValue();
-                                    org.jsoup.nodes.Element option = new org.jsoup.nodes.Element("option");
-                                    option.val(String.valueOf(key));
-                                    StringBuilder enumdata =new StringBuilder(200);
-                                    for (int j = 0; j <values.size() ; j++) {
-                                        enumdata.append(values.get(j)).append(",");
-                                    }
-                                    option.attr("data-enumdata", enumdata.deleteCharAt(enumdata.length()-1).toString());
-                                    option.text(String.valueOf(key));
-                                    option.appendTo(selectElement);
-                                }
-                                selectElement.appendTo(td2);
-
-                            }else{
-                                td2.append("<input  class=\"tag-data\" type=\"text\" name=\""+name1+"\" value =\""+name1 + "\">");
-                            }
-                        }
+                        appendTagContent(contentElements,td2,name1);
                         if("true".equals(repeat)){
                             td2.append("<input class=\"addTag\" type=\"button\" value=\"添加\" >");
                             td2.append("<input class=\"deleteTag\"  type=\"button\" value=\"删除\" >");
@@ -192,84 +131,15 @@ public class SchemaParser {
 
 
                     List<Element> contentElements =  element.selectNodes("content");
-                    for (int i = 0; i < contentElements.size(); i++) {
-                        Element e = contentElements.get(i);
-                        String contentType = e.attributeValue("type");
-                        String contentText = e.getText();
-                        String contentName = e.attributeValue("contentName");
-                        if("fval".equals(contentType)){
-                            org.jsoup.nodes.Element label = new org.jsoup.nodes.Element("label");
-                            label.addClass("tag-data");
-                            label.text(contentText);
-                            label.attr("data-content",contentText);
-                            label.appendTo(td2);
-                        }else if("enum".equals(contentType)){
-                            org.jsoup.nodes.Element select = new org.jsoup.nodes.Element("select");
-                            select.addClass("tag-data");
-                            select.append("<option value=''>请选择</option>");
-                            if(String.valueOf(contentName).length()>0){
-                                select.addClass("tag-data").attr("contentName",String.valueOf(contentName));
-                            }
-                            if (contentText.length()>0) {
-                                List<String> optionValues = JSON.parseArray(contentText,String.class);
-                                for (int j = 0; j < optionValues.size(); j++) {
-                                    org.jsoup.nodes.Element option = new org.jsoup.nodes.Element("option");
-                                    String value = optionValues.get(j);
-                                    option.val(String.valueOf(value));
-                                    option.text(String.valueOf(value));
-                                    option.appendTo(select);
-                                }
-                            }
-
-                            select.appendTo(td2);
-                        }else if("enum-data".equals(contentType)){
-
-                            String datafor = e.attributeValue("datafor");
-                            org.jsoup.nodes.Element select = new org.jsoup.nodes.Element("select");
-                            select.addClass("tag-data");
-                            select.addClass("enum-data");
-                            select.attr("datafor",datafor);
-                            select.append("<option value=''>请选择</option>");
-                            JSONObject optionValues = JSON.parseObject(contentText,JSONObject.class);
-                            Set<Map.Entry<String, Object>> entrySet = optionValues.entrySet();
-                            for (Iterator<Map.Entry<String, Object>> iterator1 = entrySet.iterator(); iterator1.hasNext(); ) {
-                                Map.Entry<String,Object> entry = iterator1.next();
-                                String key = entry.getKey();
-                                JSONArray values = (JSONArray) entry.getValue();
-                                org.jsoup.nodes.Element option = new org.jsoup.nodes.Element("option");
-                                option.val(String.valueOf(key));
-                                StringBuilder enumdata =new StringBuilder(200);
-                                for (int j = 0; j <values.size() ; j++) {
-                                    enumdata.append(values.get(j)).append(",");
-                                }
-                                option.attr("data-enumdata", enumdata.deleteCharAt(enumdata.length()-1).toString());
-                                option.text(String.valueOf(key));
-                                option.appendTo(select);
-                            }
-                            select.appendTo(td2);
-
-                        }
-
-                        else{
-                            td2.append("<input class=\"tag-data\" type=\"text\" name=\""+name+"\" >");
-                        }
-                    }
-
-
+                    appendTagContent(contentElements,td2,name);
                     if("true".equals(repeat)){
-
                         td2.append("<input class=\"addTag\" type=\"button\" value=\"添加\" >");
                         td2.append("<input class=\"deleteTag\"  type=\"button\" value=\"删除\" >");
                     }
                     td2.appendTo(tr);
                 }
-
-
-
                 tr.appendTo(parent);
-
             }else if(elementName.equals("SubSequence")){
-
                 org.jsoup.nodes.Element tbody = new org.jsoup.nodes.Element("tbody");
                 tbody.attr("subSequenceName",name);
                 String description = element.attributeValue("description");
@@ -280,21 +150,115 @@ public class SchemaParser {
                     td.append("<input  class=\"deleteSubSequence\" type=\"button\" value=\"删除\" >");
                 }
                 subsequenceTitleTr.appendTo(tbody);
-
                 createSequence(tbody,element);
-
                 org.jsoup.nodes.Element subsequenceTitleTrEnd = J2htmlApplication.createSubSequenceTitleTr("End of "+description,null);
                 subsequenceTitleTrEnd.appendTo(tbody);
                 tbody.appendTo(parent);
             }
-
-
         }
+
 
 
         return parent;
     }
 
+
+    public static void appendTagContent(List<Element> contentElements,org.jsoup.nodes.Element td2,String tagName){
+        for (int i = 0; i < contentElements.size(); i++) {
+            Element e = contentElements.get(i);
+            String contentType = e.attributeValue("type");
+            String contentText = e.getText();
+            String contentName = e.attributeValue("contentName");
+            String contentPrefix = e.attributeValue("prefix");
+            if("fval".equals(contentType)){
+                org.jsoup.nodes.Element label = new org.jsoup.nodes.Element("label");
+                label.addClass("tag-data");
+                label.text(contentText);
+                label.attr("data-content",contentText);
+                if(contentPrefix!=null&&contentPrefix.length()>0){
+                    label.attr("data-contentprefix",contentPrefix);
+                }
+                label.appendTo(td2);
+            }else if("enum".equals(contentType)){
+                org.jsoup.nodes.Element select = new org.jsoup.nodes.Element("select");
+                select.addClass("tag-data");
+                select.attr("data-content","");
+                if(contentPrefix!=null&&contentPrefix.length()>0){
+                    select.attr("data-contentprefix",contentPrefix);
+                }
+                select.append("<option value=''>请选择</option>");
+                if(contentName!=null&&contentName.length()>0){
+                    select.addClass("tag-data").attr("contentName",contentName);
+                }
+                if (contentText.length()>0) {
+                    List<String> optionValues = JSON.parseArray(contentText,String.class);
+                    for (int j = 0; j < optionValues.size(); j++) {
+                        org.jsoup.nodes.Element option = new org.jsoup.nodes.Element("option");
+                        String value = optionValues.get(j);
+                        option.val(String.valueOf(value));
+                        option.text(String.valueOf(value));
+                        option.appendTo(select);
+                    }
+                }
+                select.appendTo(td2);
+
+            }else if("enum-data".equals(contentType)){
+                String datafor = e.attributeValue("datafor");
+                org.jsoup.nodes.Element select = new org.jsoup.nodes.Element("select");
+                select.addClass("tag-data");
+                select.addClass("enum-data");
+                select.attr("data-content","");
+                if(contentPrefix!=null&&contentPrefix.length()>0){
+                    select.attr("data-contentprefix",contentPrefix);
+                }
+                select.attr("datafor",datafor);
+                select.append("<option value=''>请选择</option>");
+                JSONObject optionValues = JSON.parseObject(contentText,JSONObject.class, Feature.OrderedField);
+                Set<Map.Entry<String, Object>> entrySet = optionValues.entrySet();
+                for (Iterator<Map.Entry<String, Object>> iterator1 = entrySet.iterator(); iterator1.hasNext(); ) {
+                    Map.Entry<String,Object> entry = iterator1.next();
+                    String key = entry.getKey();
+                    JSONArray values = (JSONArray) entry.getValue();
+                    org.jsoup.nodes.Element option = new org.jsoup.nodes.Element("option");
+                    option.val(String.valueOf(key));
+                    StringBuilder enumdata =new StringBuilder(200);
+                    for (int j = 0; j <values.size() ; j++) {
+                        enumdata.append(values.get(j)).append(",");
+                    }
+                    option.attr("data-enumdata", enumdata.deleteCharAt(enumdata.length()-1).toString());
+                    option.text(String.valueOf(key));
+                    option.appendTo(select);
+                }
+                select.appendTo(td2);
+            }else if("textarea".equals(contentType)){
+                String cols = e.attributeValue("cols");
+                String rows = e.attributeValue("rows");
+                org.jsoup.nodes.Element textarea = new org.jsoup.nodes.Element("textarea");
+                textarea.addClass("tag-data");
+                textarea.addClass("textareaStyle");
+                textarea.attr("data-content","");
+                if(contentPrefix!=null&&contentPrefix.length()>0){
+                    textarea.attr("data-contentprefix",contentPrefix);
+                }
+                textarea.attr("data-cols",cols);
+                textarea.attr("data-rows",rows);
+                textarea.appendTo(td2);
+            }
+            else{
+
+                org.jsoup.nodes.Element input = new org.jsoup.nodes.Element("input");
+                input.addClass("tag-data");
+                input.attr("type","text");
+                input.attr("name",tagName);
+                input.attr("data-content","");
+                if(contentPrefix!=null&&contentPrefix.length()>0){
+                    input.attr("data-contentprefix",contentPrefix);
+                }
+                input.appendTo(td2);
+            }
+        }
+
+    }
 
 
 

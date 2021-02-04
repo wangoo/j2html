@@ -115,40 +115,138 @@
         </Tag>
         <Tag name="98a" opt="O">
             <option>
-                <Tag name="98A"></Tag>
-                <Tag name="98C"></Tag>
+                <Tag name="98A">
+                    <content type="fval">:</content>
+                    <content type="enum">['RREG']</content>
+                    <content type="fval">//</content>
+                    <content type="datetime"></content>
+                </Tag>
+                <Tag name="98C">
+                    <content type="fval">:</content>
+                    <content type="enum">['RREG']</content>
+                    <content type="fval">//</content>
+                    <content type="datetime"></content>
+                </Tag>
             </option>
         </Tag>
-        <Tag name="35B" opt="M"></Tag>
-        <Tag name="70C" opt="O"></Tag>
+        <Tag name="35B" opt="M">
+            <content type="string" maxlength="17"></content>
+            <content type="textarea" cols="35" rows="4"></content>
+        </Tag>
+        <Tag name="70C" opt="O">
+            <content type="fval">:</content>
+            <content type="enum">['REGI']</content>
+            <content type="fval">//</content>
+            <content type="textarea" cols="35" rows="4"></content>
+        </Tag>
         <SubSequence name="B1" description="必填分页A基本信息" opt="O" repeat="false">
-            <Tag name="16R" opt="M"></Tag>
-            <Tag name="94B" opt="O"></Tag>
-            <Tag name="22F" opt="O" repeat="true"></Tag>
+            <Tag name="16R" opt="M">
+                <content type="fval">FIA</content>
+            </Tag>
+            <Tag name="94B" opt="O">
+                <content type="fval">:</content>
+                <content type="enum">['PLIS']</content>
+                <content type="fval">/</content>
+                <content type="string" maxlength="8"></content>
+                <content type="fval">/</content>
+                <content type="enum">['EXCH','OTCO']</content>
+                <content type="string" maxlength="30" prefix="/"></content>
+            </Tag>
+            <Tag name="22F" opt="O" repeat="true">
+                <content type="fval">:</content>
+                <content type="enum-data" datafor="Indicator">
+                    {'MICO':['A001','A002','A003','A004','A005','A006','A007','A008','A009','A010','A011','A012','A013','A014','OTHR']
+                    ,'FORM':['BEAR','REGD']
+                    ,'PFRE':['ANNU','MNTH','QUTR','SEMI','WEEK']
+                    ,'PAYS':['FULL','NILL','PART']
+                    ,'REST':['144A','NRST','RSTR']}
+                </content>
+                <content type="fval">/</content>
+                <content type="string" maxlength="8"></content>
+                <content type="fval">/</content>
+                <content type="enum" contentName="Indicator"></content>
+            </Tag>
             <Tag name="12a" opt="O" repeat="true">
                 <option>
-                    <Tag name="12A"></Tag>
-                    <Tag name="12B"></Tag>
-                    <Tag name="12C"></Tag>
+                    <Tag name="12A">
+                        <content type="fval">:</content>
+                        <content type="enum">['OPST','OPTI']</content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="8"></content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="30" ></content>
+                    </Tag>
+                    <Tag name="12B">
+                        <content type="fval">:</content>
+                        <content type="enum-data" datafor="Indicator">
+                            {'OPST':['AMER','EURO']
+                            ,'OPTI':['CALL','PUTO']}
+                        </content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="8"></content>
+                        <content type="fval">/</content>
+                        <content type="enum" contentName="Indicator"></content>
+                    </Tag>
+                    <Tag name="12C">
+                        <content type="fval">:</content>
+                        <content type="enum">['OPST','OPTI']</content>
+                        <content type="fval">//</content>
+                        <content type="string" fixedlength="6" ></content>
+                    </Tag>
                 </option>
             </Tag>
-            <Tag name="11A" opt="O"></Tag>
-            <Tag name="98A" opt="O" repeat="true"></Tag>
-            <Tag name="92A" opt="O" repeat="true"></Tag>
+            <Tag name="11A" opt="O">
+                <content type="fval">:</content>
+                <content type="enum">['DENO']</content>
+                <content type="fval">//</content>
+                <content type="string" fixedlength="3" ></content>
+            </Tag>
+            <Tag name="98A" opt="O" repeat="true">
+                <content type="fval">:</content>
+                <content type="enum">['COUP','EXPI','FRNR','MATU','ISSU','CALD','PUTT','DDTE','FCOU']</content>
+                <content type="fval">//</content>
+                <content type="string" fixedlength="8" ></content>
+            </Tag>
+            <Tag name="92A" opt="O" repeat="true">
+                <content type="fval">:</content>
+                <content type="enum">['PRFC','CUFC','NWFC','INTR','NXRT','YTMR']</content>
+                <content type="fval">//</content>
+                <content type="enum">['N']</content>
+                <content type="string" maxlength="15" ></content>
+            </Tag>
             <Tag name="13a" opt="O" repeat="true">
                 <option>
-                    <Tag name="13A"></Tag>
-                    <Tag name="13B"></Tag>
+                    <Tag name="13A">
+                        <content type="fval">:</content>
+                        <content type="enum">['COUP']</content>
+                        <content type="fval">//</content>
+                        <content type="string" fixedlength="3"></content>
+                    </Tag>
+                    <Tag name="13B">
+                        <content type="fval">:</content>
+                        <content type="enum">['COUP','POOL','LOTS']</content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="8"></content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="30"></content>
+                    </Tag>
                 </option>
             </Tag>
-            <Tag name="17B" opt="O" repeat="true"></Tag>
+            <Tag name="17B" opt="O" repeat="true">
+                <content type="fval">:</content>
+                <content type="enum">['FRNF','CALL','PUTT']</content>
+                <content type="fval">//</content>
+                <content type="string" fixedlength="1"></content>
+            </Tag>
             <Tag name="90a" opt="O" repeat="true">
                 <option>
                     <Tag name="90A"></Tag>
                     <Tag name="90B"></Tag>
                 </option>
             </Tag>
-            <Tag name="36B" opt="O" repeat="true"></Tag>
+            <Tag name="36B" opt="O" repeat="true">
+
+            </Tag>
             <Tag name="70E" opt="O"></Tag>
             <Tag name="16S" opt="M"></Tag>
         </SubSequence>
