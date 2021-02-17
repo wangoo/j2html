@@ -240,35 +240,94 @@
             </Tag>
             <Tag name="90a" opt="O" repeat="true">
                 <option>
-                    <Tag name="90A"></Tag>
-                    <Tag name="90B"></Tag>
+                    <Tag name="90A">
+                        <content type="fval">:</content>
+                        <content type="enum">['INDC','MRKT','EXER']</content>
+                        <content type="fval">//</content>
+                        <content type="enum">['DISC','PRCT','PREM','YIEL']</content>
+                        <content type="enum">['N']</content>
+                        <content type="string" maxlength="15"></content>
+                    </Tag>
+                    <Tag name="90B">
+                        <content type="fval">:</content>
+                        <content type="enum">['INDC','MRKT','EXER']</content>
+                        <content type="fval">//</content>
+                        <content type="enum">['ACTU','DISC','PREM']</content>
+                        <content type="string" fixedlength="3"></content>
+                        <content type="string" maxlength="15"></content>
+                    </Tag>
                 </option>
             </Tag>
             <Tag name="36B" opt="O" repeat="true">
-
+                <content type="fval">:</content>
+                <content type="enum">['MINO','SIZE']</content>
+                <content type="fval">//</content>
+                <content type="enum">['AMOR','FAMT','UNIT']</content>
+                <content type="string" maxlength="15"></content>
             </Tag>
-            <Tag name="70E" opt="O"></Tag>
-            <Tag name="16S" opt="M"></Tag>
+            <Tag name="70E" opt="O">
+                <content type="fval">:</content>
+                <content type="enum">['FIAN']</content>
+                <content type="fval">//</content>
+                <content type="textarea" cols="35" rows="10"></content>
+            </Tag>
+            <Tag name="16S" opt="M">
+                <content type="fval">FIA</content>
+            </Tag>
         </SubSequence>
         <SubSequence name="B2" description="Mandatory Subsequence B2 Financial Instrument/Account" opt="M"
                      repeat="false">
-            <Tag name="16R" opt="M"></Tag>
-            <Tag name="36B" opt="M"></Tag>
+            <Tag name="16R" opt="M">
+                <content type="fval">FIA</content>
+            </Tag>
+            <Tag name="36B" opt="M">
+                <content type="fval">:</content>
+                <content type="enum">['QREG']</content>
+                <content type="fval">//</content>
+                <content type="enum">['AMOR','FAMT','UNIT']</content>
+                <content type="string" maxlength="15"></content>
+            </Tag>
             <Tag name="95a" opt="O">
                 <option>
-                    <Tag name="95P"></Tag>
-                    <Tag name="95R"></Tag>
+                    <Tag name="95P">
+                        <content type="fval">:</content>
+                        <content type="enum">['ACOW']</content>
+                        <content type="fval">//</content>
+                        <content type="string" maxlength="11"></content>
+                    </Tag>
+                    <Tag name="95R">
+                        <content type="fval">:</content>
+                        <content type="enum">['ACOW']</content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="8"></content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="34"></content>
+                    </Tag>
                 </option>
             </Tag>
-            <Tag name="97A" opt="M"></Tag>
-            <Tag name="16S" opt="M"></Tag>
+            <Tag name="97A" opt="M">
+                <content type="fval">:</content>
+                <content type="enum">['SAFE']</content>
+                <content type="fval">//</content>
+                <content type="string" maxlength="35"></content>
+            </Tag>
+            <Tag name="16S" opt="M">
+                <content type="fval">FIAC</content>
+            </Tag>
         </SubSequence>
-        <Tag name="16S" opt="M"></Tag>
+        <Tag name="16S" opt="M">
+            <content type="fval">REGDET</content>
+        </Tag>
     </Sequence>
     <Sequence name="C" description="Optional Repetitive Sequence C Client Details" opt="O" repeat="true">
-        <Tag name="16R" opt="M"></Tag>
+        <Tag name="16R" opt="M">
+            <content type="fval">CLTDET</content>
+
+        </Tag>
         <SubSequence name="C1" description="Optional Subsequence C1 Address" opt="O" repeat="false">
-            <Tag name="16R" opt="M"></Tag>
+            <Tag name="16R" opt="M">
+                <content type="fval">ADDRESS</content>
+            </Tag>
             <Tag name="17B" opt="M"></Tag>
             <Tag name="22F" opt="O" repeat="true"></Tag>
             <Tag name="95a" opt="O" repeat="true">
