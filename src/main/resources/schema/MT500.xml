@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MT500>
-    <Sequence name="A" description="必填分页A基本信息" opt="M" repeat="false">
+    <Sequence name="A" description="Mandatory Sequence A General Information" opt="M" repeat="false">
         <Tag name="16R" description="Start of Block" format="GENL" opt="M">
             <content type="fval">GENL</content>
         </Tag>
@@ -44,7 +44,7 @@
             <content type="fval">/</content>
             <content type="enum">['DERI','REGI','RERE']</content>
         </Tag>
-        <SubSequence name="A1" description="必填分页A基本信息" opt="O" repeat="true">
+        <SubSequence name="A1" description="Optional Repetitive Subsequence A1 Linkages" opt="O" repeat="true">
             <Tag name="16R" opt="M">
                 <content type="fval">LINK</content>
             </Tag>
@@ -89,7 +89,7 @@
         </Tag>
     </Sequence>
 
-    <Sequence name="B" description="必填分页B Registration Details" opt="M" repeat="false">
+    <Sequence name="B" description="Mandatory Sequence B Registration Details" opt="M" repeat="false">
         <Tag name="16R" opt="M">
             <content type="fval">REGDET</content>
         </Tag>
@@ -139,7 +139,7 @@
             <content type="fval">//</content>
             <content type="textarea" cols="35" rows="4"></content>
         </Tag>
-        <SubSequence name="B1" description="必填分页A基本信息" opt="O" repeat="false">
+        <SubSequence name="B1" description="Optional Subsequence B1 Financial Instrument Attributes" opt="O" repeat="false">
             <Tag name="16R" opt="M">
                 <content type="fval">FIA</content>
             </Tag>
@@ -278,7 +278,7 @@
         <SubSequence name="B2" description="Mandatory Subsequence B2 Financial Instrument/Account" opt="M"
                      repeat="false">
             <Tag name="16R" opt="M">
-                <content type="fval">FIA</content>
+                <content type="fval">FIAC</content>
             </Tag>
             <Tag name="36B" opt="M">
                 <content type="fval">:</content>
@@ -328,63 +328,217 @@
             <Tag name="16R" opt="M">
                 <content type="fval">ADDRESS</content>
             </Tag>
-            <Tag name="17B" opt="M"></Tag>
-            <Tag name="22F" opt="O" repeat="true"></Tag>
+            <Tag name="17B" opt="M">
+                <content type="fval">:</content>
+                <content type="enum">['PERM','MAIL']</content>
+                <content type="fval">//Y</content>
+            </Tag>
+            <Tag name="22F" opt="O" repeat="true">
+                <content type="fval">:</content>
+                <content type="enum-data" datafor="Indicator">
+                    {'DIST':['FIDE','PERS']
+                    ,'TITL':['ASOC','DR01','FRAU','HERR','MADA','MISS','MR01','MRSS','SIRR']}
+                </content>
+                <content type="fval">/</content>
+                <content type="string" maxlength="8"></content>
+                <content type="fval">/</content>
+                <content type="enum" contentName="Indicator"></content>
+            </Tag>
             <Tag name="95a" opt="O" repeat="true">
                 <option>
-                    <Tag name="95P"></Tag>
-                    <Tag name="95R"></Tag>
-                    <Tag name="95S"></Tag>
-                    <Tag name="95U"></Tag>
+                    <Tag name="95P">
+                        <content type="fval">:</content>
+                        <content type="enum">['OWND','NOMI','TRUS']</content>
+                        <content type="fval">//</content>
+                        <content type="string" format="IdentifierCode"></content>
+                    </Tag>
+                    <Tag name="95R">
+                        <content type="fval">:</content>
+                        <content type="enum">['OWND','NOMI','TRUS']</content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="8"></content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="34"></content>
+                    </Tag>
+                    <Tag name="95S">
+                        <content type="fval">:</content>
+                        <content type="enum-data" datafor="TypeofID">
+                            {'ALTE':['ARNU','CCPT','CHTY','CORP','DRLC','FIIN','TXID']}
+                        </content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="8"></content>
+                        <content type="fval">/</content>
+                        <content type="enum" contentName="TypeofID"></content>
+                        <content type="fval">/</content>
+                        <content type="string" fixedlength="2"></content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="30"></content>
+                    </Tag>
+                    <Tag name="95U">
+                        <content type="fval">:</content>
+                        <content type="enum">['OWND','NOMI','TRUS']</content>
+                        <content type="fval">//</content>
+                        <content type="textarea" cols="35" rows="3"></content>
+                    </Tag>
                 </option>
             </Tag>
             <Tag name="94a" opt="O" repeat="true">
                 <option>
-                    <Tag name="94C"></Tag>
-                    <Tag name="94D"></Tag>
-                    <Tag name="94G"></Tag>
+                    <Tag name="94C">
+                        <content type="fval">:</content>
+                        <content type="enum">['DOMI']</content>
+                        <content type="fval">//</content>
+                        <content type="string" fixedlength="2"></content>
+                    </Tag>
+                    <Tag name="94D">
+                        <content type="fval">:</content>
+                        <content type="enum">['CITY','LOCA']</content>
+                        <content type="fval">//</content>
+                        <content type="string" fixedlength="2"></content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="35"></content>
+                    </Tag>
+                    <Tag name="94G">
+                        <content type="fval">:</content>
+                        <content type="enum">['ADDR','EMAI']</content>
+                        <content type="fval">//</content>
+                        <content type="textarea" cols="35" rows="2"></content>
+                    </Tag>
                 </option>
             </Tag>
-            <Tag name="13B" opt="O" repeat="true"></Tag>
-            <Tag name="70C" opt="O" repeat="true"></Tag>
-            <Tag name="16S" opt="M"></Tag>
+            <Tag name="13B" opt="O" repeat="true">
+                <content type="fval">:</content>
+                <content type="enum">['POST','PBOX','SNUM']</content>
+                <content type="fval">//</content>
+                <content type="string" maxlength="8"></content>
+                <content type="fval">/</content>
+                <content type="string" maxlength="30"></content>
+            </Tag>
+            <Tag name="70C" opt="O" repeat="true">
+                <content type="fval">:</content>
+                <content type="enum">['REGI','PACO']</content>
+                <content type="fval">//</content>
+                <content type="textarea" cols="35" rows="4"></content>
+            </Tag>
+            <Tag name="16S" opt="M">
+                <content type="fval">ADDRESS</content>
+            </Tag>
         </SubSequence>
         <SubSequence name="C2" description="Optional Subsequence C2 Personal Details" opt="O" repeat="false">
-            <Tag name="16R" opt="M"></Tag>
-            <Tag name="22F" opt="O" repeat="true"></Tag>
-            <Tag name="95U" opt="O" ></Tag>
+            <Tag name="16R" opt="M">
+                <content type="fval">PERSDET</content>
+            </Tag>
+            <Tag name="22F" opt="O" repeat="true">
+                <content type="fval">:</content>
+                <content type="enum-data" datafor="Indicator">
+                    {'OCCU':['']
+                    ,'LANG':['DUTH','ENGL','FREN','GERM','ITAL','SPAN']}
+                </content>
+                <content type="fval">/</content>
+                <content type="string" maxlength="8"></content>
+                <content type="fval">/</content>
+                <content type="enum" contentName="Indicator"></content>
+            </Tag>
+            <Tag name="95U" opt="O" >
+                <content type="fval">:</content>
+                <content type="enum">['BIRT']</content>
+                <content type="fval">//</content>
+                <content type="textarea" cols="35" rows="3"></content>
+            </Tag>
             <Tag name="98a" opt="O" repeat="true">
                 <option>
-                    <Tag name="98A" ></Tag>
-                    <Tag name="98C" ></Tag>
+                    <Tag name="98A" >
+                        <content type="fval">:</content>
+                        <content type="enum">['DBIR','DFON']</content>
+                        <content type="fval">//</content>
+                        <content type="date" ></content>
+                    </Tag>
+                    <Tag name="98C" >
+                        <content type="fval">:</content>
+                        <content type="enum">['DBIR','DFON']</content>
+                        <content type="fval">//</content>
+                        <content type="datetime" ></content>
+                    </Tag>
                 </option>
             </Tag>
-            <Tag name="94C" opt="O" repeat="true"></Tag>
-            <Tag name="70C" opt="O"></Tag>
-            <Tag name="16S" opt="M"></Tag>
+            <Tag name="94C" opt="O" repeat="true">
+                <content type="fval">:</content>
+                <content type="enum">['BIRT','NATO']</content>
+                <content type="fval">//</content>
+                <content type="string" fixedlength="2" ></content>
+            </Tag>
+            <Tag name="70C" opt="O">
+                <content type="fval">:</content>
+                <content type="enum">['ADTX']</content>
+                <content type="fval">//</content>
+                <content type="textarea" cols="35" rows="4"></content>
+            </Tag>
+            <Tag name="16S" opt="M">
+                <content type="fval">PERSDET</content>
+            </Tag>
         </SubSequence>
-        <Tag name="16S" opt="M"></Tag>
+        <Tag name="16S" opt="M">
+            <content type="fval">CLTDET</content>
+        </Tag>
     </Sequence>
     <Sequence name="D" description="Optional Sequence D Corporate Action Details" opt="O" >
-        <Tag name="16R" opt="M"></Tag>
+        <Tag name="16R" opt="M">
+            <content type="fval">CADETL</content>
+        </Tag>
         <Tag name="98a" opt="O" repeat="true">
             <option>
-                <Tag name="98A" ></Tag>
-                <Tag name="98C" ></Tag>
+                <Tag name="98A" >
+                    <content type="fval">:</content>
+                    <content type="enum">['ANOU','XDTE']</content>
+                    <content type="fval">//</content>
+                    <content type="date" ></content>
+                </Tag>
+                <Tag name="98C" >
+                    <content type="fval">:</content>
+                    <content type="enum">['ANOU','XDTE']</content>
+                    <content type="fval">//</content>
+                    <content type="datetime"></content>
+                </Tag>
             </option>
         </Tag>
-        <Tag name="35B" opt="O"></Tag>
-        <Tag name="16S" opt="M"></Tag>
+        <Tag name="35B" opt="O">
+            <content  type="string" prefix="ISIN" fixedlength="13"></content>
+            <content  type="textarea" cols="35" rows="4"></content>
+        </Tag>
+        <Tag name="16S" opt="M">
+            <content type="fval">CADETL</content>
+        </Tag>
     </Sequence>
     <Sequence name="E" description="Optional Sequence E Additional Information" opt="O" >
-        <Tag name="16R" opt="M"></Tag>
+        <Tag name="16R" opt="M">
+            <content type="fval">ADDINFO</content>
+        </Tag>
         <Tag name="95a" opt="O" repeat="true">
             <option>
-                <Tag name="95P" ></Tag>
-                <Tag name="95Q" ></Tag>
-                <Tag name="95R" ></Tag>
+                <Tag name="95P" >
+                    <content type="fval">:</content>
+                    <content type="enum">['MEOR','MERE']</content>
+                    <content type="fval">//</content>
+                    <content type="string" format="IdentifierCode"></content>
+                </Tag>
+                <Tag name="95Q" >
+                    <content type="fval">:</content>
+                    <content type="enum">['MEOR','MERE']</content>
+                    <content type="fval">//</content>
+                    <content type="textarea" cols="35" rows="4"></content>
+                </Tag>
+                <Tag name="95R" >
+                    <content type="fval">:</content>
+                    <content type="enum">['MEOR','MERE']</content>
+                    <content type="fval">/</content>
+                    <content type="string" maxlength="8"></content>
+                    <content type="fval">/</content>
+                    <content type="string" maxlength="34"></content>
+                </Tag>
             </option>
         </Tag>
-        <Tag name="16S" opt="M"></Tag>
+        <Tag name="16S" opt="M">
+            <content type="fval">ADDINFO</content>
+        </Tag>
     </Sequence>
 </MT500>     

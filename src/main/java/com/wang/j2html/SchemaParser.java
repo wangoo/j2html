@@ -47,7 +47,7 @@ public class SchemaParser {
                 org.jsoup.nodes.Element sequenceTable = new org.jsoup.nodes.Element("table");
                 sequenceTable.addClass("tablelist2");
                 sequenceTable.attr("sequencename",sequenceName);
-
+                sequenceTable.attr("opt",opt);
                 Attribute repeat = sequnceElement.attribute("repeat");
                 if(repeat!=null&&"true".equals(repeat.getValue())){
 
@@ -92,6 +92,7 @@ public class SchemaParser {
             if("Tag".equals(elementName)){
                 org.jsoup.nodes.Element tr = new org.jsoup.nodes.Element("tr");
                 tr.attr("tagname",name);
+                tr.attr("opt",opt);
                 org.jsoup.nodes.Element td1 = new org.jsoup.nodes.Element("td");
                 td1.addClass("tabL");
                 if(name.endsWith("a")){
@@ -142,6 +143,7 @@ public class SchemaParser {
             }else if(elementName.equals("SubSequence")){
                 org.jsoup.nodes.Element tbody = new org.jsoup.nodes.Element("tbody");
                 tbody.attr("subSequenceName",name);
+                tbody.attr("opt",opt);
                 String description = element.attributeValue("description");
                 org.jsoup.nodes.Element subsequenceTitleTr = J2htmlApplication.createSubSequenceTitleTr(description,opt);
                 if("true".equals(repeat)){
