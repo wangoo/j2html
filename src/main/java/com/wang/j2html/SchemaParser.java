@@ -252,6 +252,15 @@ public class SchemaParser {
                 input.addClass("tag-data");
                 input.attr("type","text");
                 input.attr("name",tagName);
+                String  maxlength = e.attributeValue("maxlength");
+                if(maxlength!=null){
+                    input.attr("maxlength",maxlength);
+                }
+                String  fixedlength = e.attributeValue("fixedlength");
+                if(fixedlength!=null){
+                    input.attr("maxlength",fixedlength);
+                    input.attr("minlength",fixedlength);
+                }
                 input.attr("data-content","");
                 if(contentPrefix!=null&&contentPrefix.length()>0){
                     input.attr("data-contentprefix",contentPrefix);
