@@ -90,6 +90,7 @@ public class SchemaParser {
                 notNullSpan.text("*");
             }
             if("Tag".equals(elementName)){
+
                 org.jsoup.nodes.Element tr = new org.jsoup.nodes.Element("tr");
                 tr.attr("tagname",name);
                 tr.attr("opt",opt);
@@ -116,6 +117,15 @@ public class SchemaParser {
                         String name1 = tagElement.attributeValue("name");
                         org.jsoup.nodes.Element td2 = new org.jsoup.nodes.Element("td");
                         td2.attr("tagname",name1);
+                        String format = tagElement.attributeValue("format");
+                        if(format!=null){
+                            td2.attr("format",format);
+                        }
+
+                        String regexp = tagElement.attributeValue("regexp");
+                        if(regexp!=null){
+                            td2.attr("regexp",regexp);
+                        }
                         List<Element> contentElements =  tagElement.selectNodes("content");
                         appendTagContent(contentElements,td2,name1);
                         if("true".equals(repeat)){
@@ -126,6 +136,15 @@ public class SchemaParser {
                     }
 
                 }else{
+
+                    String format = element.attributeValue("format");
+                    if(format!=null){
+                        tr.attr("format",format);
+                    }
+                    String regexp = element.attributeValue("regexp");
+                    if(regexp!=null){
+                        tr.attr("regexp",regexp);
+                    }
                     td1.text(name).append(notNullSpan.toString());
                     td1.appendTo(tr);
                     org.jsoup.nodes.Element td2 = new org.jsoup.nodes.Element("td");
@@ -242,6 +261,10 @@ public class SchemaParser {
                 if(contentPrefix!=null&&contentPrefix.length()>0){
                     textarea.attr("data-contentprefix",contentPrefix);
                 }
+                String  characterSet = e.attributeValue("characterSet");
+                if(characterSet!=null){
+                    textarea.attr("data-characterset",characterSet);
+                }
                 textarea.attr("data-cols",cols);
                 textarea.attr("data-rows",rows);
                 textarea.appendTo(td2);
@@ -256,10 +279,15 @@ public class SchemaParser {
                 if(maxlength!=null){
                     input.attr("maxlength",maxlength);
                 }
+
                 String  fixedlength = e.attributeValue("fixedlength");
                 if(fixedlength!=null){
                     input.attr("maxlength",fixedlength);
                     input.attr("minlength",fixedlength);
+                }
+                String  characterSet = e.attributeValue("characterSet");
+                if(characterSet!=null){
+                    input.attr("data-characterset",characterSet);
                 }
                 input.attr("data-content","");
                 if(contentPrefix!=null&&contentPrefix.length()>0){
