@@ -257,7 +257,11 @@ public class SchemaParser {
                 org.jsoup.nodes.Element textarea = new org.jsoup.nodes.Element("textarea");
                 textarea.addClass("tag-data");
                 textarea.addClass("textareaStyle");
+                textarea.addClass("lineChar_"+cols+"x");
                 textarea.attr("data-content","");
+                textarea.attr("wrap","soft");
+                textarea.attr("cols",cols);
+                textarea.attr("rows",rows);
                 if(contentPrefix!=null&&contentPrefix.length()>0){
                     textarea.attr("data-contentprefix",contentPrefix);
                 }

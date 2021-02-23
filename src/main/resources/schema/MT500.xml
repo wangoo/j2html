@@ -88,7 +88,6 @@
             <content type="fval">GENL</content>
         </Tag>
     </Sequence>
-
     <Sequence name="B" description="Mandatory Sequence B Registration Details" opt="M" repeat="false">
         <Tag name="16R" opt="M">
             <content type="fval">REGDET</content>
