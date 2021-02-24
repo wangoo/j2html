@@ -17,7 +17,7 @@ public class SchemaParser {
     public static void parseMT(File file){
         SAXReader saxReader  = new SAXReader();
         try {
-             Document document = saxReader.read(J2htmlApplication.class.getClassLoader().getClass().getResource("/schema/MT500.xml"));
+             Document document = saxReader.read(file);
              Element root = document.getRootElement();
 
              List<Element> sequenceList = root.selectNodes("//Sequence");
@@ -51,7 +51,7 @@ public class SchemaParser {
                 Attribute repeat = sequnceElement.attribute("repeat");
                 if(repeat!=null&&"true".equals(repeat.getValue())){
 
-                    org.jsoup.nodes.Element subsequenceTitleTr = J2htmlApplication.createSubSequenceTitleTr(description.getValue(),opt);
+                    org.jsoup.nodes.Element subsequenceTitleTr = createSubSequenceTitleTr(description.getValue(),opt);
                     org.jsoup.nodes.Element td = subsequenceTitleTr.select("td").first();
                     td.append("<input class=\"addSequence\" type=\"button\" value=\"添加\" >");
                     td.append("<input class=\"deleteSequence\" type=\"button\" value=\"删除\" >");
@@ -71,7 +71,7 @@ public class SchemaParser {
             layui_tab.appendTo(parent);
             System.out.println(parent.html());
         } catch (DocumentException e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -164,7 +164,7 @@ public class SchemaParser {
                 tbody.attr("subSequenceName",name);
                 tbody.attr("opt",opt);
                 String description = element.attributeValue("description");
-                org.jsoup.nodes.Element subsequenceTitleTr = J2htmlApplication.createSubSequenceTitleTr(description,opt);
+                org.jsoup.nodes.Element subsequenceTitleTr = createSubSequenceTitleTr(description,opt);
                 if("true".equals(repeat)){
                     org.jsoup.nodes.Element td = subsequenceTitleTr.select("td").first();
                     td.append("<input class=\"addSubSequence\" type=\"button\" value=\"添加\" >");
@@ -172,7 +172,7 @@ public class SchemaParser {
                 }
                 subsequenceTitleTr.appendTo(tbody);
                 createSequence(tbody,element);
-                org.jsoup.nodes.Element subsequenceTitleTrEnd = J2htmlApplication.createSubSequenceTitleTr("End of "+description,null);
+                org.jsoup.nodes.Element subsequenceTitleTrEnd =createSubSequenceTitleTr("End of "+description,null);
                 subsequenceTitleTrEnd.appendTo(tbody);
                 tbody.appendTo(parent);
             }
@@ -303,6 +303,22 @@ public class SchemaParser {
 
     }
 
+    public static org.jsoup.nodes.Element createSubSequenceTitleTr(String text, String opt){
+        org.jsoup.nodes.Element subsequenceTitleTr = new org.jsoup.nodes.Element("tr");
+        org.jsoup.nodes.Element subsequenceTitleTd = new org.jsoup.nodes.Element("td");
+        subsequenceTitleTd.addClass("tabL");
+        subsequenceTitleTd.attr("colspan","4");
+        subsequenceTitleTd.attr("style","font-weight: bold; text-align: center");
 
+        org.jsoup.nodes.Element textElement = subsequenceTitleTd.text(text);
+        if("M".equals(opt)){
+            org.jsoup.nodes.Element notNullSpan = new org.jsoup.nodes.Element("span");
+            notNullSpan.addClass("notnull");
+            notNullSpan.text("*");
+            textElement.append(notNullSpan.toString());
+        }
+        subsequenceTitleTd.appendTo(subsequenceTitleTr);
+        return subsequenceTitleTr;
+    }
 
 }

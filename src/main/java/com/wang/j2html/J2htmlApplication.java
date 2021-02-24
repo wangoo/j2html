@@ -11,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.annotation.ElementType;
@@ -28,148 +29,24 @@ public class J2htmlApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(J2htmlApplication.class, args);
-
-        SchemaParser.parseMT(null);
-
-    }
-
-    public static Element createPage(Element parent ,JSONObject schema){
-
-        Element layui_tab = new Element("div");
-        layui_tab.addClass("layui-tab layui-tab-brief");
-        Element layui_tab_titile = new Element("ul");
-        layui_tab_titile.addClass("layui-tab-title");
-        Element layui_tab_content= new Element("div");
-        layui_tab_content.addClass("layui-tab-content");
-        Set<java.util.Map.Entry<String, Object>>  entrySet = ((JSONObject)schema.get("properties")).entrySet();
-        for (Iterator<java.util.Map.Entry<String, Object>> iterator = entrySet.iterator();iterator.hasNext();){
-            Map.Entry<String,Object> entry = iterator.next();
-            JSONObject page = (JSONObject) entry.getValue();
-            Element li = new Element("li");
-            li.text(page.get("title").toString());
-            li.appendTo(layui_tab_titile);
-            Element layui_tab_item = new Element("div");
-            layui_tab_item.addClass("layui-tab-item");
-
-            Element  sqquenceTable = new Element("table");
-            sqquenceTable.addClass("tablelist2");
-            sqquenceTable.appendTo(layui_tab_item);
-
-            createSequence(sqquenceTable,(JSONObject) page);
-            layui_tab_item.appendTo(layui_tab_content);
-
-        }
-        layui_tab_titile.appendTo(layui_tab);
-        layui_tab_content.appendTo(layui_tab);
-        layui_tab.appendTo(parent);
-        parent.selectFirst(".layui-tab-title li").addClass("layui-this");
-        parent.selectFirst(".layui-tab-item").addClass("layui-show");
-        return parent;
-    }
-
-
-    public static Element createSequence(Element parent ,JSONObject schema){
-
-        Set<java.util.Map.Entry<String, Object>>  entrySet = ((JSONObject)schema.get("properties")).entrySet();
-        for (Iterator<java.util.Map.Entry<String, Object>> iterator = entrySet.iterator();iterator.hasNext();){
-            Map.Entry<String,Object> entry = iterator.next();
-            String key = entry.getKey();
-            JSONObject  elements = (JSONObject) entry.getValue();
-            if(key.startsWith("TAG")){
-                Element  tr = new Element("tr");
-                Element  td1 = new Element("td");
-                td1.addClass("tabL");
-                if(key.endsWith("a")){
-                    JSONArray optionArray = elements.getJSONArray("option");
-                    Element select = new Element("select");
-                    for (int i = 0; i < optionArray.size(); i++) {
-                        Object object = optionArray.get(i);
-                        Element option = new Element("option");
-                        option.val(object.toString());
-                        option.text(object.toString());
-                        option.appendTo(select);
-                    }
-                    select.appendTo(td1);
-                }else{
-                    td1.text(elements.get("title").toString());
+        String filePath = J2htmlApplication.class.getResource("/schema").getPath();
+        File schemaDirectory  = new File(filePath);
+        if(schemaDirectory.isDirectory()){
+            File[] files = schemaDirectory.listFiles();
+            for (File file:files){
+                String fileName = file.getName();
+                if(file.isFile()&&fileName.endsWith(".xml")&&fileName.startsWith("MT5")){
+                    SchemaParser.parseMT(file);
                 }
-
-                td1.appendTo(tr);
-
-                Element  td2 = new Element("td");
-                String type ="";
-                if("array".equals(type)){
-
-                    JSONObject items = elements.getJSONObject("items");
-                    type = items.get("type").toString();
-
-
-                }else {
-                    type = elements.get("type").toString();
-                }
-
-
-                 td2.append("<input type=\"text\" name=\""+key+"\">");
-
-
-                if("array".equals(type)){
-
-                    td2.append("<input type=\"button\" value=\"添加\" name=\""+key+"\">");
-                    td2.append("<input type=\"button\" value=\"删除\" name=\""+key+"\">");
-                }
-                td2.appendTo(tr);
-                tr.appendTo(parent);
-            }else if(key.startsWith("subsequence")){
-
-                String subsequenceType = elements.get("type").toString();
-                Element subsequenceTitleTr = createSubSequenceTitleTr(elements.get("title").toString(),"M");
-                subsequenceTitleTr.appendTo(parent);
-                if("object".equals(subsequenceType)){
-                        createSequence(parent,elements);
-                }else if("array".equals(subsequenceType)){
-                        createSequence(parent,elements.getJSONObject("items"));
-                }
-
-
-
             }
-
         }
+    /*    String filePath = J2htmlApplication.class.getResource("/schema/MT500.xml").getPath();
+        File  file = new File(filePath);
+        System.out.println(file.getAbsolutePath());*/
 
-        return parent;
-    }
-
-    public static Element creatTag(Element parent ,JSONObject schema){
-
-
-        return parent;
     }
 
 
-    public static  Element createSubSequenceTitleTr(String text,String opt){
-        Element subsequenceTitleTr = new Element("tr");
-        Element subsequenceTitleTd = new Element("td");
-        subsequenceTitleTd.addClass("tabL");
-        subsequenceTitleTd.attr("colspan","4");
-        subsequenceTitleTd.attr("style","font-weight: bold; text-align: center");
-
-        Element textElement = subsequenceTitleTd.text(text);
-        if("M".equals(opt)){
-            org.jsoup.nodes.Element notNullSpan = new org.jsoup.nodes.Element("span");
-            notNullSpan.addClass("notnull");
-            notNullSpan.text("*");
-            textElement.append(notNullSpan.toString());
-        }
-        subsequenceTitleTd.appendTo(subsequenceTitleTr);
-        return subsequenceTitleTr;
-    }
-
-    public static Element createBtn(){
-
-        Element btn = new Element("input");
-        btn.attr("type","button");
-        return btn;
-    }
 
 
 
