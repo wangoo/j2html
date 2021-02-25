@@ -7,6 +7,12 @@ import org.dom4j.*;
 import org.dom4j.io.SAXReader;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +27,9 @@ public class SchemaParser {
              Element root = document.getRootElement();
 
              List<Element> sequenceList = root.selectNodes("//Sequence");
+             if(sequenceList.isEmpty()){
+                 return ;
+             }
 
             org.jsoup.nodes.Element parent = new org.jsoup.nodes.Element("div");
              org.jsoup.nodes.Element layui_tab = new org.jsoup.nodes.Element("div");
@@ -69,13 +78,27 @@ public class SchemaParser {
             layui_tab.selectFirst(".layui-tab-title li").addClass("layui-this");
             layui_tab.selectFirst(".layui-tab-item").addClass("layui-show");
             layui_tab.appendTo(parent);
-            System.out.println(parent.html());
-        } catch (DocumentException e) {
+           // System.out.println(parent.html());
+
+
+            String templateHtmlPath = J2htmlApplication.class.getResource("/template").getPath();
+            List<String> templateHtmlAllLines = Files.readAllLines(Paths.get(new File(templateHtmlPath).getAbsolutePath(),"/template.html"),StandardCharsets.UTF_8);
+            for (int i = 0; i < templateHtmlAllLines.size(); i++) {
+                String s = templateHtmlAllLines.get(i);
+                boolean result =  s.contains("${template}");
+                s = s.replace("${template}",parent.html());
+                templateHtmlAllLines.set(i,s);
+                if(result){
+                    System.out.println(s);
+                }
+            }
+            Files.write(Paths.get(new File(templateHtmlPath).getAbsolutePath(),root.getName()+".html"),templateHtmlAllLines,StandardCharsets.UTF_8);
+        } catch (DocumentException | IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static org.jsoup.nodes.Element createSequence(org.jsoup.nodes.Element parent , org.dom4j.Element sequnceElement){
+    private static org.jsoup.nodes.Element createSequence(org.jsoup.nodes.Element parent , org.dom4j.Element sequnceElement){
 
 
         for(Iterator<Element> iterator = sequnceElement.elementIterator();iterator.hasNext();){
@@ -184,7 +207,7 @@ public class SchemaParser {
     }
 
 
-    public static void appendTagContent(List<Element> contentElements,org.jsoup.nodes.Element td2,String tagName){
+    private static void appendTagContent(List<Element> contentElements,org.jsoup.nodes.Element td2,String tagName){
         for (int i = 0; i < contentElements.size(); i++) {
             Element e = contentElements.get(i);
             String contentType = e.attributeValue("type");
@@ -303,7 +326,7 @@ public class SchemaParser {
 
     }
 
-    public static org.jsoup.nodes.Element createSubSequenceTitleTr(String text, String opt){
+    private static org.jsoup.nodes.Element createSubSequenceTitleTr(String text, String opt){
         org.jsoup.nodes.Element subsequenceTitleTr = new org.jsoup.nodes.Element("tr");
         org.jsoup.nodes.Element subsequenceTitleTd = new org.jsoup.nodes.Element("td");
         subsequenceTitleTd.addClass("tabL");
@@ -320,5 +343,7 @@ public class SchemaParser {
         subsequenceTitleTd.appendTo(subsequenceTitleTr);
         return subsequenceTitleTr;
     }
+
+
 
 }

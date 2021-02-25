@@ -13,7 +13,7 @@
 <nav th:replace="common/fragment :: nav"></nav>
 <div class="page-container">
     <div th:replace="common/fragment :: RTitle"></div>
-    <form id="sendMesg" name="sendMesg" method="post" action="/mt500/send">
+    <form id="sendMesg" name="sendMesg" method="post" action="/${messageType}/send">
         ${template}
     </form>
 </div>

@@ -28,6 +28,8 @@ import java.util.Set;
 public class J2htmlApplication {
 
     public static void main(String[] args) {
+
+
         SpringApplication.run(J2htmlApplication.class, args);
         String filePath = J2htmlApplication.class.getResource("/schema").getPath();
         File schemaDirectory  = new File(filePath);
@@ -40,6 +42,7 @@ public class J2htmlApplication {
                 }
             }
         }
+
     /*    String filePath = J2htmlApplication.class.getResource("/schema/MT500.xml").getPath();
         File  file = new File(filePath);
         System.out.println(file.getAbsolutePath());*/
