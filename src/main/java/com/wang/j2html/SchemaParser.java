@@ -92,7 +92,8 @@ public class SchemaParser {
                     System.out.println(s);
                 }
             }
-            Files.write(Paths.get(new File(templateHtmlPath).getAbsolutePath(),root.getName()+".html"),templateHtmlAllLines,StandardCharsets.UTF_8);
+            String userDir = System.getProperty("user.dir");
+            Files.write(Paths.get(userDir,"/src/main/resources/template",root.getName()+".html"),templateHtmlAllLines,StandardCharsets.UTF_8);
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
         }

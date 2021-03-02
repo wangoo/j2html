@@ -43,9 +43,7 @@ public class J2htmlApplication {
             }
         }
 
-    /*    String filePath = J2htmlApplication.class.getResource("/schema/MT500.xml").getPath();
-        File  file = new File(filePath);
-        System.out.println(file.getAbsolutePath());*/
+
 
     }
 
