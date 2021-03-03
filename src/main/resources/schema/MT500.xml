@@ -198,7 +198,7 @@
                 <content type="fval">:</content>
                 <content type="enum">['DENO']</content>
                 <content type="fval">//</content>
-                <content type="string" fixedlength="3" ></content>
+                <content type="CurrencyCode"></content>
             </Tag>
             <Tag no="23" name="98A" opt="O" repeat="true" format=":4!c//8!n" regexp="^:[${c}]{4}\/\/[${n}]{8}$">
                 <content type="fval">:</content>
@@ -235,7 +235,7 @@
                 <content type="fval">:</content>
                 <content type="enum">['FRNF','CALL','PUTT']</content>
                 <content type="fval">//</content>
-                <content type="string" fixedlength="1"></content>
+                <content type="enum">['N','Y']</content>
             </Tag>
             <Tag no="27" name="90a" opt="O" repeat="true">
                 <option>

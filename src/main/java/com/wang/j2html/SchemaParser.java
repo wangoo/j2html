@@ -87,13 +87,14 @@ public class SchemaParser {
                 String s = templateHtmlAllLines.get(i);
                 boolean result =  s.contains("${template}");
                 s = s.replace("${template}",parent.html());
+                s = s.replace("${messagetype}",root.getName().toLowerCase());
                 templateHtmlAllLines.set(i,s);
                 if(result){
                     System.out.println(s);
                 }
             }
             String userDir = System.getProperty("user.dir");
-            Files.write(Paths.get(userDir,"/src/main/resources/template",root.getName()+".html"),templateHtmlAllLines,StandardCharsets.UTF_8);
+            Files.write(Paths.get(userDir,"/src/main/resources/template",root.getName().toLowerCase()+".html"),templateHtmlAllLines,StandardCharsets.UTF_8);
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
         }
@@ -184,21 +185,29 @@ public class SchemaParser {
                 }
                 tr.appendTo(parent);
             }else if(elementName.equals("SubSequence")){
-                org.jsoup.nodes.Element tbody = new org.jsoup.nodes.Element("tbody");
-                tbody.attr("subSequenceName",name);
-                tbody.attr("opt",opt);
+                org.jsoup.nodes.Element tr = new org.jsoup.nodes.Element("tr");
+                tr.attr("subSequenceName",name);
+                tr.attr("opt",opt);
+                org.jsoup.nodes.Element td = new org.jsoup.nodes.Element("td");
+                td.attr("colspan","4");
+                org.jsoup.nodes.Element table = new org.jsoup.nodes.Element("table");
+
                 String description = element.attributeValue("description");
                 org.jsoup.nodes.Element subsequenceTitleTr = createSubSequenceTitleTr(description,opt);
                 if("true".equals(repeat)){
-                    org.jsoup.nodes.Element td = subsequenceTitleTr.select("td").first();
-                    td.append("<input class=\"addSubSequence\" type=\"button\" value=\"添加\" >");
-                    td.append("<input  class=\"deleteSubSequence\" type=\"button\" value=\"删除\" >");
+                    org.jsoup.nodes.Element repeatTd = subsequenceTitleTr.select("td").first();
+                    repeatTd.append("<input class=\"addSubSequence\" type=\"button\" value=\"添加\" >");
+                    repeatTd.append("<input  class=\"deleteSubSequence\" type=\"button\" value=\"删除\" >");
                 }
-                subsequenceTitleTr.appendTo(tbody);
-                createSequence(tbody,element);
+                subsequenceTitleTr.addClass("delimiter");
+                subsequenceTitleTr.appendTo(table);
+                createSequence(table,element);
                 org.jsoup.nodes.Element subsequenceTitleTrEnd =createSubSequenceTitleTr("End of "+description,null);
-                subsequenceTitleTrEnd.appendTo(tbody);
-                tbody.appendTo(parent);
+                subsequenceTitleTrEnd.addClass("delimiter");
+                subsequenceTitleTrEnd.appendTo(table);
+                table.appendTo(td);
+                td.appendTo(tr);
+                tr.appendTo(parent);
             }
         }
 
