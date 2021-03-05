@@ -262,7 +262,6 @@
                 <content type="enum">['MINO','SIZE']</content>
                 <content type="fval">//</content>
                 <content type="enum">['AMOR','FAMT','UNIT']</content>
-                <content type="fval">/</content>
                 <content type="string" maxlength="15"></content>
             </Tag>
             <Tag no="29" name="70E" opt="O" format=":4!c//10*35x" regexp="^:[${c}]{4}\/\/([${x}]{1,35}\r\n){0,9}([${x}]{1,35}){1}$">
