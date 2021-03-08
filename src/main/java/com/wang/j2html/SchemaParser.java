@@ -221,7 +221,7 @@ public class SchemaParser {
         for (int i = 0; i < contentElements.size(); i++) {
             Element e = contentElements.get(i);
             String contentType = e.attributeValue("type");
-            String contentText = e.getText();
+            String contentText = e.getText().trim();
             String contentName = e.attributeValue("contentName");
             String contentPrefix = e.attributeValue("prefix");
             if("fval".equals(contentType)){

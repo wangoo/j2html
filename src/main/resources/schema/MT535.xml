@@ -5,7 +5,7 @@
             <content type="fval">GENL</content>
         </Tag>
         <Tag no="2" name="28E" opt="M" format="5n/4!c" regexp="^[${n}]{1,5}\/[${c}]{4}$">
-            <content type="string" maxlength="5">GENL</content>
+            <content type="string" maxlength="5"></content>
             <content type="fval">/</content>
             <content type="enum">['LAST','MORE','ONLY']</content>
         </Tag>
@@ -773,9 +773,8 @@
                 <content type="fval">//</content>
                 <content type="textarea" cols="35" rows="10"></content>
             </Tag>
-            <SubSequence name="B1c" description="Optional Repetitive Subsequence B1c Quantity Breakdown" opt="O"
-                         repeat="true">
-                <Tag no="65" name="16R" opt="M" regexp="^BREAK">
+            <SubSequence name="B1c" description="Optional Repetitive Subsequence B1c Quantity Breakdown" opt="O" repeat="true">
+                <Tag no="65" name="16R" opt="M" regexp="^BREAK$">
                     <content type="fval">BREAK</content>
                 </Tag>
                 <Tag no="66" name="13B" opt="O" format=":4!c/[8c]/30x" regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${x}]{1,30}$">
