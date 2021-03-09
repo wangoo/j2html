@@ -203,7 +203,7 @@ public class SchemaParser {
                 subsequenceTitleTr.appendTo(table);
                 createSequence(table,element);
                 org.jsoup.nodes.Element subsequenceTitleTrEnd =createSubSequenceTitleTr("End of "+description,null);
-                subsequenceTitleTrEnd.addClass("delimiter");
+               // subsequenceTitleTrEnd.addClass("delimiter");
                 subsequenceTitleTrEnd.appendTo(table);
                 table.appendTo(td);
                 td.appendTo(tr);

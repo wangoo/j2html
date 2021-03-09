@@ -289,11 +289,13 @@
                 <Tag no="25" name="22F" opt="O" repeat="true" format=":4!c/[8c]/4!c" regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${c}]{4}$">
                     <content type="fval">:</content>
                     <content type="enum-data" datafor="Indicator">
-                        {'MICO':['A001','A002','A003','A004','A005','A006','A007','A008','A009','A010','A011','A012','A013','A014','OTHR']
+                        {
+                        'MICO':['A001','A002','A003','A004','A005','A006','A007','A008','A009','A010','A011','A012','A013','A014','OTHR']
                         ,'FORM':['BEAR','REGD']
                         ,'PFRE':['ANNU','MNTH','QUTR','SEMI','WEEK']
                         ,'PAYS':['FULL','NILL','PART']
-                        ,'CFRE':['ANNU','MNTH','QUTR','SEMI','WEEK']}
+                        ,'CFRE':['ANNU','MNTH','QUTR','SEMI','WEEK']
+                        }
                     </content>
                     <content type="fval">/</content>
                     <content type="string" maxlength="8"></content>
