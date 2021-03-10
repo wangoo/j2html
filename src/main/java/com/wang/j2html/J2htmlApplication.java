@@ -38,6 +38,7 @@ public class J2htmlApplication {
             for (File file:files){
                 String fileName = file.getName();
                 if(file.isFile()&&fileName.endsWith(".xml")&&fileName.startsWith("MT5")){
+                    System.out.println("开始根据"+fileName+"生成html");
                     SchemaParser.parseMT(file);
                 }
             }
