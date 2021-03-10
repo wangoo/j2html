@@ -90,7 +90,7 @@ public class SchemaParser {
                 s = s.replace("${messagetype}",root.getName().toLowerCase());
                 templateHtmlAllLines.set(i,s);
                 if(result){
-                    System.out.println(s);
+                  //  System.out.println(s);
                 }
             }
             String userDir = System.getProperty("user.dir");
@@ -279,7 +279,10 @@ public class SchemaParser {
                     for (int j = 0; j <values.size() ; j++) {
                         enumdata.append(values.get(j)).append(",");
                     }
-                    option.attr("data-enumdata", enumdata.deleteCharAt(enumdata.length()-1).toString());
+                    if(values.size()>0){
+                        enumdata.deleteCharAt(enumdata.length()-1);
+                    }
+                    option.attr("data-enumdata", enumdata.toString());
                     option.text(String.valueOf(key));
                     option.appendTo(select);
                 }

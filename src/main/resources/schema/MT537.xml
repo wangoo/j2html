@@ -1157,9 +1157,7 @@
                         <content type="enum">['N']</content>
                         <content type="string" fixedlength="3"></content>
                     </Tag>
-                    <SubSequence name="D1a1A" description="Optional Repetitive Subsequence D1a1A Calculation Details"
-                                 opt="O"
-                                 repeat="true">
+                    <SubSequence name="D1a1A" description="Optional Repetitive Subsequence D1a1A Calculation Details" opt="O" repeat="true">
                         <Tag no="94" name="16R" opt="M" regexp="^CALDET$">
                             <content type="fval">CALDET</content>
                         </Tag>
@@ -1192,8 +1190,7 @@
                             <content type="fval">//</content>
                             <content type="enum">['N','Y']</content>
                         </Tag>
-                        <SubSequence name="D1a1A1"
-                                     description="Optional Subsequence D1a1A1 Financial Instrument Attributes" opt="O">
+                        <SubSequence name="D1a1A1" description="Optional Subsequence D1a1A1 Financial Instrument Attributes" opt="O">
                             <Tag no="97" name="16R" opt="M" regexp="^FIA$">
                                 <content type="fval">FIA</content>
                             </Tag>
@@ -1551,9 +1548,7 @@
                                     <content type="fval">/</content>
                                     <content type="enum" contentName="DateCode"></content>
                                 </Tag>
-                                <SubSequence name="D1a1B1a1"
-                                             description="Optional Repetitive Subsequence D1a1B1a1 Reason" opt="O"
-                                             repeat="true">
+                                <SubSequence name="D1a1B1a1" description="Optional Repetitive Subsequence D1a1B1a1 Reason" opt="O" repeat="true">
                                     <Tag no="122" name="16R" opt="M" regexp="^REAS$">
                                         <content type="fval">REAS</content>
                                     </Tag>
