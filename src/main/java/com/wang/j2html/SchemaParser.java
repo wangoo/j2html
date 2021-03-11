@@ -115,7 +115,6 @@ public class SchemaParser {
                 notNullSpan.text("*");
             }
             if("Tag".equals(elementName)){
-
                 org.jsoup.nodes.Element tr = new org.jsoup.nodes.Element("tr");
                 tr.attr("tagname",name);
                 tr.attr("opt",opt);

@@ -467,6 +467,7 @@
             <content type="fval">PENA</content>
         </Tag>
         <Tag no="34" name="69a" opt="O">
+            <option>
             <Tag name="69A" format=":4!c//8!n/8!n" regexp="^:[${c}]{4}\/\/[${n}]{8}\/[${n}]{8}$">
                 <content type="fval">:</content>
                 <content type="enum">['STAT']</content>
@@ -475,7 +476,7 @@
                 <content type="fval">/</content>
                 <content type="date"></content>
             </Tag>
-            <Tag name="69B" format=":4!c//8!n/8!n" regexp="^:[${c}]{4}\/\/[${n}]{8}[${n}]{6}\/[${n}]{8}[${n}]{6}$">
+            <Tag name="69B" format=":4!c//8!n6!n/8!n6!n" regexp="^:[${c}]{4}\/\/[${n}]{8}[${n}]{6}\/[${n}]{8}[${n}]{6}$">
                 <content type="fval">:</content>
                 <content type="enum">['STAT']</content>
                 <content type="fval">/</content>
@@ -483,6 +484,7 @@
                 <content type="fval">/</content>
                 <content type="datetime"></content>
             </Tag>
+            </option>
         </Tag>
         <Tag no="35" name="22F" opt="M" format=":4!c/[8c]/4!c" regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${c}]{4}$">
             <content type="fval">:</content>
