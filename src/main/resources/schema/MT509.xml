@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MT509>
+    <Sequence name="A" description="Mandatory Sequence A General Information" opt="M">
+        <Tag no="1" name="16R" description="Start of Block" opt="M" regexp="^GENL$">
+            <content type="fval">GENL</content>
+        </Tag>
+        <Tag no="2" name="20C"  format=":4!c//16x" regexp="^:[${c}]{4}\/\/[${x}]{1,16}$">
+            <content type="fval">:</content>
+            <content type="enum">['CORP','SEME']</content>
+            <content type="fval">//</content>
+            <content type="string" maxlength="16" characterSet="x"></content>
+        </Tag>
+        <Tag no="3" name="23G" opt="M" format="4!c[/4!c]" regexp="^[${c}]{4}(\/[${c}]{4})?$">
+            <content type="enum">['CANC','NEWM']</content>
+            <content type="enum">['/CODU','/COPY','/DUPL']</content>
+        </Tag>
+        <Tag no="4" name="98a" opt="O" >
+            <option>
+                <Tag name="98A" format=":4!c//8!n" regexp="^:[${c}]{4}\/\/[${n}]{8}$">
+                    <content type="fval">:</content>
+                    <content type="enum">['PREP']</content>
+                    <content type="fval">//</content>
+                    <content type="date" ></content>
+                </Tag>
+                <Tag name="98C" format=":4!c//8!n6!n" regexp="^:[${c}]{4}\/\/[${n}]{8}[${n}]{6}$" >
+                    <content type="fval">:</content>
+                    <content type="enum">['PREP']</content>
+                    <content type="fval">//</content>
+                    <content type="datetime" ></content>
+                </Tag>
+                <Tag name="98E">
+                    <content type="fval">:</content>
+                    <content type="enum">['PREP']</content>
+                    <content type="fval">//</content>
+                    <content type="datetime"></content>
+                </Tag>
+            </option>
+        </Tag>
+        <SubSequence name="A1" description="Optional Repetitive Subsequence A1 Linkages" opt="O" repeat="true">
+            <Tag no="5" name="16R" opt="M" regexp="^LINK$">
+                <content type="fval">LINK</content>
+            </Tag>
+            <Tag no="6" name="13a" opt="O">
+                <option>
+                    <Tag name="13A" format=":4!c//3!c" regexp="^:[${c}]{4}\/\/[${c}]{3}$">
+                        <content type="fval">:</content>
+                        <content type="enum">['LINK']</content>
+                        <content type="fval">//</content>
+                        <content type="string" fixedlength="3" characterSet="c"></content>
+                    </Tag>
+                    <Tag name="13B" format=":4!c/[8c]/30x" regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${x}]{1,30}$">
+                        <content type="fval">:</content>
+                        <content type="enum">['LINK']</content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="8" characterSet="c"></content>
+                        <content type="fval">/</content>
+                        <content type="string" maxlength="30" characterSet="x"></content>
+                    </Tag>
+                </option>
+            </Tag>
+            <Tag no="7" name="20a" opt="M" >
+                <option>
+                    <Tag name="20C" format=":4!c//16x" regexp="^:[${c}]{4}\/\/[${x}]{1,16}$">
+                        <content type="fval">:</content>
+                        <content type="enum">
+                            [ 'TRRF' ,'CPTR' ,'COPC' ]
+                        </content>
+                        <content type="fval">//</content>
+                        <content type="string" maxlength="16" characterSet="x"></content>
+                    </Tag>
+                    <Tag name="20U" format=":4!c//52x" regexp="^:[${c}]{4}\/\/[${x}]{1,52}$">
+                        <content type="fval">:</content>
+                        <content type="enum">['TRRF']</content>
+                        <content type="fval">//</content>
+                        <content type="string" maxlength="52" characterSet="x"></content>
+                    </Tag>
+                </option>
+            </Tag>
+            <Tag no="8" name="16S" opt="M" regexp="^LINK$">
+                <content type="fval">LINK</content>
+            </Tag>
+        </SubSequence>
+    </Sequence>
+</MT509>

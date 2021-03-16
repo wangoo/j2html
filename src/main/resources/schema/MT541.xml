@@ -774,7 +774,7 @@
             <content type="fval">/</content>
             <content type="enum" contentName="Indicator"></content>
         </Tag>
-        <SubSequence name="E1" description="Optional Repetitive Subsequence C1 Quantity Breakdown" opt="M" repeat="true">
+        <SubSequence name="E1" description="Mandatory Repetitive Subsequence E1 Settlement Parties" opt="M" repeat="true">
             <Tag no="64" name="16R" opt="M" regexp="^SETPRTY$">
                 <content type="fval">SETPRTY</content>
             </Tag>

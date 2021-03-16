@@ -252,8 +252,7 @@
             <content type="fval">//</content>
             <content type="enum">['N','Y']</content>
         </Tag>
-        <SubSequence name="B1" description="Optional Repetitive Subsequence B1 Financial Instrument" opt="O"
-                     repeat="true">
+        <SubSequence name="B1" description="Optional Repetitive Subsequence B1 Financial Instrument" opt="O" repeat="true">
             <Tag no="21" name="16R" opt="M" regexp="^FIN$">
                 <content type="fval">FIN</content>
             </Tag>
