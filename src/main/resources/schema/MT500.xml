@@ -275,8 +275,7 @@
                 <content type="fval">FIA</content>
             </Tag>
         </SubSequence>
-        <SubSequence name="B2" description="Mandatory Subsequence B2 Financial Instrument/Account" opt="M"
-                     repeat="false">
+        <SubSequence name="B2" description="Mandatory Subsequence B2 Financial Instrument/Account" opt="M"  repeat="false">
             <Tag no="31" name="16R" opt="M" regexp="^FIAC$">
                 <content type="fval">FIAC</content>
             </Tag>
