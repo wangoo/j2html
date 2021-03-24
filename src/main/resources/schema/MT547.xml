@@ -62,7 +62,7 @@
                 </Tag>
             </option>
         </Tag>
-        <SubSequence name="A1" description="Optional Repetitive Subsequence A1 Linkages" opt="M" repeat="true">
+        <SubSequence name="A1" description="Mandatory Repetitive Subsequence A1 Linkages" opt="M" repeat="true">
             <Tag no="6" name="16R" opt="M" regexp="^LINK$">
                 <content type="fval">LINK</content>
             </Tag>
@@ -774,7 +774,7 @@
             <content type="fval">/</content>
             <content type="enum" contentName="Indicator"></content>
         </Tag>
-        <SubSequence name="E1" description="Optional Repetitive Subsequence C1 Quantity Breakdown" opt="M" repeat="true">
+        <SubSequence name="E1" description="Mandatory Repetitive Subsequence E1 Settlement Parties" opt="M" repeat="true">
             <Tag no="62" name="16R" opt="M" regexp="^SETPRTY$">
                 <content type="fval">SETPRTY</content>
             </Tag>
@@ -1062,7 +1062,7 @@
             <content type="fval">SETDET</content>
         </Tag>
     </Sequence>
-    <Sequence name="F" description="Mandatory Sequence E Settlement Details" opt="O" repeat="true" >
+    <Sequence name="F" description="Optional Repetitive Sequence F Other Parties" opt="O" repeat="true" >
         <Tag no="82" name="16R" opt="M" regexp="^OTHRPRTY$">
             <content type="fval">OTHRPRTY</content>
         </Tag>

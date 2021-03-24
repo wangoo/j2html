@@ -775,7 +775,7 @@
             <content type="fval">/</content>
             <content type="enum" contentName="Indicator"></content>
         </Tag>
-        <SubSequence name="E1" description="Optional Repetitive Subsequence C1 Quantity Breakdown" opt="M" repeat="true">
+        <SubSequence name="E1" description="Mandatory Repetitive Subsequence E1 Settlement Parties" opt="M" repeat="true">
             <Tag no="64" name="16R" opt="M" regexp="^SETPRTY$">
                 <content type="fval">SETPRTY</content>
             </Tag>
@@ -1055,7 +1055,7 @@
             <content type="fval">SETDET</content>
         </Tag>
     </Sequence>
-    <Sequence name="F" description="Mandatory Sequence E Settlement Details" opt="O" repeat="true" >
+    <Sequence name="F" description="Optional Repetitive Sequence F Other Parties" opt="O" repeat="true" >
         <Tag no="83" name="16R" opt="M" regexp="^OTHRPRTY$">
             <content type="fval">OTHRPRTY</content>
         </Tag>

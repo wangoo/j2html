@@ -378,7 +378,7 @@
                     </Tag>
                 </SubSequence>
                 <SubSequence name="B1a2" description="Optional Subsequence B1a2 Transaction Details" opt="O">
-                    <Tag no="33" name="16R" opt="M" regexp="^TRANSDET">
+                    <Tag no="33" name="16R" opt="M" regexp="^TRANSDET$">
                         <content type="fval">TRANSDET</content>
                     </Tag>
                     <Tag no="34" name="94a" opt="O" repeat="true">

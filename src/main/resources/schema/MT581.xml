@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MT581>
+    <Sequence name="A" description="报文信息" opt="M" >
+        <Tag no="1" name="20"   opt="M" format="16x" regexp="^[${x}]{1,16}$">
+            <content type="string" maxlength="16"></content>
+        </Tag>
+        <Tag no="2" name="21"   opt="M" format="16x" regexp="^[${x}]{1,16}$">
+            <content type="string" maxlength="16"></content>
+        </Tag>
+        <Tag no="3" name="23"   opt="M" format="6!a/6!a" regexp="^[${a}]{6}\/[${a}]{6}$">
+            <content type="enum" >['BORROW','LENDER']</content>
+            <content type="fval">/</content>
+            <content type="enum" >[ 'NEWLON' ,'RECALL' ,'RETURN' ]</content>
+        </Tag>
+        <Tag no="4" name="30"   opt="O" format="6!n" regexp="^[${n}]{6}$">
+            <content type="date"></content>
+        </Tag>
+        <Tag no="5" name="35H"   opt="M" format="[N]3!a15d" regexp="^[N]?[${a}]{3}[${d}]{1,15}$">
+            <content type="enum" >
+                ['N']
+            </content>
+            <content type="enum" >
+                [ 'BON' ,'CER' ,'CPN' ,'FMT' ,'MSC' ,'OPC' ,'OPS' ,'PRC' ,'PRS' ,'RTE' ,'RTS' ,'SHS' ,'UNT' ,'WTS' ]
+            </content>
+            <content type="string"  maxlength="15"></content>
+        </Tag>
+        <Tag no="6" name="35B" opt="O" format="[ISIN1!e12!c][4*35x]" regexp="^(ISIN [${c}{12}])?(([${x}]{1,35}\r\n){0,3})([${x}]{1,35}){1})?$">
+            <content type="string" prefix="ISIN" fixedlength="13"></content>
+            <content type="textarea" cols="35" rows="4"></content>
+        </Tag>
+        <Tag no="7" name="80C" opt="M" format="6*35x" regexp="^([${x}]{1,35}\r\n){0,5}([${x}]{1,35}){1}$">
+            <content type="textarea" cols="35" rows="6"></content>
+        </Tag>
+        <Tag no="8" name="34B"   opt="O" format="3!a15d" regexp="^[${a}]{3}[${d}]{1,15}$">
+            <content type="enum" >
+                [ 'BON' ,'CER' ,'CPN' ,'FMT' ,'MSC' ,'OPC' ,'OPS' ,'PRC' ,'PRS' ,'RTE' ,'RTS' ,'SHS' ,'UNT' ,'WTS' ]
+            </content>
+            <content type="string"  maxlength="15"></content>
+        </Tag>
+        <Tag no="9" name="72" opt="O" format="6*35x" regexp="^([${x}]{1,35}\r\n){0,5}([${x}]{1,35}){1}$">
+            <content type="textarea" cols="35" rows="6"></content>
+        </Tag>
+    </Sequence>
+</MT581>

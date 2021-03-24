@@ -1063,7 +1063,7 @@
             <content type="fval">SETDET</content>
         </Tag>
     </Sequence>
-    <Sequence name="F" description="Mandatory Sequence E Settlement Details" opt="O" repeat="true" >
+    <Sequence name="F" description="Optional Repetitive Sequence F Other Parties" opt="O" repeat="true" >
         <Tag no="82" name="16R" opt="M" regexp="^OTHRPRTY$">
             <content type="fval">OTHRPRTY</content>
         </Tag>

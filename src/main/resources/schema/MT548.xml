@@ -36,7 +36,7 @@
                 </Tag>
             </option>
         </Tag>
-        <SubSequence name="A1" description="Optional Repetitive Subsequence A1 Linkages" opt="M" repeat="true">
+        <SubSequence name="A1" description="Mandatory Repetitive Subsequence A1 Linkages" opt="M" repeat="true">
             <Tag no="5" name="16R" opt="M" regexp="^LINK$">
                 <content type="fval">LINK</content>
             </Tag>
@@ -149,7 +149,7 @@
             <content type="fval">GENL</content>
         </Tag>
     </Sequence>
-    <Sequence name="B" description="Mandatory Sequence B Trade Details" opt="O">
+    <Sequence name="B" description="Optional Sequence B Settlement Transaction Details" opt="O">
         <Tag no="17" name="16R" opt="M" regexp="^SETTRAN$">
             <content type="fval">SETTRAN</content>
         </Tag>

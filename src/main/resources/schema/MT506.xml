@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MT506>
     <Sequence name="A" description="Mandatory Sequence A General Information" opt="M" repeat="false">
-        <Tag no="1" name="16R" description="Start of Block"  opt="M" regexp="^GENL$">
+        <Tag no="1" name="16R" opt="M" regexp="^GENL$">
             <content type="fval">GENL</content>
         </Tag>
         <Tag no="2" name="28E" opt="M" format="5n/4!c" regexp="^[${n}]{1,5}\/[${c}]{4}$">
