@@ -202,7 +202,7 @@ public class SchemaParser {
                 subsequenceTitleTr.appendTo(table);
                 createSequence(table,element);
                 org.jsoup.nodes.Element subsequenceTitleTrEnd =createSubSequenceTitleTr("End of "+description,null);
-               // subsequenceTitleTrEnd.addClass("delimiter");
+                subsequenceTitleTrEnd.addClass("delimiter");
                 subsequenceTitleTrEnd.appendTo(table);
                 table.appendTo(td);
                 td.appendTo(tr);
@@ -307,9 +307,25 @@ public class SchemaParser {
                 textarea.attr("data-cols",cols);
                 textarea.attr("data-rows",rows);
                 textarea.appendTo(td2);
-            }
-            else{
-
+            }else if("CurrencyCode".equals(contentType)){
+                org.jsoup.nodes.Element select = new org.jsoup.nodes.Element("select");
+                select.addClass("tag-data");
+                select.attr("data-content","");
+                select.append("<option value=''>请选择</option>");
+                select.append("<option value='AUD'>AUD</option>");
+                select.append("<option value='CAD'>CAD</option>");
+                select.append("<option value='CNY'>CNY</option>");
+                select.append("<option value='HKD'>HKD</option>");
+                select.append("<option value='JPY'>JPY</option>");
+                select.append("<option value='GBP'>GBP</option>");
+                select.append("<option value='USD'>USD</option>");
+                select.append("<option value='EUR'>EUR</option>");
+                select.appendTo(td2);
+            }else if("date".equals(contentType)){
+                td2.append("<input type=\"text\" class=\"tag-data Wdate\" data-content=\"\" onClick=\"WdatePicker({dateFmt:'yyyyMMdd'})\">");
+            } else if("datetime".equals(contentType)){
+                td2.append("<input type=\"text\" class=\"tag-data Wdate\" data-content=\"\" onClick=\"WdatePicker({dateFmt:'yyyyMMddHHmmss'})\">");
+            } else{
                 org.jsoup.nodes.Element input = new org.jsoup.nodes.Element("input");
                 input.addClass("tag-data");
                 input.attr("type","text");

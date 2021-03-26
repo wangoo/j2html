@@ -36,11 +36,11 @@
             <content type="string" prefix="ISIN" fixedlength="13"></content>
             <content type="textarea" cols="35" rows="4"></content>
         </Tag>
-        <Tag no="8" name="35A"   opt="O" format="3!a15d" regexp="^[${a}]{3}[${d}]{1,15}$">
+        <Tag no="8" name="35A"   opt="O" format="3!a15d" regexp="^[${a}]{3}${d}$">
             <content type="enum" >
                 [ 'BON' ,'CER' ,'CPN' ,'FMT' ,'MSC' ,'OPC' ,'OPS' ,'PRC' ,'PRS' ,'RTE' ,'RTS' ,'SHS' ,'UNT' ,'WTS' ]
             </content>
-            <content type="string"  maxlength="15"></content>
+            <content type="decimal"  maxlength="15"></content>
         </Tag>
         <Tag no="9" name="30"   opt="M" format="6!n" regexp="^[${n}]{6}$">
             <content type="date"></content>

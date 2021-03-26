@@ -30,7 +30,7 @@
                 <content type="fval">:</content>
                 <content type="enum">['AGRE']</content>
                 <content type="fval">//</content>
-                <content type="string" fixedlength="8" ></content>
+                <content type="date"  ></content>
             </Tag>
             <Tag no="7" name="13B" opt="O"  format=":4!c/[8c]/30x" regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${x}]{1,30}$">
                 <content type="fval">:</content>

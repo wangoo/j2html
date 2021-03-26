@@ -33,7 +33,7 @@
                     <content type="fval">:</content>
                     <content type="enum">['PREP']</content>
                     <content type="fval">//</content>
-                    <content type="datetime"></content>
+                    <content type="date"></content>
                 </Tag>
                 <Tag name="98C" format=":4!c//8!n6!n" regexp="^:[${c}]{4}\/\/[${n}]{8}[${n}]{6}$">
                     <content type="fval">:</content>
@@ -205,7 +205,7 @@
         <Tag no="23" name="94a" opt="O">
             <option>
                 <Tag name="94B" format=":4!c/[8c]/4!c[/30x]"
-                     regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${c}]{4}(/[${x}{1,30}])?$">
+                     regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${c}]{4}(\/[${x}{1,30}])?$">
                     <content type="fval">:</content>
                     <content type="enum-data" datafor="PlaceCode">
                         {
@@ -241,15 +241,15 @@
             <content type="textarea" cols="35" rows="4"></content>
         </Tag>
         <Tag no="25" name="36B" opt="O" repeat="true" format=":4!c//4!c/15d"
-             regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${d}]{1,15}$">
+             regexp="^:[${c}]{4}\/\/[${c}]{4}\/${d}$">
             <content type="fval">:</content>
             <content type="enum">['STAQ']</content>
             <content type="fval">//</content>
             <content type="enum">['AMOR','FAMT','UNIT']</content>
             <content type="fval">/</content>
-            <content type="string" maxlength="15"></content>
+            <content type="decimal" maxlength="15"></content>
         </Tag>
-        <Tag no="26" name="19B" opt="O" repeat="true" format=":4!c//3!a15d" regexp="^:[${c}]{4}\/\/[${a}]{3}[${d}]{1,15}$">
+        <Tag no="26" name="19B" opt="O" repeat="true" format=":4!c//3!a15d" regexp="^:[${c}]{4}\/\/[${a}]{3}${d}$">
             <content type="fval">:</content>
             <content type="enum">
                 ['CAPG' ,'INDM' ,'CINL' ,'CHAR' ,'FLFR' ,'UNFR' ,'TXFR' ,'TXDF' ,'SOIC' ,'GRSS' ,'INTR' ,'INCO' ,'MKTC' ,'NETT' ,'PRIN' ,'REIN' ,'TAXC' ,'TAXR' ,'WITL' ,'REDP' ,'ATAX' ,'COUN' ,'EXEC' ,'ISDI' ,'LEVY' ,'LOCL' ,'LOCO' ,'PAMM' ,'REGF' ,'SHIP' ,'SOFE' ,'SPCN' ,'STAM' ,'STEX' ,'SUBS' ,'TRAN' ,'TRAX' ,'VATA' ,'TXRC' ,'STAC' ]
@@ -257,9 +257,9 @@
             <content type="fval">/</content>
             <content type="fval">/</content>
             <content type="CurrencyCode"></content>
-            <content type="string" maxlength="15"></content>
+            <content type="decimal" maxlength="15"></content>
         </Tag>
-        <Tag no="27" name="93B" opt="O" repeat="true" format=":4!c/[8c]/4!c/[N]15d" regexp="^:[${c}]{4}\/([${c}]{1,8})?\/[${c}]{4}\/[N]?[${d}]{1,15}$">
+        <Tag no="27" name="93B" opt="O" repeat="true" format=":4!c/[8c]/4!c/[N]15d" regexp="^:[${c}]{4}\/([${c}]{1,8})?\/[${c}]{4}\/[N]?${d}$">
             <content type="fval">:</content>
             <content type="enum">['ELIG','INBA','UNBA']</content>
             <content type="fval">/</content>
@@ -267,7 +267,7 @@
             <content type="fval">/</content>
             <content type="enum">['AMOR','FAMT','UNIT']</content>
             <content type="enum">['N']</content>
-            <content type="string" maxlength="15"></content>
+            <content type="decimal" maxlength="15"></content>
         </Tag>
         <Tag no="28" name="16S" opt="M" regexp="^CADETL$">
             <content type="fval">CADETL</content>

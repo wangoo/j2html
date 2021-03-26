@@ -142,6 +142,13 @@
 
         });
 
+
+        $("form").on("focusout", "input.tag-data.Wdate", function () {
+            var val = $(this).val();
+            $(this).data("content", val);
+
+        });
+
         $("form").on("change", "select.enum-data", function () {
 
             var datafor = $(this).attr("datafor");
@@ -271,9 +278,10 @@
                     var set_c = "\\w";
                     var set_n = "\\d";
                     var set_a = "(A-Za-z)";
+                    var set_d ="[1-9]*[0-9]{1},[0-9]{0,2}"
                     content = getTagContent($(tr));
                     if (regexp) {
-                        regexp = regexp.replaceAll("${x}", set_x).replaceAll("${y}", set_y).replaceAll("${z}", set_z).replaceAll("${c}", set_c).replaceAll("${n}", set_n).replaceAll("${a}", set_a);
+                        regexp = regexp.replaceAll("${x}", set_x).replaceAll("${y}", set_y).replaceAll("${z}", set_z).replaceAll("${c}", set_c).replaceAll("${n}", set_n).replaceAll("${a}", set_a).replaceAll("${d}", set_d);
                         var re = new RegExp(regexp, "g");
                         var checkresult = re.test(content);
                         if (!checkresult) {

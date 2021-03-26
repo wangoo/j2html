@@ -24,9 +24,9 @@
             <content type="string" prefix="ISIN" fixedlength="13"></content>
             <content type="textarea" cols="35" rows="4"></content>
         </Tag>
-        <Tag no="7" name="35A"   opt="O" format="3!a15d" regexp="^[${a}]{3}[${d}]{1,15}$">
+        <Tag no="7" name="35A"   opt="O" format="3!a15d" regexp="^[${a}]{3}${d}$">
             <content type="enum" >[ 'BON' ,'CER' ,'CPN' ,'FMT' ,'MSC' ,'OPC' ,'OPS' ,'PRC' ,'PRS' ,'RTE' ,'RTS' ,'SHS' ,'UNT' ,'WTS' ]</content>
-            <content type="string"  maxlength="15"></content>
+            <content type="decimal"  maxlength="15"></content>
         </Tag>
         <Tag no="8" name="31L"   opt="O" format="6!n" regexp="^[${n}]{6}$">
             <content type="date"></content>
@@ -62,88 +62,88 @@
                 </Tag>
             </option>
         </Tag>
-        <Tag no="13" name="35N"   opt="O" format="3!a15d" regexp="^[${a}]{3}[${d}]{1,15}$">
+        <Tag no="13" name="35N"   opt="O" format="3!a15d" regexp="^[${a}]{3}${d}$">
             <content type="enum" >
                 [ 'BON' ,'CER' ,'CPN' ,'FMT' ,'MSC' ,'OPC' ,'OPS' ,'PRC' ,'PRS' ,'RTE' ,'RTS' ,'SHS' ,'UNT' ,'WTS' ]
             </content>
-            <content type="string"  maxlength="15"></content>
+            <content type="decimal"  maxlength="15"></content>
         </Tag>
-        <Tag no="14" name="33T"   opt="O" format="3!a15d" regexp="^[${a}]{3}[${d}]{1,15}$">
-            <content type="Currency" ></content>
-            <content type="string"  maxlength="15"></content>
+        <Tag no="14" name="33T"   opt="O" format="3!a15d" regexp="^[${a}]{3}${d}$">
+            <content type="CurrencyCode" ></content>
+            <content type="decimal"  maxlength="15"></content>
         </Tag>
     </Sequence>
     <Sequence name="B" description="Optional Sequence B Collateral Arrangements" opt="O">
-        <Tag no="15" name="37J"   opt="O" format="12d" regexp="^[${d}]{1,12}$">
-            <content type="string"  maxlength="12"></content>
+        <Tag no="15" name="37J"   opt="O" format="12d" regexp="^${d}$">
+            <content type="decimal"  maxlength="12"></content>
         </Tag>
         <Tag no="16" name="26H"   opt="O" format="16x" regexp="^[${x}]{1,16}$">
             <content type="enum" >
                 [ 'CASHCOLL' ,'EXISTING' ,'LETTCOLL' ,'OTHECOLL' ,'SECUCOLL' ]
             </content>
         </Tag>
-        <Tag no="17" name="33S"   opt="O" format="3!a15d" regexp="^[${a}]{3}[${d}]{1,15}$">
+        <Tag no="17" name="33S"   opt="O" format="3!a15d" regexp="^[${a}]{3}${d}$">
             <content type="enum" >
                 [ 'PCT']
             </content>
-            <content type="string"  maxlength="15"></content>
+            <content type="decimal"  maxlength="15"></content>
         </Tag>
         <Tag no="18" name="32a"   opt="O" >
             <option>
-                <Tag name="32A" format="6!n3!a15d" regexp="^[${n}]{6}[${a}]{3}[${d}]{1,15}$">
+                <Tag name="32A" format="6!n3!a15d" regexp="^[${n}]{6}[${a}]{3}${d}$">
                     <content>
                         <content type="date" ></content>
-                        <content type="Currency" ></content>
-                        <content type="string"  maxlength="15"></content>
+                        <content type="CurrencyCode" ></content>
+                        <content type="decimal"  maxlength="15"></content>
                     </content>
                 </Tag>
-                <Tag name="32B" format="3!a15d" regexp="^[${a}]{3}[${d}]{1,15}$">
+                <Tag name="32B" format="3!a15d" regexp="^[${a}]{3}${d}$">
                     <content>
-                        <content type="Currency" ></content>
-                        <content type="string"  maxlength="15"></content>
+                        <content type="CurrencyCode" ></content>
+                        <content type="decimal"  maxlength="15"></content>
                     </content>
                 </Tag>
             </option>
         </Tag>
         <Tag no="19" name="37a"   opt="O" >
             <option>
-                <Tag name="37A" format="12d[//6!n1!a3n][/16x]" regexp="[${d}]{1,12}(\/\/[${n}]{6}[${a}]{1}[${n}]{1,3})?(\/[${x}]{1,16})?">
-                    <content type="string"  maxlength="12"></content>
+                <Tag name="37A" format="12d[//6!n1!a3n][/16x]" regexp="${d}{1,12}(\/\/[${n}]{6}[${a}]{1}[${n}]{1,3})?(\/[${x}]{1,16})?">
+                    <content type="decimal"  maxlength="12"></content>
                     <content type="string"  maxlength="date" prefix="//"></content>
                     <content type="enum" >['D','M']</content>
                     <content type="string" maxlength="3" ></content>
                     <content type="string" maxlength="16" prefix="/"></content>
                 </Tag>
-                <Tag name="37B" format="12d[//6!n1!a3n][/16x]" regexp="[${d}]{1,12}(\/\/[${n}]{6}[${a}]{1}[${n}]{1,3})?(\/[${x}]{1,16})?">
-                    <content type="string"  maxlength="12"></content>
+                <Tag name="37B" format="12d[//6!n1!a3n][/16x]" regexp="${d}{1,12}(\/\/[${n}]{6}[${a}]{1}[${n}]{1,3})?(\/[${x}]{1,16})?">
+                    <content type="decimal"  maxlength="12"></content>
                     <content type="string"  maxlength="date" prefix="//"></content>
                     <content type="enum" >['D','M']</content>
                     <content type="string" maxlength="3" ></content>
                     <content type="string" maxlength="16" prefix="/"></content>
                 </Tag>
-                <Tag name="37C" format="12d[//6!n1!a3n][/16x]" regexp="[${d}]{1,12}(\/\/[${n}]{6}[${a}]{1}[${n}]{1,3})?(\/[${x}]{1,16})?">
-                    <content type="string"  maxlength="12"></content>
+                <Tag name="37C" format="12d[//6!n1!a3n][/16x]" regexp="${d}{1,12}(\/\/[${n}]{6}[${a}]{1}[${n}]{1,3})?(\/[${x}]{1,16})?">
+                    <content type="decimal"  maxlength="12"></content>
                     <content type="string"  maxlength="date" prefix="//"></content>
                     <content type="enum" >['D','M']</content>
                     <content type="string" maxlength="3" ></content>
                     <content type="string" maxlength="16" prefix="/"></content>
                 </Tag>
-                <Tag name="37D" format="12d[//6!n1!a3n][/16x]" regexp="[${d}]{1,12}(\/\/[${n}]{6}[${a}]{1}[${n}]{1,3})?(\/[${x}]{1,16})?">
-                    <content type="string"  maxlength="12"></content>
+                <Tag name="37D" format="12d[//6!n1!a3n][/16x]" regexp="${d}{1,12}(\/\/[${n}]{6}[${a}]{1}[${n}]{1,3})?(\/[${x}]{1,16})?">
+                    <content type="decimal"  maxlength="12"></content>
                     <content type="string"  maxlength="date" prefix="//"></content>
                     <content type="enum" >['D','M']</content>
                     <content type="string" maxlength="3" ></content>
                     <content type="string" maxlength="16" prefix="/"></content>
                 </Tag>
-                <Tag name="37E" format="12d[//6!n1!a3n][/16x]" regexp="[${d}]{1,12}(\/\/[${n}]{6}[${a}]{1}[${n}]{1,3})?(\/[${x}]{1,16})?">
-                    <content type="string"  maxlength="12"></content>
+                <Tag name="37E" format="12d[//6!n1!a3n][/16x]" regexp="${d}{1,12}(\/\/[${n}]{6}[${a}]{1}[${n}]{1,3})?(\/[${x}]{1,16})?">
+                    <content type="decimal"  maxlength="12"></content>
                     <content type="string"  maxlength="date" prefix="//"></content>
                     <content type="enum" >['D','M']</content>
                     <content type="string" maxlength="3" ></content>
                     <content type="string" maxlength="16" prefix="/"></content>
                 </Tag>
-                <Tag name="37F" format="12d[//6!n1!a3n][/16x]" regexp="[${d}]{1,12}(\/\/[${n}]{6}[${a}]{1}[${n}]{1,3})?(\/[${x}]{1,16})?">
-                    <content type="string"  maxlength="12"></content>
+                <Tag name="37F" format="12d[//6!n1!a3n][/16x]" regexp="${d}{1,12}(\/\/[${n}]{6}[${a}]{1}[${n}]{1,3})?(\/[${x}]{1,16})?">
+                    <content type="decimal"  maxlength="12"></content>
                     <content type="string"  maxlength="date" prefix="//"></content>
                     <content type="enum" >['D','M']</content>
                     <content type="string" maxlength="3" ></content>
@@ -176,11 +176,11 @@
                 </Tag>
             </option>
         </Tag>
-        <Tag no="21" name="35S"   opt="O" format="3!a15d" regexp="^[${a}]{3}[${d}]{1,15}$">
+        <Tag no="21" name="35S"   opt="O" format="3!a15d" regexp="^[${a}]{3}${d}$">
             <content type="enum" >
                 ['BON' ,'CER' ,'CPN' ,'FMT' ,'MSC' ,'OPC' ,'OPS' ,'PRC' ,'PRS' ,'RTE' ,'RTS' ,'SHS' ,'UNT' ,'WTS' ]
             </content>
-            <content type="string"  maxlength="15"></content>
+            <content type="decimal"  maxlength="15"></content>
         </Tag>
         <Tag no="22" name="35B" opt="O" format="[ISIN1!e12!c][4*35x]" regexp="^(ISIN [${c}{12}])?(([${x}]{1,35}\r\n){0,3})([${x}]{1,35}){1}$">
             <content type="string" prefix="ISIN" fixedlength="13"></content>

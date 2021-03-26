@@ -37,7 +37,7 @@
                     <content type="fval">:</content>
                     <content type="enum">['PREP']</content>
                     <content type="fval">//</content>
-                    <content type="datetime"></content>
+                    <content type="date"></content>
                 </Tag>
                 <Tag name="98C" format=":4!c//8!n6!n" regexp="^:[${c}]{4}\/\/[${n}]{8}[${n}]{6}$">
                     <content type="fval">:</content>
@@ -117,7 +117,7 @@
                 <content type="fval">FIA</content>
             </Tag>
             <Tag no="17" name="94B" opt="O" format=":4!c/[8c]/4!c[/30x]"
-                 regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${c}]{4}(/[${x}{1,30}])?$">
+                 regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${c}]{4}(\/[${x}{1,30}])?$">
                 <content type="fval">:</content>
                 <content type="enum-data" datafor="PlaceCode">
                     {
@@ -185,24 +185,24 @@
                 <content type="fval">:</content>
                 <content type="enum">['COUP','EXPI','FRNR','MATU','ISSU','CALD','PUTT','DDTE','CONV']</content>
                 <content type="fval">//</content>
-                <content type="datetime"></content>
+                <content type="date"></content>
             </Tag>
             <Tag no="22" name="92a" opt="O" repeat="true">
                 <option>
-                    <Tag name="92A" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?[${d}]{1,15}$">
+                    <Tag name="92A" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['PRFC' ,'NWFC' ,'INTR' ,'NXRT' ,'DECL' ]</content>
                         <content type="fval">//</content>
                         <content type="enum">['N']</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
-                    <Tag name="92D" format=":4!c//15d/15d" regexp="^:[${c}]{4}\/[${d}]{1,15}\/[${d}]{1,15}$">
+                    <Tag name="92D" format=":4!c//15d/15d" regexp="^:[${c}]{4}\/${d}\/${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['WAPA' ]</content>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="92K" format=":4!c//4!c" regexp="^:[${c}]{4}\/\/[${c}]{4}$">
                         <content type="fval">:</content>
@@ -213,13 +213,13 @@
                 </option>
             </Tag>
             <Tag no="23" name="36B" opt="O" repeat="true" format=":4!c//4!c/15d"
-                 regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${d}]{1,15}$">
+                 regexp="^:[${c}]{4}\/\/[${c}]{4}\/${d}$">
                 <content type="fval">:</content>
                 <content type="enum">['MINO','SIZE']</content>
                 <content type="fval">//</content>
                 <content type="enum">['AMOR','FAMT','UNIT']</content>
                 <content type="fval">/</content>
-                <content type="string" maxlength="15"></content>
+                <content type="decimal" maxlength="15"></content>
             </Tag>
             <Tag no="24" name="16S" opt="M" regexp="^FIA$">
                 <content type="fval">FIA</content>
@@ -272,7 +272,7 @@
             <Tag no="28" name="94a" opt="O">
                 <option>
                     <Tag name="94B" format=":4!c/[8c]/4!c[/30x]"
-                         regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${c}]{4}(/[${x}{1,30}])?$">
+                         regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${c}]{4}(\/[${x}{1,30}])?$">
                         <content type="fval">:</content>
                         <content type="enum-data" datafor="PlaceCode">
                             {
@@ -305,7 +305,7 @@
             <Tag no="29" name="93a" opt="O" repeat="true">
                 <option>
                     <Tag name="93B" format=":4!c/[8c]/4!c/[N]15d"
-                         regexp="^:[${c}]{4}\/([${c}]{1,8})?\/[${c}]{4}\/[N]?[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/([${c}]{1,8})?\/[${c}]{4}\/[N]?${d}$">
                         <content type="fval">:</content>
                         <content type="enum">
                             ['ELIG' ,'BLOK' ,'BORR' ,'COLI' ,'COLO' ,'LOAN' ,'PEND' ,'PENR' ,'REGO' ,'SETT' ,'SPOS' ,'TRAD' ,'TRAN' ,'NOMI' ,'UNBA' ,'INBA' ,'OBAL' ,'AFFB' ,'UNAF' ]
@@ -316,10 +316,10 @@
                         <content type="enum">['AMOR','FAMT','UNIT']</content>
                         <content type="fval">/</content>
                         <content type="enum">['N']</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="93C" format=":4!c//4!c/4!c/[N]15d"
-                         regexp="^:[${c}]{4}\/[${c}]{4}\/[${c}]{4}\/[N]?[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/[${c}]{4}\/[${c}]{4}\/[N]?${d}$">
                         <content type="fval">:</content>
                         <content type="enum-data" datafor="BalanceTypeCode">
                             {'ELIG':['FUPU','PAPU']
@@ -349,7 +349,7 @@
                         <content type="enum" contentName="BalanceTypeCode"></content>
                         <content type="fval">/</content>
                         <content type="enum">['N']</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                 </option>
             </Tag>
@@ -372,29 +372,29 @@
         </Tag>
         <Tag no="34" name="36a" opt="O">
             <option>
-                <Tag name="36B" format=":4!c//4!c/15d" regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${d}]{1,15}$">
+                <Tag name="36B" format=":4!c//4!c/15d" regexp="^:[${c}]{4}\/\/[${c}]{4}\/${d}$">
                     <content type="fval">:</content>
                     <content type="enum">['QINT']</content>
                     <content type="fval">//</content>
                     <content type="enum">['UNIT']</content>
                     <content type="fval">/</content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
-                <Tag name="36E" format=":4!c//4!c/[N]15d" regexp="^:[${c}]{4}\/\/[${c}]{4}\/[N]?[${d}]{1,15}$">
+                <Tag name="36E" format=":4!c//4!c/[N]15d" regexp="^:[${c}]{4}\/\/[${c}]{4}\/[N]?${d}$">
                     <content type="fval">:</content>
                     <content type="enum">['QINT']</content>
                     <content type="fval">//</content>
                     <content type="enum">['UNIT']</content>
                     <content type="fval">/</content>
                     <content type="enum">['N']</content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
             </option>
         </Tag>
         <Tag no="35" name="93a" opt="O" repeat="true">
             <option>
                 <Tag name="93B" format=":4!c/[8c]/4!c/[N]15d"
-                     regexp="^:[${c}]{4}\/([${c}]{1,8})?\/[${c}]{4}\/[N]?[${d}]{1,15}$">
+                     regexp="^:[${c}]{4}\/([${c}]{1,8})?\/[${c}]{4}\/[N]?${d}$">
                     <content type="fval">:</content>
                     <content type="enum">
                         ['UNBA','INBA']
@@ -405,10 +405,10 @@
                     <content type="enum">['AMOR','FAMT','UNIT']</content>
                     <content type="fval">/</content>
                     <content type="enum">['N']</content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
                 <Tag name="93C" format=":4!c//4!c/4!c/[N]15d"
-                     regexp="^:[${c}]{4}\/[${c}]{4}\/[${c}]{4}\/[N]?[${d}]{1,15}$">
+                     regexp="^:[${c}]{4}\/[${c}]{4}\/[${c}]{4}\/[N]?${d}$">
                     <content type="fval">:</content>
                     <content type="enum">
                         ['UNBA','INBA']
@@ -419,7 +419,7 @@
                     <content type="enum">['ELIG','NELG']</content>
                     <content type="fval">/</content>
                     <content type="enum">['N']</content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
             </option>
         </Tag>
@@ -435,22 +435,23 @@
             <content type="fval">/</content>
             <content type="enum" contentName="Indicator"></content>
         </Tag>
-        <Tag no="37" name="92D" opt="O" format=":4!c//15d/15d" regexp="^:[${c}]{4}\/[${d}]{1,15}\/[${d}]{1,15}$">
+        <Tag no="37" name="92D" opt="O" format=":4!c//15d/15d" regexp="^:[${c}]{4}\/${d}\/${d}$">
                 <content type="fval">:</content>
                 <content type="enum">['RTUN' ]</content>
                 <content type="fval">/</content>
-                <content type="string" maxlength="15"></content>
+                <content type="decimal" maxlength="15"></content>
                 <content type="fval">/</content>
-                <content type="string" maxlength="15"></content>
+                <content type="decimal" maxlength="15"></content>
         </Tag>
         <Tag no="38" name="90B" opt="O" format=":4!c//4!c/3!a15d"
-             regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}[${d}]{1,15}$">
+             regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}${d}$">
             <content type="fval">:</content>
             <content type="enum">['MRKT']</content>
             <content type="fval">//</content>
             <content type="enum">['ACTU']</content>
-            <content type="string" fixedlength="3"></content>
-            <content type="string" maxlength="15"></content>
+            <content type="fval">/</content>
+            <content type="CurrencyCode" fixedlength="3"></content>
+            <content type="decimal" maxlength="15"></content>
         </Tag>
         <Tag no="39" name="98a" opt="M" repeat="true">
             <option>
@@ -458,7 +459,7 @@
                     <content type="fval">:</content>
                     <content type="enum">['EXPI','POST']</content>
                     <content type="fval">//</content>
-                    <content type="datetime"></content>
+                    <content type="date"></content>
                 </Tag>
                 <Tag name="98B" format=":4!c/[8c]/4!c" regexp="^:[${c}]{4}\/\/([${c}]{8})?\/[${c}]{4}$">
                     <content type="fval">:</content>
@@ -657,25 +658,24 @@
         </Tag>
         <Tag no="46" name="92a" opt="O" repeat="true">
             <option>
-                <Tag name="92A" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?[${d}]{1,15}$">
+                <Tag name="92A" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?${d}$">
                     <content type="fval">:</content>
                     <content type="enum">
                         ['RDIS' ,'INTR' ,'BIDI' ,'NWFC' ,'PTSC' ,'PRFC' ,'RINR' ,'RSPR' ,'SHRT' ,'RLOS' ,'DEVI' ]
                     </content>
                     <content type="fval">//</content>
                     <content type="enum">['N']</content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
                 <Tag name="92F" format=":4!c//3!a15d"
-                     regexp="^:[${c}]{4}\/\/[${a}]{3}[${d}]{1,15}$">
+                     regexp="^:[${c}]{4}\/\/[${a}]{3}${d}$">
                     <content type="fval">:</content>
                     <content type="enum">
                         [ 'INTR' ,'BIDI' ,'SHRT' ,'RLOS' ,'DEVI' ]
                     </content>
-                    <content type="fval">/</content>
-                    <content type="fval">/</content>
+                    <content type="fval">//</content>
                     <content type="CurrencyCode"></content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
                 <Tag name="92K" format=":4!c//4!c" regexp="^:[${c}]{4}\/\/[${c}]{4}$">
                     <content type="fval">:</content>
@@ -694,33 +694,35 @@
                     <content type="fval">//</content>
                     <content type="enum" contentName="RateTypeCode"></content>
                 </Tag>
-                <Tag name="92P" format=":4!c//15d" regexp="^:[${c}]{4}\/\/[${d}]{1,15}$">
+                <Tag name="92P" format=":4!c//15d" regexp="^:[${c}]{4}\/\/${d}$">
                     <content type="fval">:</content>
                     <content type="enum">['BIDI' ]</content>
                     <content type="fval">//</content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
             </option>
         </Tag>
         <Tag no="47" name="90a" opt="O" repeat="true">
             <option>
                 <Tag name="90A" format=":4!c//4!c/[N]15d"
-                     regexp="^:[${c}]{4}\/\/[${c}]{4}\/[N]?[${d}]{1,15}$">
+                     regexp="^:[${c}]{4}\/\/[${c}]{4}\/[N]?${d}$">
                     <content type="fval">:</content>
                     <content type="enum">['MAXP','MINP']</content>
                     <content type="fval">//</content>
                     <content type="enum">['DISC','PRCT','PREM','YIEL']</content>
+                    <content type="fval">/</content>
                     <content type="enum">['N']</content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
                 <Tag name="90B" format=":4!c//4!c/3!a15d"
-                     regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}[${d}]{1,15}$">
+                     regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}${d}$">
                     <content type="fval">:</content>
                     <content type="enum">['MAXP','MINP']</content>
                     <content type="fval">//</content>
                     <content type="enum">['ACTU','DISC','PLOT','PREM']</content>
-                    <content type="string" fixedlength="3"></content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="fval">/</content>
+                    <content type="CurrencyCode" fixedlength="3"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
                 <Tag name="90E" format=":4!c//4!c" regexp="^:[${c}]{4}\/\/[${c}]{4}$">
                     <content type="fval">:</content>
@@ -738,7 +740,7 @@
         </Tag>
         <Tag no="48" name="36a" opt="O" repeat="true">
             <option>
-                <Tag  name="36B" format=":4!c//4!c/15d" regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${d}]{1,15}$">
+                <Tag  name="36B" format=":4!c//4!c/15d" regexp="^:[${c}]{4}\/\/[${c}]{4}\/${d}$">
                     <content type="fval">:</content>
                     <content type="enum">
                         [ 'MQSO' ,'QTSO' ,'NBLT' ,'NEWD' ,'BASE' ,'INCR' ]
@@ -746,7 +748,7 @@
                     <content type="fval">//</content>
                     <content type="enum">['AMOR','FAMT','UNIT']</content>
                     <content type="fval">/</content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
                 <Tag  name="36C"   format=":4!c//4!c" regexp="^:[${c}]{4}\/\/[${c}]{4}$">
                     <content type="fval">:</content>
@@ -907,7 +909,7 @@
                         ['DVCP' ,'EARD' ,'EXPI' ,'MKDT' ,'PODT' ,'SUBS' ,'RDDT' ,'CVPR' ,'BORD' ]
                     </content>
                     <content type="fval">//</content>
-                    <content type="datetime"></content>
+                    <content type="date"></content>
                 </Tag>
                 <Tag name="98B" format=":4!c/[8c]/4!c" regexp="^:[${c}]{4}\/\/([${c}]{8})?\/[${c}]{4}$">
                     <content type="fval">:</content>
@@ -1050,52 +1052,52 @@
         </Tag>
         <Tag no="64" name="92a" opt="O" repeat="true">
             <option>
-                <Tag name="92A" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?[${d}]{1,15}$">
+                <Tag name="92A" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?${d}$">
                     <content type="fval">:</content>
                     <content type="enum">
                         [ 'TAXR' ,'ATAX' ,'INDX' ,'OVEP' ,'PROR' ,'INTP' ,'TXIN' ,'WITL' ]
                     </content>
                     <content type="fval">//</content>
                     <content type="enum">['N']</content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
                 <Tag name="92B" format=":4!c//3!a/3!a/15d"
-                     regexp="^:[${c}]{4}\/[${a}]{3}\/[${a}]{3}\/[${d}]{1,15}$">
+                     regexp="^:[${c}]{4}\/[${a}]{3}\/[${a}]{3}\/${d}$">
                     <content type="fval">:</content>
                     <content type="enum">['IDFX']</content>
                     <content type="fval">/</content>
-                    <content type="Currency Code"></content>
+                    <content type="CurrencyCode"></content>
                     <content type="fval">/</content>
-                    <content type="Currency Code"></content>
+                    <content type="CurrencyCode"></content>
                     <content type="fval">/</content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
                 <Tag name="92F" format=":4!c//3!a15d"
-                     regexp="^:[${c}]{4}\/\/[${a}]{3}[${d}]{1,15}$">
+                     regexp="^:[${c}]{4}\/\/[${a}]{3}${d}$">
                     <content type="fval">:</content>
                     <content type="enum">
                         [ 'GRSS' ,'TAXR' ,'ATAX' ,'INDX' ,'INTP','NETT','TXIN','WITL' ]
                     </content>
                     <content type="fval">//</content>
                     <content type="CurrencyCode"></content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
                 <Tag name="92H" format=":4!c//3!a15d/4!c"
-                     regexp="^:[${c}]{4}\/\/[${a}]{3}[${d}]{1,15}\/[${c}]{4}$">
+                     regexp="^:[${c}]{4}\/\/[${a}]{3}${d}\/[${c}]{4}$">
                     <content type="fval">:</content>
                     <content type="enum">
                         [ 'GRSS','NETT']
                     </content>
                     <content type="fval">//</content>
                     <content type="CurrencyCode"></content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                     <content type="fval">/</content>
                     <content type="enum">
                         [ 'ACTU' ,'INDI'  ]
                     </content>
                 </Tag>
                 <Tag name="92J" format=":4!c/[8c]/4!c/3!a15d[/4!c]"
-                     regexp="^:[${c}]{4}\/([${c}]{1,8})?\/[${a}]{3}[${d}]{1,15}(\/[${c}]{4})?$">
+                     regexp="^:[${c}]{4}\/([${c}]{1,8})?\/[${a}]{3}${d}(\/[${c}]{4})?$">
                     <content type="fval">:</content>
                     <content type="enum-data" datafor="RateTypeCode">
                         {
@@ -1111,7 +1113,7 @@
                     <content type="enum" contentName="RateTypeCode"></content>
                     <content type="fval">/</content>
                     <content type="CurrencyCode"></content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                     <content type="enum" prefix="/">
                         [ 'ACTU' ,'INDI']
                     </content>
@@ -1137,7 +1139,7 @@
                     <content type="enum" contentName="RateTypeCode"></content>
                 </Tag>
                 <Tag name="92R" format=":4!c/[8c]/4!c/15d"
-                     regexp="^:[${c}]{4}\/([${c}]{1,8})?\/[${c}]{4}\/[${d}]{1,15}$">
+                     regexp="^:[${c}]{4}\/([${c}]{1,8})?\/[${c}]{4}\/${d}$">
                     <content type="fval">:</content>
                     <content type="enum">
                         [ 'INTR' ,'BIDI' ,'SHRT' ,'RLOS' ,'DEVI' ]
@@ -1149,7 +1151,7 @@
                         [ 'BWIT' ,'FTCA' ,'NRAT']
                     </content>
                     <content type="fval">/</content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
 
                 </Tag>
             </option>
@@ -1157,16 +1159,17 @@
         <Tag no="65" name="90a" opt="O" repeat="true">
             <option>
                 <Tag name="90A" format=":4!c//4!c/[N]15d"
-                     regexp="^:[${c}]{4}\/\/[${c}]{4}\/[N]?[${d}]{1,15}$">
+                     regexp="^:[${c}]{4}\/\/[${c}]{4}\/[N]?${d}$">
                     <content type="fval">:</content>
                     <content type="enum">['CINL','OSUB']</content>
                     <content type="fval">//</content>
                     <content type="enum">['DISC','PRCT','PREM','YIEL']</content>
+                    <content type="fval">/</content>
                     <content type="enum">['N']</content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
                 <Tag name="90B" format=":4!c//4!c/3!a15d"
-                     regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}[${d}]{1,15}$">
+                     regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}${d}$">
                     <content type="fval">:</content>
                     <content type="enum-data" datafor="AmountTypeCode">
                         {
@@ -1179,8 +1182,9 @@
                     </content>
                     <content type="fval">//</content>
                     <content type="enum" contentName="AmountTypeCode"></content>
-                    <content type="string" fixedlength="3"></content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="fval">/</content>
+                    <content type="CurrencyCode" fixedlength="3"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
                 <Tag name="90E" format=":4!c//4!c" regexp="^:[${c}]{4}\/\/[${c}]{4}$">
                     <content type="fval">:</content>
@@ -1194,7 +1198,7 @@
         </Tag>
         <Tag no="66" name="36a" opt="O" repeat="true">
             <option>
-                <Tag  name="36B" format=":4!c//4!c/15d" regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${d}]{1,15}$">
+                <Tag  name="36B" format=":4!c//4!c/15d" regexp="^:[${c}]{4}\/\/[${c}]{4}\/${d}$">
                     <content type="fval">:</content>
                     <content type="enum">
                         [ 'MAEX' ,'MIEX' ,'MILT' ,'NBLT' ,'NEWD' ,'BOLQ' ,'FOLQ' ]
@@ -1202,7 +1206,7 @@
                     <content type="fval">//</content>
                     <content type="enum">['AMOR','FAMT','UNIT']</content>
                     <content type="fval">/</content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
                 <Tag  name="36C"   format=":4!c//4!c" regexp="^:[${c}]{4}\/\/[${c}]{4}$">
                     <content type="fval">:</content>
@@ -1265,7 +1269,7 @@
                 <Tag no="70" name="16R" opt="M" regexp="^FIA$">
                     <content type="fval">FIA</content>
                 </Tag>
-                <Tag no="71" name="94B" opt="O" format=":4!c/[8c]/4!c[/30x]" regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${c}]{4}(/[${x}{1,30}])?$">
+                <Tag no="71" name="94B" opt="O" format=":4!c/[8c]/4!c[/30x]" regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${c}]{4}(\/[${x}{1,30}])?$">
                     <content type="fval">:</content>
                     <content type="enum">['PLIS']</content>
                     <content type="fval">/</content>
@@ -1326,25 +1330,27 @@
                     <content type="fval">:</content>
                     <content type="enum">['COUP','FRNR','MATU','ISSU','CALD','PUTT','DDTE','CONV']</content>
                     <content type="fval">//</content>
-                    <content type="string" fixedlength="8" ></content>
+                    <content type="date" ></content>
                 </Tag>
                 <Tag no="76" name="90a" opt="O" >
                     <option>
-                        <Tag name="90A" format=":4!c//4!c/[N]15d" regexp="^:[${c}]{4}\/\/[${c}]{4}\/[N]?[${d}]{1,15}$">
+                        <Tag name="90A" format=":4!c//4!c/[N]15d" regexp="^:[${c}]{4}\/\/[${c}]{4}\/[N]?${d}$">
                             <content type="fval">:</content>
                             <content type="enum">['ISSU']</content>
                             <content type="fval">//</content>
                             <content type="enum">['DISC','PRCT','PREM','YIEL']</content>
+                            <content type="fval">/</content>
                             <content type="enum">['N']</content>
-                            <content type="string" maxlength="15"></content>
+                            <content type="decimal" maxlength="15"></content>
                         </Tag>
-                        <Tag name="90B" format=":4!c//4!c/3!a15d" regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}[${d}]{1,15}$">
+                        <Tag name="90B" format=":4!c//4!c/3!a15d" regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}${d}$">
                             <content type="fval">:</content>
                             <content type="enum">['ISSU']</content>
                             <content type="fval">//</content>
                             <content type="enum">['ACTU','DISC','PLOT','PREM']</content>
-                            <content type="string" fixedlength="3"></content>
-                            <content type="string" maxlength="15"></content>
+                            <content type="fval">/</content>
+                            <content type="CurrencyCode" fixedlength="3"></content>
+                            <content type="decimal" maxlength="15"></content>
                         </Tag>
                         <Tag name="90E" format=":4!c//4!c" regexp="^:[${c}]{4}\/\/[${c}]{4}$">
                             <content type="fval">:</content>
@@ -1358,12 +1364,12 @@
                 </Tag>
                 <Tag no="77" name="92a" opt="O" repeat="true">
                     <option>
-                        <Tag name="92A" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?[${d}]{1,15}$">
+                        <Tag name="92A" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?${d}$">
                             <content type="fval">:</content>
                             <content type="enum">[ 'PRFC' ,'NWFC' ,'INTR' ,'NXRT' ]</content>
                             <content type="fval">//</content>
                             <content type="enum">['N']</content>
-                            <content type="string" maxlength="15"></content>
+                            <content type="decimal" maxlength="15"></content>
                         </Tag>
                         <Tag name="92K" format=":4!c//4!c" regexp="^:[${c}]{4}\/\/[${c}]{4}$">
                             <content type="fval">:</content>
@@ -1374,31 +1380,31 @@
                     </option>
                 </Tag>
                 <Tag no="78" name="36B" opt="O" repeat="true" format=":4!c//4!c/15d"
-                     regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${d}]{1,15}$">
+                     regexp="^:[${c}]{4}\/\/[${c}]{4}\/${d}$">
                     <content type="fval">:</content>
                     <content type="enum">['MINO','MIEX','MILT','SIZE']</content>
                     <content type="fval">//</content>
                     <content type="enum">['AMOR','FAMT','UNIT']</content>
                     <content type="fval">/</content>
-                    <content type="string" maxlength="15"></content>
+                    <content type="decimal" maxlength="15"></content>
                 </Tag>
                 <Tag no="79" name="16S" opt="M" regexp="^FIA$">
                     <content type="fval">FIA</content>
                 </Tag>
             </SubSequence>
             <Tag no="80" name="36B" opt="O" repeat="true" format=":4!c//4!c/15d"
-                 regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${d}]{1,15}$">
+                 regexp="^:[${c}]{4}\/\/[${c}]{4}\/${d}$">
                 <content type="fval">:</content>
                 <content type="enum">['ENTL']</content>
                 <content type="fval">//</content>
                 <content type="enum">['AMOR','FAMT','UNIT']</content>
                 <content type="fval">/</content>
-                <content type="string" maxlength="15"></content>
+                <content type="decimal" maxlength="15"></content>
             </Tag>
             <Tag no="81" name="94a" opt="O" repeat="true">
                 <option>
                     <Tag name="94B" format=":4!c/[8c]/4!c[/30x]"
-                         regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${c}]{4}(/[${x}{1,30}])?$">
+                         regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${c}]{4}(\/[${x}{1,30}])?$">
                         <content type="fval">:</content>
                         <content type="enum-data" datafor="PlaceCode">
                             {
@@ -1508,16 +1514,17 @@
             <Tag no="85" name="90a" opt="O" repeat="true">
                 <option>
                     <Tag name="90A" format=":4!c//4!c/[N]15d"
-                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[N]?[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[N]?${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['INDC','MRKT','CINL','OFFR','PRPP']</content>
                         <content type="fval">//</content>
                         <content type="enum">['DISC','PRCT','PREM','YIEL']</content>
+                        <content type="fval">/</content>
                         <content type="enum">['N']</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="90B" format=":4!c//4!c/3!a15d"
-                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}${d}$">
                         <content type="fval">:</content>
                         <content type="enum-data" datafor="AmountTypeCode">
                             {
@@ -1531,8 +1538,8 @@
                         <content type="fval">//</content>
                         <content type="enum" contentName="AmountTypeCode"></content>
                         <content type="fval">/</content>
-                        <content type="string" fixedlength="3"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="CurrencyCode" fixedlength="3"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="90E" format=":4!c//4!c" regexp="^:[${c}]{4}\/\/[${c}]{4}$">
                         <content type="fval">:</content>
@@ -1550,67 +1557,67 @@
                         <content type="enum" contentName="PriceCode"></content>
                     </Tag>
                     <Tag name="90F" format=":4!c//4!c/3!a15d/4!c/15d"
-                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}[${d}]{1,15}\/[${c}]{4}\/[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}${d}\/[${c}]{4}\/${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['OFFR']</content>
                         <content type="fval">//</content>
                         <content type="enum">['AMOR','DISC','PLOT','PREM']</content>
                         <content type="fval">/</content>
-                        <content type="string" fixedlength="3"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="CurrencyCode" fixedlength="3"></content>
+                        <content type="decimal" maxlength="15"></content>
                         <content type="fval">/</content>
                         <content type="enum">['AMOR','FAMT','UNIT']</content>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="90J" format=":4!c//4!c/3!a15d/3!a15d"
-                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}[${d}]{1,15}\/[${a}]{3}[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}${d}\/[${a}]{3}${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['OFFR']</content>
                         <content type="fval">//</content>
                         <content type="enum">['ACTU','DISC','PLOT','PREM']</content>
                         <content type="fval">/</content>
-                        <content type="string" fixedlength="3"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="CurrencyCode" fixedlength="3"></content>
+                        <content type="decimal" maxlength="15"></content>
                         <content type="fval">/</content>
-                        <content type="string" fixedlength="3"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="CurrencyCode" fixedlength="3"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
-                    <Tag name="90K" format=":4!c//15d" regexp="^:[${c}]{4}\/\/[${d}]{1,15}$">
+                    <Tag name="90K" format=":4!c//15d" regexp="^:[${c}]{4}\/\/${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['PRPP']</content>
                         <content type="fval">//</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
-                    <Tag name="90L" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?[${d}]{1,15}$">
+                    <Tag name="90L" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['OFFR']</content>
                         <content type="fval">//</content>
                         <content type="enum">['N']</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                 </option>
             </Tag>
             <Tag no="86" name="92a" opt="O" repeat="true">
                 <option>
-                    <Tag name="92A" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?[${d}]{1,15}$">
+                    <Tag name="92A" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['TRAT','CHAR','FISC','RATE','TAXC','TRAX']
                         </content>
                         <content type="fval">//</content>
                         <content type="enum">['N']</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
-                    <Tag name="92D" format=":4!c//15d/15d" regexp="^:[${c}]{4}\/[${d}]{1,15}\/[${d}]{1,15}$">
+                    <Tag name="92D" format=":4!c//15d/15d" regexp="^:[${c}]{4}\/${d}\/${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['ADEX','NEWO','ADSR' ]</content>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="92F" format=":4!c//3!a15d"
-                         regexp="^:[${c}]{4}\/\/[${a}]{3}[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/\/[${a}]{3}${d}$">
                         <content type="fval">:</content>
                         <content type="enum">
                             [ 'CHAR' ,'TAXC']
@@ -1618,7 +1625,7 @@
                         <content type="fval">/</content>
                         <content type="fval">/</content>
                         <content type="CurrencyCode"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="92K" format=":4!c//4!c" regexp="^:[${c}]{4}\/\/[${c}]{4}$">
                         <content type="fval">:</content>
@@ -1638,41 +1645,41 @@
                         <content type="enum" contentName="RateTypeCode"></content>
                     </Tag>
                     <Tag name="92L" format=":4!c//3!a15d/3!a15d"
-                         regexp="^:[${c}]{4}\/\/[${a}]{3}[${d}]{1,15}\/[${a}]{3}[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/\/[${a}]{3}${d}\/[${a}]{3}${d}$">
                         <content type="fval">:</content>
                         <content type="enum">
                             [ 'ADEX' ,'NEWO' ,'ADSR' ]
                         </content>
                         <content type="fval">//</content>
                         <content type="CurrencyCode"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                         <content type="fval">/</content>
                         <content type="CurrencyCode"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="92M" format=":4!c//3!a15d/15d"
-                         regexp="^:[${c}]{4}\/\/[${a}]{3}[${d}]{1,15}\/[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/\/[${a}]{3}${d}\/${d}$">
                         <content type="fval">:</content>
                         <content type="enum">
                             [ 'NEWO' ]
                         </content>
                         <content type="fval">//</content>
                         <content type="CurrencyCode"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="92N" format=":4!c//15d/3!a15d"
-                         regexp="^:[${c}]{4}\/\/[${d}]{1,15}\/[${a}]{3}[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/\/${d}\/[${a}]{3}${d}$">
                         <content type="fval">:</content>
                         <content type="enum">
                             [ 'NEWO' ]
                         </content>
                         <content type="fval">//</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                         <content type="fval">/</content>
                         <content type="CurrencyCode"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                 </option>
             </Tag>
@@ -1682,7 +1689,7 @@
                         <content type="fval">:</content>
                         <content type="enum">[ 'PAYD' ,'AVAL' ,'DIVR' ,'EARL' ,'PPDT' ,'LTRD' ]</content>
                         <content type="fval">//</content>
-                        <content type="datetime"></content>
+                        <content type="date"></content>
                     </Tag>
                     <Tag name="98B" format=":4!c/[8c]/4!c"
                          regexp="^:[${c}]{4}\/\/([${c}]{8})?\/[${c}]{4}$">
@@ -1769,7 +1776,7 @@
                     </Tag>
                 </option>
             </Tag>
-            <Tag no="93" name="19B" opt="O" repeat="true" format=":4!c//3!a15d" regexp="^:[${c}]{4}\/\/[${a}]{3}[${d}]{1,15}$">
+            <Tag no="93" name="19B" opt="O" repeat="true" format=":4!c//3!a15d" regexp="^:[${c}]{4}\/\/[${a}]{3}${d}$">
                 <content type="fval">:</content>
                 <content type="enum">
                     [ 'ENTL' ,'RESU' ,'OCMT' ,'CAPG' ,'INDM' ,'CINL' ,'CHAR' ,'FLFR' ,'UNFR' ,'TXFR' ,'TXDF' ,'SOIC' ,'GRSS' ,'INTR' ,'MKTC' ,'NETT' ,'PRIN' ,'REIN' ,'TAXC' ,'TAXR' ,'WITL' ,'REDP' ,'ATAX' ,'INCO' ,'EXEC' ,'LOCO' ,'PAMM' ,'REGF' ,'SHIP' ,'SOFE' ,'STAM' ,'STEX' ,'VATA' ,'FISC' ,'MFDV' ,'TXRC' ,'EUTR' ,'ACRU' ,'EQUL' ,'FTCA' ,'NRAT' ,'BWIT' ,'TXIN' ,'TRAX' ,'DEEM' ,'CDFI' ,'DEDI' ,'DEFP' ,'DEIT' ,'DERY' ]
@@ -1777,7 +1784,7 @@
                 <content type="fval">/</content>
                 <content type="fval">/</content>
                 <content type="CurrencyCode"></content>
-                <content type="string" maxlength="15"></content>
+                <content type="decimal" maxlength="15"></content>
             </Tag>
             <Tag no="94" name="98a" opt="M">
                 <option>
@@ -1785,7 +1792,7 @@
                         <content type="fval">:</content>
                         <content type="enum">[ 'PAYD' ,'VALU' ,'EARL' ,'FXDT' ]</content>
                         <content type="fval">//</content>
-                        <content type="datetime"></content>
+                        <content type="date"></content>
                     </Tag>
                     <Tag name="98B" format=":4!c/[8c]/4!c" regexp="^:[${c}]{4}\/\/([${c}]{8})?\/[${c}]{4}$">
                         <content type="fval">:</content>
@@ -1818,27 +1825,27 @@
             </Tag>
             <Tag no="95" name="92a" opt="O" repeat="true">
                 <option>
-                    <Tag name="92A" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?[${d}]{1,15}$">
+                    <Tag name="92A" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['ATAX','CHAR','ESOF','FISC','INCE','INTP','RATE','SOFE' ,'TAXC' ,'TAXR' ,'TXIN' ,'TXPR' ,'TXRC' ,'WITL' ,'DEEM' ]
                         </content>
                         <content type="fval">//</content>
                         <content type="enum">['N']</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="92B" format=":4!c//3!a/3!a/15d"
-                         regexp="^:[${c}]{4}\/[${a}]{3}\/[${a}]{3}\/[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/[${a}]{3}\/[${a}]{3}\/${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['EXCH']</content>
                         <content type="fval">/</content>
-                        <content type="Currency Code"></content>
+                        <content type="CurrencyCode"></content>
                         <content type="fval">/</content>
-                        <content type="Currency Code"></content>
+                        <content type="CurrencyCode"></content>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="92F" format=":4!c//3!a15d"
-                         regexp="^:[${c}]{4}\/\/[${a}]{3}[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/\/[${a}]{3}${d}$">
                         <content type="fval">:</content>
                         <content type="enum">
                             [ 'ATAX' ,'CHAR' ,'EQUL' ,'ESOF' ,'GRSS' ,'INCE' ,'INTP' ,'NETT' ,'SOFE' ,'TAXC' ,'TAXR' ,'TXIN' ,'WITL' ,'DEEM' ]
@@ -1846,24 +1853,24 @@
                         <content type="fval">/</content>
                         <content type="fval">/</content>
                         <content type="CurrencyCode"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="92H" format=":4!c//3!a15d/4!c"
-                         regexp="^:[${c}]{4}\/\/[${a}]{3}[${d}]{1,15}\/[${c}]{4}$">
+                         regexp="^:[${c}]{4}\/\/[${a}]{3}${d}\/[${c}]{4}$">
                         <content type="fval">:</content>
                         <content type="enum">
                             [ 'GRSS','NETT']
                         </content>
                         <content type="fval">//</content>
                         <content type="CurrencyCode"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                         <content type="fval">/</content>
                         <content type="enum">
                             [ 'ACTU' ,'INDI'  ]
                         </content>
                     </Tag>
                     <Tag name="92J" format=":4!c/[8c]/4!c/3!a15d[/4!c]"
-                         regexp="^:[${c}]{4}\/([${c}]{1,8})?\/[${a}]{3}[${d}]{1,15}(\/[${c}]{4})?$">
+                         regexp="^:[${c}]{4}\/([${c}]{1,8})?\/[${a}]{3}${d}(\/[${c}]{4})?$">
                         <content type="fval">:</content>
                         <content type="enum-data" datafor="RateTypeCode">
                             {
@@ -1879,7 +1886,7 @@
                         <content type="enum" contentName="RateTypeCode"></content>
                         <content type="fval">/</content>
                         <content type="CurrencyCode"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                         <content type="enum" prefix="/">
                             [ 'ACTU' ,'INDI']
                         </content>
@@ -1913,19 +1920,19 @@
                         <content type="enum" contentName="RateTypeCode"></content>
                     </Tag>
                     <Tag name="92M" format=":4!c//3!a15d/15d"
-                         regexp="^:[${c}]{4}\/\/[${a}]{3}[${d}]{1,15}\/[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/\/[${a}]{3}${d}\/${d}$">
                         <content type="fval">:</content>
                         <content type="enum">
                             [ 'ESOF','SOFE' ]
                         </content>
                         <content type="fval">//</content>
                         <content type="CurrencyCode"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="92R" format=":4!c/[8c]/4!c/15d"
-                         regexp="^:[${c}]{4}\/([${c}]{1,8})?\/[${c}]{4}\/[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/([${c}]{1,8})?\/[${c}]{4}\/${d}$">
                         <content type="fval">:</content>
                         <content type="enum-data" datafor="RateTypeCode">
                             {
@@ -1940,7 +1947,7 @@
                         <content type="enum" contentName="RateTypeCode">
                         </content>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
 
                     </Tag>
                 </option>
@@ -1948,16 +1955,17 @@
             <Tag no="96" name="90a" opt="O" repeat="true">
                 <option>
                     <Tag name="90A" format=":4!c//4!c/[N]15d"
-                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[N]?[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[N]?${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['OFFR','PRPP']</content>
                         <content type="fval">//</content>
                         <content type="enum">['DISC','PRCT','PREM','YIEL']</content>
+                        <content type="fval">/</content>
                         <content type="enum">['N']</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="90B" format=":4!c//4!c/3!a15d"
-                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}${d}$">
                         <content type="fval">:</content>
                         <content type="enum-data" datafor="AmountTypeCode">
                             {
@@ -1968,8 +1976,8 @@
                         <content type="fval">//</content>
                         <content type="enum" contentName="AmountTypeCode"></content>
                         <content type="fval">/</content>
-                        <content type="string" fixedlength="3"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="CurrencyCode" fixedlength="3"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="90E" format=":4!c//4!c" regexp="^:[${c}]{4}\/\/[${c}]{4}$">
                         <content type="fval">:</content>
@@ -1985,44 +1993,44 @@
                         <content type="enum" contentName="PriceCode"></content>
                     </Tag>
                     <Tag name="90F" format=":4!c//4!c/3!a15d/4!c/15d"
-                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}[${d}]{1,15}\/[${c}]{4}\/[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}${d}\/[${c}]{4}\/${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['OFFR']</content>
                         <content type="fval">//</content>
                         <content type="enum">['AMOR','DISC','PLOT','PREM']</content>
                         <content type="fval">/</content>
-                        <content type="string" fixedlength="3"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="CurrencyCode" fixedlength="3"></content>
+                        <content type="decimal" maxlength="15"></content>
                         <content type="fval">/</content>
                         <content type="enum">['AMOR','FAMT','UNIT']</content>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                     <Tag name="90J" format=":4!c//4!c/3!a15d/3!a15d"
-                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}[${d}]{1,15}\/[${a}]{3}[${d}]{1,15}$">
+                         regexp="^:[${c}]{4}\/\/[${c}]{4}\/[${a}]{3}${d}\/[${a}]{3}${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['OFFR']</content>
                         <content type="fval">//</content>
                         <content type="enum">['ACTU','DISC','PLOT','PREM']</content>
                         <content type="fval">/</content>
-                        <content type="string" fixedlength="3"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="CurrencyCode" fixedlength="3"></content>
+                        <content type="decimal" maxlength="15"></content>
                         <content type="fval">/</content>
-                        <content type="string" fixedlength="3"></content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="CurrencyCode" fixedlength="3"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
-                    <Tag name="90K" format=":4!c//15d" regexp="^:[${c}]{4}\/\/[${d}]{1,15}$">
+                    <Tag name="90K" format=":4!c//15d" regexp="^:[${c}]{4}\/\/${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['PRPP']</content>
                         <content type="fval">//</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
-                    <Tag name="90L" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?[${d}]{1,15}$">
+                    <Tag name="90L" format=":4!c//[N]15d" regexp="^:[${c}]{4}\/\/[N]?${d}$">
                         <content type="fval">:</content>
                         <content type="enum">['OFFR']</content>
                         <content type="fval">//</content>
                         <content type="enum">['N']</content>
-                        <content type="string" maxlength="15"></content>
+                        <content type="decimal" maxlength="15"></content>
                     </Tag>
                 </option>
             </Tag>
