@@ -40,7 +40,7 @@
             <content type="fval">:</content>
             <content type="enum">['SETT','TOSE']</content>
             <content type="fval">//</content>
-            <content type="string" fixdlength="3" characterSet="n"/>
+            <content type="string" fixedlength="3" characterSet="n"/>
         </Tag>
         <Tag no="6" name="22F" opt="M" format=":4!c/[8c]/4!c" regexp="^:[${c}]{4}\/([${c}]{0,8})?\/[${c}]{4}$">
             <content type="fval">:</content>

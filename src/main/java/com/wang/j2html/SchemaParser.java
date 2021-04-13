@@ -324,7 +324,7 @@ public class SchemaParser {
                 textarea.addClass("lineChar_"+cols+"x");
                 textarea.attr("data-content","");
                 textarea.attr("wrap","soft");
-                textarea.attr("cols",String.valueOf(Integer.parseInt(cols)+10));
+                textarea.attr("cols",String.valueOf(Integer.parseInt(cols)+20));
                 textarea.attr("rows",rows);
                 if(contentPrefix!=null&&contentPrefix.length()>0){
                     textarea.attr("data-contentprefix",contentPrefix);

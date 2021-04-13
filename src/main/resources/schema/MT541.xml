@@ -40,7 +40,7 @@
             <content type="fval">:</content>
             <content type="enum">['SETT','TOSE']</content>
             <content type="fval">//</content>
-            <content type="string" fixdlength="3" characterSet="n"/>
+            <content type="string" fixedlength="3" characterSet="n"/>
         </Tag>
         <SubSequence name="A1" description="Optional Repetitive Subsequence A1 Linkages" opt="O" repeat="true">
             <Tag no="6" name="16R" opt="M" regexp="^LINK$" format="16c">
@@ -691,7 +691,7 @@
             <content type="fval">:</content>
             <content type="enum">['CADE','TOCO']</content>
             <content type="fval">//</content>
-            <content type="string" fixdlength="3" characterSet="n"/>
+            <content type="string" fixedlength="3" characterSet="n"/>
         </Tag>
         <Tag no="59" name="19A" opt="O" repeat="true" format=":4!c//[N]3!a15d" regexp="^:[${c}]{4}\/\/[N]?[${a}]{3}${d}$">
             <content type="fval">:</content>

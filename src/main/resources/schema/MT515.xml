@@ -1192,7 +1192,7 @@
             <content type="fval">:</content>
             <content type="enum">['CADE','TOCO']</content>
             <content type="fval">//</content>
-            <content type="string" fixdlength="3" characterSet="n"/>
+            <content type="string" fixedlength="3" characterSet="n"/>
         </Tag>
         <Tag no="91" name="19A" opt="O" repeat="true" format=":4!c//[N]3!a15d" regexp="^:[${c}]{4}\/\/[N]?[${a}]{3}${d}$">
             <content type="fval">:</content>

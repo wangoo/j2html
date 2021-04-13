@@ -229,7 +229,7 @@
             <content type="fval">:</content>
             <content type="enum">['MNPE']</content>
             <content type="fval">//</content>
-            <content type="string" fixdlength="3" characterSet="n"/>
+            <content type="string" fixedlength="3" characterSet="n"/>
         </Tag>
         <Tag no="24" name="98a" opt="M">
             <option>

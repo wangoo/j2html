@@ -13,7 +13,7 @@
             <content type="enum">[ 'NEWLON' ,'RECALL' ,'RETURN' ]</content>
         </Tag>
         <Tag no="4" name="30" opt="O" format="6!n" regexp="^[${n}]{6}$">
-            <content type="date"/>
+            <content type="date" format="yyMMdd"/>
         </Tag>
         <Tag no="5" name="35H" opt="M" format="[N]3!a15d" regexp="^[N]?[${a}]{3}${d}$">
             <content type="enum">
