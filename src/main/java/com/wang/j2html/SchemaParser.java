@@ -3,6 +3,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
+import org.apache.commons.lang3.StringUtils;
 import org.dom4j.*;
 import org.dom4j.io.SAXReader;
 
@@ -43,11 +44,23 @@ public class SchemaParser {
                   Element sequnceElement= sequenceList.get(i);
                   Attribute description = sequnceElement.attribute("description");
                   String  opt = sequnceElement.attributeValue("opt");
-                    String sequenceName = sequnceElement.attributeValue("name");
+                  String sequenceName = sequnceElement.attributeValue("name");
+                 String repeat = sequnceElement.attributeValue("repeat");
+
+                StringBuilder desc_zh_cn = new StringBuilder(16) ;
+                if("M".equalsIgnoreCase(opt)){
+                    desc_zh_cn.append("必填");
+                }else{
+                    desc_zh_cn.append("选填");
+                }
+                if("true".equalsIgnoreCase(repeat)){
+                    desc_zh_cn.append("循环");
+                }
+                desc_zh_cn.append("分页"+sequenceName);
 
 
                 org.jsoup.nodes.Element li = new org.jsoup.nodes.Element("li");
-                li.text(description.getValue());
+                li.text(desc_zh_cn.toString());
                 li.appendTo(layui_tab_titile);
 
                 org.jsoup.nodes.Element layui_tab_item = new org.jsoup.nodes.Element("div");
@@ -57,10 +70,10 @@ public class SchemaParser {
                 sequenceTable.addClass("tablelist2");
                 sequenceTable.attr("sequencename",sequenceName);
                 sequenceTable.attr("opt",opt);
-                Attribute repeat = sequnceElement.attribute("repeat");
-                if(repeat!=null&&"true".equals(repeat.getValue())){
 
-                    org.jsoup.nodes.Element subsequenceTitleTr = createSubSequenceTitleTr(description.getValue(),opt);
+                if(repeat!=null&&"true".equals(repeat)){
+
+                    org.jsoup.nodes.Element subsequenceTitleTr = createSubSequenceTitleTr(desc_zh_cn.toString(),opt);
                     org.jsoup.nodes.Element td = subsequenceTitleTr.select("td").first();
                     td.append("<input class=\"addSequence\" type=\"button\" value=\"添加\" >");
                     td.append("<input class=\"deleteSequence\" type=\"button\" value=\"删除\" >");
@@ -127,9 +140,10 @@ public class SchemaParser {
                     for (int i = 0; i < elements.size(); i++) {
                         Element e = elements.get(i);
                         String name1 = e.attributeValue("name");
+                        String format = e.attributeValue("format");
                         org.jsoup.nodes.Element option = new org.jsoup.nodes.Element("option");
                         option.val(name1);
-                        option.text(name1);
+                        option.append(name1).append("  ("+format+")");
                         option.appendTo(select);
                     }
                     select.appendTo(td1);
@@ -169,7 +183,7 @@ public class SchemaParser {
                     if(regexp!=null){
                         tr.attr("regexp",regexp);
                     }
-                    td1.text(name).append(notNullSpan.toString());
+                    td1.append(name).append("  ("+format+")").append(notNullSpan.toString());
                     td1.appendTo(tr);
                     org.jsoup.nodes.Element td2 = new org.jsoup.nodes.Element("td");
 
@@ -190,19 +204,32 @@ public class SchemaParser {
                 org.jsoup.nodes.Element td = new org.jsoup.nodes.Element("td");
                 td.attr("colspan","4");
                 org.jsoup.nodes.Element table = new org.jsoup.nodes.Element("table");
-
                 String description = element.attributeValue("description");
-                org.jsoup.nodes.Element subsequenceTitleTr = createSubSequenceTitleTr(description,opt);
+
+                StringBuilder desc_zh_cn = new StringBuilder(16) ;
+                if("M".equalsIgnoreCase(opt)){
+                    desc_zh_cn.append("必填");
+                }else{
+                    desc_zh_cn.append("选填");
+                }
+                if("true".equalsIgnoreCase(repeat)){
+                    desc_zh_cn.append("循环");
+                }
+                desc_zh_cn.append("子分页"+name);
+
+                org.jsoup.nodes.Element subsequenceTitleTr = createSubSequenceTitleTr(desc_zh_cn.toString(),opt);
                 if("true".equals(repeat)){
                     org.jsoup.nodes.Element repeatTd = subsequenceTitleTr.select("td").first();
                     repeatTd.append("<input class=\"addSubSequence\" type=\"button\" value=\"添加\" >");
                     repeatTd.append("<input  class=\"deleteSubSequence\" type=\"button\" value=\"删除\" >");
                 }
                 subsequenceTitleTr.addClass("delimiter");
+                subsequenceTitleTr.addClass("content_show");
                 subsequenceTitleTr.appendTo(table);
                 createSequence(table,element);
-                org.jsoup.nodes.Element subsequenceTitleTrEnd =createSubSequenceTitleTr("End of "+description,null);
+                org.jsoup.nodes.Element subsequenceTitleTrEnd =createSubSequenceTitleTr(desc_zh_cn.toString()+" 结束",null);
                 subsequenceTitleTrEnd.addClass("delimiter");
+                subsequenceTitleTrEnd.addClass("content_show");
                 subsequenceTitleTrEnd.appendTo(table);
                 table.appendTo(td);
                 td.appendTo(tr);
@@ -246,11 +273,13 @@ public class SchemaParser {
                 if (contentText.length()>0) {
                     List<String> optionValues = JSON.parseArray(contentText,String.class);
                     for (int j = 0; j < optionValues.size(); j++) {
-                        org.jsoup.nodes.Element option = new org.jsoup.nodes.Element("option");
                         String value = optionValues.get(j);
-                        option.val(String.valueOf(value));
-                        option.text(String.valueOf(value));
-                        option.appendTo(select);
+                         org.jsoup.nodes.Element option = new org.jsoup.nodes.Element("option");
+                         option.val(String.valueOf(value));
+                         option.text(String.valueOf(value));
+                         option.appendTo(select);
+
+
                     }
                 }
                 select.appendTo(td2);
@@ -295,7 +324,7 @@ public class SchemaParser {
                 textarea.addClass("lineChar_"+cols+"x");
                 textarea.attr("data-content","");
                 textarea.attr("wrap","soft");
-                textarea.attr("cols",cols);
+                textarea.attr("cols",String.valueOf(Integer.parseInt(cols)+10));
                 textarea.attr("rows",rows);
                 if(contentPrefix!=null&&contentPrefix.length()>0){
                     textarea.attr("data-contentprefix",contentPrefix);
@@ -322,12 +351,27 @@ public class SchemaParser {
                 select.append("<option value='EUR'>EUR</option>");
                 select.appendTo(td2);
             }else if("date".equals(contentType)){
-                td2.append("<input type=\"text\" class=\"tag-data Wdate\" data-content=\"\" onClick=\"WdatePicker({dateFmt:'yyyyMMdd'})\">");
+                String dateFormat = e.attributeValue("format");
+                if(!StringUtils.isEmpty(dateFormat)){
+                    td2.append("<input type=\"text\" class=\"tag-data Wdate\" data-content=\"\" onClick=\"WdatePicker({dateFmt:'"+dateFormat+"'})\">");
+                }else{
+                    td2.append("<input type=\"text\" class=\"tag-data Wdate\" data-content=\"\" onClick=\"WdatePicker({dateFmt:'yyyyMMdd'})\">");
+                }
             } else if("datetime".equals(contentType)){
-                td2.append("<input type=\"text\" class=\"tag-data Wdate\" data-content=\"\" onClick=\"WdatePicker({dateFmt:'yyyyMMddHHmmss'})\">");
+                String dateFormat = e.attributeValue("format");
+                if(!StringUtils.isEmpty(dateFormat)){
+                    td2.append("<input type=\"text\" class=\"tag-data Wdate\" data-content=\"\" onClick=\"WdatePicker({dateFmt:'"+dateFormat+"'})\">");
+                }else{
+                    td2.append("<input type=\"text\" class=\"tag-data Wdate\" data-content=\"\" onClick=\"WdatePicker({dateFmt:'yyyyMMddHHmmss'})\">");
+                }
             } else{
                 org.jsoup.nodes.Element input = new org.jsoup.nodes.Element("input");
                 input.addClass("tag-data");
+
+                if("decimal".equals(contentType)){
+                    input.addClass("decimal");
+                }
+
                 input.attr("type","text");
                 input.attr("name",tagName);
                 String  maxlength = e.attributeValue("maxlength");

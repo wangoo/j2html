@@ -35,11 +35,56 @@
 </body>
 
 <script type="text/javascript">
+    String.prototype.replaceAll = function(s1,s2){
+        return this.replace(new RegExp(s1,"gm"),s2);
+    }
+
     String.prototype.endsWith = function (suffix) {
         return this.indexOf(suffix, this.length - suffix.length) !== -1;
     };
 
+
+
+
+
+
+    function  formatSwiftDecimal(value,maxlength){
+        var swifttstDecimalPattern =/^[1-9]*[0-9]{1},[0-9]{0,2}$/;
+        var nomalDecimalPatter = /^[1-9]*[0-9]{1}(\.[0-9]{0,2})?$/;
+        var validSwiftDecimal = swifttstDecimalPattern.test(value);
+        if(validSwiftDecimal){
+            return value;
+        }else{
+            var validNormalDecimal = nomalDecimalPatter.test(value);
+            if(validNormalDecimal){
+                if(value.indexOf(".")==-1){
+                    if(value.length>=maxlength){
+                        value= value.substr(0,maxlength-1);
+                    }
+                    value=value+",";
+                }else {
+                    value = value.replace(".",",");
+                }
+                return  value;
+            }
+            return "";
+
+        }
+    }
+
     layui.use(['element', 'layer'], function () {
+
+
+
+        $("input.decimal").change(function(){
+            var maxlength = $(this).attr("maxlength");
+            $(this).val(formatSwiftDecimal($(this).val(),maxlength));
+        });
+
+
+
+
+
         $("form").on("click", ".addSequence", function () {
             var subsequence = $(this).parents("table").first().clone(true);
             $(subsequence).find(".tag-data:not(label)").each(function () {
@@ -103,13 +148,24 @@
         });
 
         $("form").on("click", ".delimiter", function () {
+
+            var visible = $(this).hasClass("content_show");
             $(this).parents("table").first().children().children("tr:not(.delimiter)").each(function () {
-                if ($(this).is(":visible")) {
+                if (visible) {
                     $(this).hide();
                 } else {
                     $(this).show();
                 }
             });
+            if(visible){
+                $(this).parents("table").first().children().children("tr.delimiter").removeClass("content_show");
+                $(this).parents("table").first().children().children("tr.delimiter").children("td").append("<strong style='color: red'> (已折叠)</strong>")
+            }else{
+                $(this).parents("table").first().children().children("tr.delimiter").addClass("content_show");
+                $(this).parents("table").first().children().children("tr.delimiter").children("td").children("strong").remove();
+
+            }
+
         });
 
         function refreshTagSelect() {
@@ -155,16 +211,18 @@
 
             var dataforSelect = $(this).nextAll("select[contentname='" + datafor + "']");
             $(dataforSelect).children("option[value!='']").remove();
+            $(dataforSelect).data("content","");
             var data = $(this).children("option:selected").data("enumdata");
             if (data) {
                 var dataArray = data.split(",");
                 for (var i = 0; i < dataArray.length; i++) {
-                    var option = document.createElement("option");
-                    option.value = dataArray[i];
-                    option.text = dataArray[i];
-                    dataforSelect.append(option);
-                }
-                ;
+
+                        var option = document.createElement("option");
+                        option.value = dataArray[i];
+                        option.text = dataArray[i];
+                        dataforSelect.append(option);
+                    }
+
             }
 
 
@@ -204,12 +262,19 @@
                     var currentDataElementContent = $(this).data("content");
                     var currentDataElementContentPrefix = $(this).data("contentprefix");
                     if (currentDataElementContentPrefix) {
-                        content = content + String(currentDataElementContentPrefix);
+                        if("lf"===currentDataElementContentPrefix){
+                            currentDataElementContentPrefix="\n";
+                        }
+                        if("crlf"===currentDataElementContentPrefix){
+                            currentDataElementContentPrefix="\r\n";
+                        }
+                        currentDataElementContent =  String(currentDataElementContentPrefix)+String(currentDataElementContent);
+                    }
+                    if ($(this).prop("tagName") == "TEXTAREA") {
+                        currentDataElementContent = currentDataElementContent.replaceAll("\n", "\r\n");
                     }
                     content = content + String(currentDataElementContent);
-                    if ($(this).prop("tagName") == "TEXTAREA") {
-                        content = content.replaceAll("\n", "\r\n");
-                    }
+
                 });
             } else {
                 var dataElements = $(tr).children("td").slice(1).children(".tag-data");
@@ -217,12 +282,19 @@
                     var currentDataElementContent = $(this).data("content");
                     var currentDataElementContentPrefix = $(this).data("contentprefix");
                     if (currentDataElementContentPrefix) {
-                        content = content + String(currentDataElementContentPrefix);
+                        if("lf"===currentDataElementContentPrefix){
+                            currentDataElementContentPrefix="\n";
+                        }
+                        if("crlf"===currentDataElementContentPrefix){
+                            currentDataElementContentPrefix="\r\n";
+                        }
+                        currentDataElementContent =  String(currentDataElementContentPrefix)+String(currentDataElementContent);
+                    }
+
+                    if ($(this).prop("tagName") == "TEXTAREA") {
+                        currentDataElementContent = currentDataElementContent.replaceAll("\n", "\r\n");
                     }
                     content = content + String(currentDataElementContent);
-                    if ($(this).prop("tagName") == "TEXTAREA") {
-                        content = content.replaceAll("\n", "\r\n");
-                    }
                 });
             }
 
@@ -250,17 +322,17 @@
                     regexp = $(tr).children("td[tagname='" + tagname + "']").attr("regexp");
                 }
                 var hascontent = checkHasContent($(tr));
+                var parentSequenceElement = $(tr).parents("[sequencename],[subsequencename]").first();
+                var sequencename = "";
+                if ($(parentSequenceElement).attr("sequencename")) {
+                    sequencename = $(parentSequenceElement).attr("sequencename");
+                }
+                if ($(parentSequenceElement).attr("subsequencename")) {
+                    sequencename = $(parentSequenceElement).attr("subsequencename");
+                }
+
                 if (!hascontent && 'M' === opt && !(tagname == '16S' || tagname == '16R')) {
                     errorTimes++;
-
-                    var parentSequenceElement = $(tr).parents("[sequencename],[subsequencename]").first();
-                    var sequencename = "";
-                    if ($(parentSequenceElement).attr("sequencename")) {
-                        sequencename = $(parentSequenceElement).attr("sequencename");
-                    }
-                    if ($(parentSequenceElement).attr("subsequencename")) {
-                        sequencename = $(parentSequenceElement).attr("subsequencename");
-                    }
                     var message = sequencename + "的Tag:" + tagname + "值不能为空";
                     if (tagname.endsWith('a')) {
                         tagname = $(tr).attr("selectedtagname");
@@ -281,12 +353,12 @@
                     var set_d ="[1-9]*[0-9]{1},[0-9]{0,2}"
                     content = getTagContent($(tr));
                     if (regexp) {
-                        regexp = regexp.replaceAll("${x}", set_x).replaceAll("${y}", set_y).replaceAll("${z}", set_z).replaceAll("${c}", set_c).replaceAll("${n}", set_n).replaceAll("${a}", set_a).replaceAll("${d}", set_d);
+                        regexp = regexp.replaceAll("\\$\\{x\\}", set_x).replaceAll("\\$\\{y\\}", set_y).replaceAll("\\$\\{z\\}", set_z).replaceAll("\\$\\{c\\}", set_c).replaceAll("\\$\\{n\\}", set_n).replaceAll("\\$\\{a\\}", set_a).replaceAll("\\$\\{d\\}", set_d);
                         var re = new RegExp(regexp, "g");
                         var checkresult = re.test(content);
                         if (!checkresult) {
                             errorTimes++;
-                            var message = tagname + "的内容：" + content + "格式错误。应满足格式：" + format;
+                            var message =  sequencename + "的Tag:"+tagname + "的内容：" + content + "格式错误。应满足格式：" + format;
                             if (tagname.endsWith('a')) {
                                 tagname = $(tr).attr("selectedtagname");
                                 $(tr).children("td[tagname='" + tagname + "']").append("<span class='error'><label>" + message + "</label></span>");
@@ -398,7 +470,7 @@
                     content: '<div class="error">' + $("div.error").html() + '</div>' //这里content是一个普通的String
                 });
 
-                //   return;
+                  return;
             }
             $.ajax({
                 type: "POST",
@@ -412,7 +484,7 @@
                 dataType: "json",
                 contentType: 'application/json;charset=utf-8', //设置请求头信息
                 success: function (data) {
-                    //$.fn.Messager(data);
+                    $.fn.Messager(data);
                 }
             });
 
