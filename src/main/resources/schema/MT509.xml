@@ -172,7 +172,7 @@
 
             </option>
         </Tag>
-        <Tag no="19" name="11A" opt="O" format=":4!c//3!a" regexp="^:[${c}]{4}\/\/[${a}]{3}$">
+        <Tag no="19" name="11A" opt="O" format=":4!c//3!a" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;CurrencyCode&gt;[${a}]{3})$">
             <content type="fval">:</content>
             <content type="enum">['FXIB','FXIS']</content>
             <content type="fval">//</content>
@@ -455,7 +455,8 @@
         </Tag>
         <Tag no="34" name="35B" opt="M" format="[ISIN1!e12!c][4*35x]" regexp="^(ISIN [${c}]{12})?\r\n(([${x}]{1,35}\r\n){0,3}([${x}]{1,35}){1})?$">
             <content type="string" fixedlength="17"/>
-            <content type="textarea" cols="35" rows="4" prefix="lf"/>
+            <content type="fval">crlf</content>
+            <content type="textarea" cols="35" rows="4" />
         </Tag>
         <Tag no="35" name="16S" opt="M" regexp="^TRADE$" format="16c">
             <content type="fval">TRADE</content>

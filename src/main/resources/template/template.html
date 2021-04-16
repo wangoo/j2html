@@ -268,8 +268,15 @@
                         if("crlf"===currentDataElementContentPrefix){
                             currentDataElementContentPrefix="\r\n";
                         }
-                        currentDataElementContent =  String(currentDataElementContentPrefix)+String(currentDataElementContent);
+                        if(currentDataElementContent) {
+                            currentDataElementContent = String(currentDataElementContentPrefix) + String(currentDataElementContent);
+                        }
                     }
+                    if ($(this).prop("tagName") == "LABEL") {
+                        currentDataElementContent = currentDataElementContent.replaceAll("crlf", "\r\n");
+                        currentDataElementContent = currentDataElementContent.replaceAll("lf", "\r\n");
+                    }
+
                     if ($(this).prop("tagName") == "TEXTAREA") {
                         currentDataElementContent = currentDataElementContent.replaceAll("\n", "\r\n");
                     }
@@ -288,7 +295,14 @@
                         if("crlf"===currentDataElementContentPrefix){
                             currentDataElementContentPrefix="\r\n";
                         }
-                        currentDataElementContent =  String(currentDataElementContentPrefix)+String(currentDataElementContent);
+                        if(currentDataElementContent){
+                            currentDataElementContent =  String(currentDataElementContentPrefix)+String(currentDataElementContent);
+                        }
+                    }
+
+                    if ($(this).prop("tagName") == "LABEL") {
+                        currentDataElementContent = currentDataElementContent.replaceAll("crlf", "\r\n");
+                        currentDataElementContent = currentDataElementContent.replaceAll("lf", "\r\n");
                     }
 
                     if ($(this).prop("tagName") == "TEXTAREA") {
@@ -298,7 +312,16 @@
                 });
             }
 
-            return content;
+
+            var contentRows = content.split("\r\n");
+            for (var i = 0; i < contentRows.length; i++) {
+                var contentRow = contentRows[i];
+                if(!contentRow){
+                    contentRows.splice(i,1);
+                }
+            }
+            var newContent =  contentRows.join("\r\n")
+            return newContent;
         }
 
 

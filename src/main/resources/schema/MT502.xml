@@ -255,7 +255,7 @@
             <content type="enum">['N']</content>
             <content type="decimal" maxlength="15"/>
         </Tag>
-        <Tag no="21" name="11A" opt="O" format=":4!c//3!a" regexp="^:[${c}]{4}\/\/[${a}]{3}$">
+        <Tag no="21" name="11A" opt="O" format=":4!c//3!a" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;CurrencyCode&gt;[${a}]{3})$">
             <content type="fval">:</content>
             <content type="enum">['FXIB','FXIS']</content>
             <content type="fval">//</content>
@@ -422,7 +422,8 @@
         </Tag>
         <Tag no="32" name="35B" opt="M" format="[ISIN1!e12!c][4*35x]" regexp="^(ISIN [${c}]{12})?\r\n(([${x}]{1,35}\r\n){0,3}([${x}]{1,35}){1})?$">
             <content type="string" fixedlength="17"/>
-            <content type="textarea" cols="35" rows="4" prefix="lf"/>
+            <content type="fval">crlf</content>
+            <content type="textarea" cols="35" rows="4" />
         </Tag>
         <SubSequence name="B3" description="Optional Subsequence B3 Financial Instrument Attributes" opt="O">
             <Tag no="33" name="16R" opt="M" regexp="^PRIC$" format="16c">
@@ -482,7 +483,7 @@
                     </Tag>
                 </option>
             </Tag>
-            <Tag no="37" name="11A" opt="O" format=":4!c//3!a" regexp="^:[${c}]{4}\/\/[${a}]{3}$">
+            <Tag no="37" name="11A" opt="O" format=":4!c//3!a" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;CurrencyCode&gt;[${a}]{3})$">
                 <content type="fval">:</content>
                 <content type="enum">['DENO']</content>
                 <content type="fval">//</content>
@@ -565,7 +566,8 @@
             </Tag>
             <Tag no="44" name="35B" opt="O" repeat="true" format="[ISIN1!e12!c][4*35x]" regexp="^(ISIN [${c}]{12})?\r\n(([${x}]{1,35}\r\n){0,3}([${x}]{1,35}){1})?$">
                 <content type="string" fixedlength="17"/>
-                <content type="textarea" cols="35" rows="4" prefix="lf"/>
+                <content type="fval">crlf</content>
+                <content type="textarea" cols="35" rows="4"/>
             </Tag>
             <Tag no="45" name="70E" opt="O" format=":4!c//10*35x" regexp="^:[${c}]{4}\/\/([${x}]{1,35}\r\n){0,9}([${x}]{1,35}){1}$">
                 <content type="fval">:</content>
@@ -632,7 +634,7 @@
             <content type="fval">/</content>
             <content type="enum" contentName="Indicator"/>
         </Tag>
-        <Tag no="52" name="11A" opt="O" format=":4!c//3!a" regexp="^:[${c}]{4}\/\/[${a}]{3}$">
+        <Tag no="52" name="11A" opt="O" format=":4!c//3!a" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;CurrencyCode&gt;[${a}]{3})$">
             <content type="fval">:</content>
             <content type="enum">['FXIB','FXIS']</content>
             <content type="fval">//</content>

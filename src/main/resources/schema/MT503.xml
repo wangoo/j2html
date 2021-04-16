@@ -302,7 +302,8 @@
             </Tag>
             <Tag no="32" name="35B" opt="M" format="[ISIN1!e12!c][4*35x]" regexp="^(ISIN [${c}]{12})?\r\n(([${x}]{1,35}\r\n){0,3}([${x}]{1,35}){1})?$">
                 <content type="string" fixedlength="17"/>
-                <content type="textarea" cols="35" rows="4" prefix="lf"/>
+                <content type="fval">crlf</content>
+                <content type="textarea" cols="35" rows="4" />
             </Tag>
             <Tag no="33" name="36B" opt="M" format=":4!c//4!c/15d" regexp="^:[${c}]{4}\/\/[${c}]{4}\/${d}$">
                 <content type="fval">:</content>

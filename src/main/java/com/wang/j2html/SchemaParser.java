@@ -253,7 +253,8 @@ public class SchemaParser {
             if("fval".equals(contentType)){
                 org.jsoup.nodes.Element label = new org.jsoup.nodes.Element("label");
                 label.addClass("tag-data");
-                label.text(contentText);
+                //crlf 即回车换行
+                label.text(contentText.replaceAll("crlf",""));
                 label.attr("data-content",contentText);
                 if(contentPrefix!=null&&contentPrefix.length()>0){
                     label.attr("data-contentprefix",contentPrefix);
@@ -350,21 +351,26 @@ public class SchemaParser {
                 select.append("<option value='USD'>USD</option>");
                 select.append("<option value='EUR'>EUR</option>");
                 select.appendTo(td2);
-            }else if("date".equals(contentType)){
+            }else if("date".equals(contentType)||"datetime".equals(contentType)){
                 String dateFormat = e.attributeValue("format");
-                if(!StringUtils.isEmpty(dateFormat)){
-                    td2.append("<input type=\"text\" class=\"tag-data Wdate\" data-content=\"\" onClick=\"WdatePicker({dateFmt:'"+dateFormat+"'})\">");
-                }else{
-                    td2.append("<input type=\"text\" class=\"tag-data Wdate\" data-content=\"\" onClick=\"WdatePicker({dateFmt:'yyyyMMdd'})\">");
+                org.jsoup.nodes.Element input = new org.jsoup.nodes.Element("input");
+                input.addClass("tag-data");
+                input.addClass("Wdate");
+                input.attr("type","text");
+                input.attr("data-content","");
+                if(contentPrefix!=null&&contentPrefix.length()>0){
+                    input.attr("data-contentprefix",contentPrefix);
                 }
-            } else if("datetime".equals(contentType)){
-                String dateFormat = e.attributeValue("format");
                 if(!StringUtils.isEmpty(dateFormat)){
-                    td2.append("<input type=\"text\" class=\"tag-data Wdate\" data-content=\"\" onClick=\"WdatePicker({dateFmt:'"+dateFormat+"'})\">");
-                }else{
-                    td2.append("<input type=\"text\" class=\"tag-data Wdate\" data-content=\"\" onClick=\"WdatePicker({dateFmt:'yyyyMMddHHmmss'})\">");
+                    input.attr("onClick","WdatePicker({dateFmt:'"+dateFormat+"'})");
+                }else if("date".equals(contentType)){
+                    input.attr("onClick","WdatePicker({dateFmt:'yyyyMMdd'})");
+                }else if("datetime".equals(contentType)){
+                    input.attr("onClick","WdatePicker({dateFmt:'yyyyMMddHHmmss'})");
+
                 }
-            } else{
+                input.appendTo(td2);
+            }else{
                 org.jsoup.nodes.Element input = new org.jsoup.nodes.Element("input");
                 input.addClass("tag-data");
 

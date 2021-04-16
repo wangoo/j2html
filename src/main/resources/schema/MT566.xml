@@ -150,7 +150,8 @@
         </Tag>
         <Tag no="16" name="35B" opt="M" format="[ISIN1!e12!c][4*35x]" regexp="^(ISIN [${c}]{12})?\r\n(([${x}]{1,35}\r\n){0,3}([${x}]{1,35}){1})?$">
             <content type="string" fixedlength="17"/>
-            <content type="textarea" cols="35" rows="4" prefix="lf"/>
+            <content type="fval">crlf</content>
+            <content type="textarea" cols="35" rows="4"/>
         </Tag>
         <SubSequence name="B1" description="Optional Subsequence B1 Financial Instrument Attributes" opt="O">
             <Tag no="17" name="16R" opt="M" regexp="^FIA$" format="16c">
@@ -200,7 +201,7 @@
                     </Tag>
                 </option>
             </Tag>
-            <Tag no="21" name="11A" opt="O" format=":4!c//3!a" regexp="^:[${c}]{4}\/\/[${a}]{3}$">
+            <Tag no="21" name="11A" opt="O" format=":4!c//3!a" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;CurrencyCode&gt;[${a}]{3})$">
                 <content type="fval">:</content>
                 <content type="enum">['DENO']</content>
                 <content type="fval">//</content>
@@ -587,7 +588,7 @@
                 </Tag>
             </option>
         </Tag>
-        <Tag no="42" name="11A" opt="O" format=":4!c//3!a" regexp="^:[${c}]{4}\/\/[${a}]{3}$">
+        <Tag no="42" name="11A" opt="O" format=":4!c//3!a" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;CurrencyCode&gt;[${a}]{3})$">
             <content type="fval">:</content>
             <content type="enum">['OPTN']</content>
             <content type="fval">//</content>
@@ -836,7 +837,8 @@
             </Tag>
             <Tag no="50" name="35B" opt="M" format="[ISIN1!e12!c][4*35x]" regexp="^(ISIN [${c}]{12})?\r\n(([${x}]{1,35}\r\n){0,3}([${x}]{1,35}){1})?$">
                 <content type="string" fixedlength="17"/>
-                <content type="textarea" cols="35" rows="4" prefix="lf"/>
+                <content type="fval">crlf</content>
+                <content type="textarea" cols="35" rows="4" />
             </Tag>
             <SubSequence name="D1a" description="Optional Subsequence D1a Financial Instrument Attributes" opt="O">
                 <Tag no="51" name="16R" opt="M" regexp="^FIA$" format="16c">
@@ -881,7 +883,7 @@
                         </Tag>
                     </option>
                 </Tag>
-                <Tag no="55" name="11A" opt="O" format=":4!c//3!a" regexp="^:[${c}]{4}\/\/[${a}]{3}$">
+                <Tag no="55" name="11A" opt="O" format=":4!c//3!a" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;CurrencyCode&gt;[${a}]{3})$">
                     <content type="fval">:</content>
                     <content type="enum">['DENO']</content>
                     <content type="fval">//</content>
@@ -985,7 +987,7 @@
                     [ 'BUYU' ,'CINL' ,'DIST' ,'RDDN' ,'RDUP' ,'STAN' ]
                 </content>
             </Tag>
-            <Tag no="64" name="11A" opt="O" format=":4!c//3!a" regexp="^:[${c}]{4}\/\/[${a}]{3}$">
+            <Tag no="64" name="11A" opt="O" format=":4!c//3!a" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;CurrencyCode&gt;[${a}]{3})$">
                 <content type="fval">:</content>
                 <content type="enum">['OPTN']</content>
                 <content type="fval">//</content>
