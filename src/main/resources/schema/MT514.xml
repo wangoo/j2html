@@ -621,7 +621,7 @@
             <content type="fval">/</content>
             <content type="string" maxlength="8" characterSet="c"/>
             <content type="fval">/</content>
-            <content type="enum" contentName="Indicator"/>
+            <content type="string" maxlength="4" contentName="Indicator"/>
         </Tag>
         <Tag no="51" name="11A" opt="O" format=":4!c//3!a" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;CurrencyCode&gt;[${a}]{3})$">
             <content type="fval">:</content>

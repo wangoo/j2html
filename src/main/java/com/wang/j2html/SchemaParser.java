@@ -378,6 +378,9 @@ public class SchemaParser {
                     input.addClass("decimal");
                 }
 
+                if(contentName!=null&&contentName.length()>0){
+                    input.attr("contentName",contentName);
+                }
                 input.attr("type","text");
                 input.attr("name",tagName);
                 String  maxlength = e.attributeValue("maxlength");

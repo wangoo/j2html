@@ -752,7 +752,7 @@
             <content type="fval">/</content>
             <content type="string" maxlength="8" characterSet="c"/>
             <content type="fval">/</content>
-            <content type="enum" contentName="Indicator"/>
+            <content type="string" maxlength="4" contentName="Indicator"/>
         </Tag>
         <SubSequence name="E1" description="Optional Repetitive Subsequence C1 Quantity Breakdown" opt="M" repeat="true">
             <Tag no="64" name="16R" opt="M" regexp="^SETPRTY$" format="16c">

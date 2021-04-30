@@ -790,7 +790,7 @@
                 <content type="fval">/</content>
                 <content type="string" maxlength="8" characterSet="c"/>
                 <content type="fval">/</content>
-                <content type="enum" contentName="Indicator"/>
+                <content type="string" maxlength="4" contentName="Indicator"/>
             </Tag>
             <SubSequence name="B6a" description="Mandatory Repetitive Subsequence B6a Settlement Parties" opt="M" repeat="true">
                 <Tag no="70" name="16R" opt="M" regexp="^SETPRTY$" format="16c">

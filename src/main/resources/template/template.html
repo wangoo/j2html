@@ -208,22 +208,43 @@
         $("form").on("change", "select.enum-data", function () {
 
             var datafor = $(this).attr("datafor");
+            var dataforElement = $(this).nextAll("[contentname='" + datafor + "']");
 
-            var dataforSelect = $(this).nextAll("select[contentname='" + datafor + "']");
-            $(dataforSelect).children("option[value!='']").remove();
-            $(dataforSelect).data("content","");
-            var data = $(this).children("option:selected").data("enumdata");
-            if (data) {
-                var dataArray = data.split(",");
-                for (var i = 0; i < dataArray.length; i++) {
-
+            if(dataforElement.prop("tagName") == "SELECT"){
+                $(dataforElement).children("option[value!='']").remove();
+                $(dataforElement).data("content","");
+                var data = $(this).children("option:selected").data("enumdata");
+                if (data) {
+                    var dataArray = data.split(",");
+                    for (var i = 0; i < dataArray.length; i++) {
                         var option = document.createElement("option");
                         option.value = dataArray[i];
                         option.text = dataArray[i];
-                        dataforSelect.append(option);
+                        dataforElement.append(option);
                     }
+                }
+            }else if(dataforElement.prop("tagName") == "INPUT"){
+                $(dataforElement).nextAll("datalist[id='datalist_"+datafor+"']").remove();
+                $(dataforElement).attr("list","datalist_"+datafor);
+                $(dataforElement).attr("autocomplete","off");
+                $(dataforElement).val("");
+                $(dataforElement).data("content","");
 
+                var datalist = document.createElement("datalist");
+                datalist.id="datalist_"+datafor;
+                var data = $(this).children("option:selected").data("enumdata");
+                if (data) {
+                    var dataArray = data.split(",");
+                    for (var i = 0; i < dataArray.length; i++) {
+                        var option = document.createElement("option");
+                        option.value = dataArray[i];
+                       // option.text = dataArray[i];
+                        datalist.append(option);
+                    }
+                }
+                $(dataforElement).after(datalist);
             }
+
 
 
         });

@@ -128,7 +128,7 @@
             <content type="fval">/</content>
             <content type="string" maxlength="8"/>
             <content type="fval">/</content>
-            <content type="enum" contentName="Indicator"/>
+            <content type="string" maxlength="4" contentName="Indicator"/>
         </Tag>
         <SubSequence name="B1" description="Optional Repetitive Subsequence B1 Linkages" opt="O" repeat="true">
             <Tag no="11" name="16R" opt="M" regexp="^LINK$" format="16c">

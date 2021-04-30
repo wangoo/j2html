@@ -141,7 +141,7 @@
                 <content type="fval">/</content>
                 <content type="string" maxlength="8"/>
                 <content type="fval">/</content>
-                <content type="enum" contentName="Indicator"/>
+                <content type="string" maxlength="4" contentName="Indicator"/>
             </Tag>
             <Tag no="16" name="98a" opt="O">
                 <option>

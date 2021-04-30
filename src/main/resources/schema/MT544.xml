@@ -173,7 +173,7 @@
                     <content type="fval">/</content>
                     <content type="string" maxlength="8"/>
                     <content type="fval">/</content>
-                    <content type="enum" contentName="DateCode"/>
+                    <content type="string" maxlength="4" contentName="DateCode"/>
                 </Tag>
                 <Tag name="98C" format=":4!c//8!n6!n" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Date&gt;[${n}]{8})(?&lt;Time&gt;[${n}]{6})$">
                     <content type="fval">:</content>
@@ -607,7 +607,7 @@
                 <content type="fval">/</content>
                 <content type="string" maxlength="8" characterSet="c"/>
                 <content type="fval">/</content>
-                <content type="enum" contentName="Indicator"/>
+                <content type="string" maxlength="4" contentName="Indicator"/>
             </Tag>
             <Tag no="49" name="16S" opt="M" regexp="^BREAK$" format="16c">
                 <content type="fval">BREAK</content>
@@ -752,7 +752,7 @@
             <content type="fval">/</content>
             <content type="string" maxlength="8" characterSet="c"/>
             <content type="fval">/</content>
-            <content type="enum" contentName="Indicator"/>
+            <content type="string" maxlength="4" contentName="Indicator"/>
         </Tag>
         <SubSequence name="E1" description="Optional Repetitive Subsequence C1 Quantity Breakdown" opt="M" repeat="true">
             <Tag no="62" name="16R" opt="M" regexp="^SETPRTY$" format="16c">

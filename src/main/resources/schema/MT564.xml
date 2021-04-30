@@ -800,7 +800,7 @@
             <content type="fval">/</content>
             <content type="string" maxlength="8" characterSet="c"/>
             <content type="fval">/</content>
-            <content type="enum" contentName="Indicator"/>
+            <content type="string" maxlength="4" contentName="Indicator"/>
         </Tag>
         <Tag no="52" name="94E" opt="O" repeat="true" format=":4!c//10*35x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Address&gt;([${x}]{1,35}\r\n){0,9}([${x}]{1,35}){1})$">
             <content type="fval">:</content>
@@ -1218,7 +1218,7 @@
                         <content type="fval">/</content>
                         <content type="string" maxlength="8" characterSet="c"/>
                         <content type="fval">/</content>
-                        <content type="enum" contentName="Indicator"/>
+                        <content type="string" maxlength="4" contentName="Indicator"/>
                     </Tag>
                     <Tag name="22H" format=":4!c//4!c" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Indicator&gt;[${c}]{4})$">
                         <content type="fval">:</content>
@@ -1699,7 +1699,7 @@
                         <content type="fval">/</content>
                         <content type="string" maxlength="8" characterSet="c"/>
                         <content type="fval">/</content>
-                        <content type="enum" contentName="Indicator"/>
+                        <content type="string" maxlength="4" contentName="Indicator"/>
                     </Tag>
                     <Tag name="22H" format=":4!c//4!c" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Indicator&gt;[${c}]{4})$">
                         <content type="fval">:</content>

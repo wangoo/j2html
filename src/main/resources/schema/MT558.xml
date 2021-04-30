@@ -60,7 +60,7 @@
                     <content type="fval">/</content>
                     <content type="string" maxlength="8" characterSet="c"/>
                     <content type="fval">/</content>
-                    <content type="enum" contentName="Indicator"/>
+                    <content type="string" maxlength="4" contentName="Indicator"/>
                 </Tag>
                 <Tag name="22H" format=":4!c//4!c" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Indicator&gt;[${c}]{4})$">
                     <content type="fval">:</content>

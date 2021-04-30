@@ -94,13 +94,13 @@
         </Tag>
         <Tag no="13" name="20D" opt="M" repeat="true" format=":4!c//25x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Reference&gt;[${x}]{1,25})$">
             <content type="fval">:</content>
-            <content type="enum">['BREF','BPAR','SHAR']</content>
+            <content contentName="Qualifier" type="enum">['BREF','BPAR','SHAR']</content>
             <content type="fval">//</content>
             <content type="string" maxlength="25"/>
         </Tag>
         <Tag no="14" name="22F" opt="M" repeat="true" format=":4!c/[8c]/4!c" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;([${c}]{0,8})?)\/(?&lt;Indicator&gt;[${c}]{4})$">
             <content type="fval">:</content>
-            <content type="enum-data" datafor="Indicator">
+            <content type="enum-data" contentName="Qualifier" datafor="Indicator">
                 {'OWNT':['NOMI','OWNE','TRUS']
                 ,'BENT':['INDV','LEGL']
                 ,'ADMT':['GIVE','NGIV','TIME']

@@ -4,7 +4,7 @@
         <Tag no="1" name="16R" description="Start of Block" opt="M" regexp="^GENL$" format="16c">
             <content type="fval">GENL</content>
         </Tag>
-        <Tag no="2" name="20C" repeat="true" format=":4!c//16x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Reference&gt;[${x}]{1,16})$">
+        <Tag no="2" name="20C" opt="M" repeat="true" format=":4!c//16x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Reference&gt;[${x}]{1,16})$">
             <content type="fval">:</content>
             <content type="enum">['SEME','SCTR','RCTR']</content>
             <content type="fval">//</content>
@@ -259,7 +259,7 @@
                             <content type="fval">/</content>
                             <content type="string" maxlength="8" characterSet="c"/>
                             <content type="fval">/</content>
-                            <content type="enum" contentName="Indicator"/>
+                            <content type="string" maxlength="4" contentName="Indicator"/>
                         </Tag>
                         <Tag name="22H" format=":4!c//4!c" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Indicator&gt;[${c}]{4})$">
                             <content type="fval">:</content>
@@ -588,7 +588,7 @@
                     <content type="fval">/</content>
                     <content type="string" maxlength="8" characterSet="c"/>
                     <content type="fval">/</content>
-                    <content type="enum" contentName="Indicator"/>
+                    <content type="string" maxlength="4" contentName="Indicator"/>
                 </Tag>
                 <Tag name="22H" format=":4!c//4!c" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Indicator&gt;[${c}]{4})$">
                     <content type="fval">:</content>

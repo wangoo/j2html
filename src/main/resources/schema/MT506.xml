@@ -761,8 +761,8 @@
                 <content type="CurrencyCode"/>
                 <content type="decimal" maxlength="15"/>
             </Tag>
-            <Tag no="84" name="16S" opt="M" regexp="^CCOL$" format="16c">
-                <content type="fval">CCOL</content>
+            <Tag no="84" name="16S" opt="M" regexp="^BCOL$" format="16c">
+                <content type="fval">BCOL</content>
             </Tag>
 
         </SubSequence>
