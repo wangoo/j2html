@@ -230,7 +230,7 @@
             <content type="fval">SUMM</content>
         </Tag>
     </Sequence>
-    <Sequence name="C" description="Mandatory Repetitive Sequence C Summary by Exposure Type" opt="C" repeat="true">
+    <Sequence name="C" description="Mandatory Repetitive Sequence C Summary by Exposure Type" opt="M" repeat="true">
         <Tag no="24" name="16R" opt="M" regexp="^SUME$" format="16c">
             <content type="fval">SUME</content>
         </Tag>

@@ -36,7 +36,7 @@
                 </Tag>
             </option>
         </Tag>
-        <Tag no="5" name="99B" opt="M" repeat="true" format=":4!c//3!n" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Number&gt;[${n}]{3})$">
+        <Tag no="5" name="99B" opt="O" repeat="true" format=":4!c//3!n" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Number&gt;[${n}]{3})$">
             <content type="fval">:</content>
             <content type="enum">['SETT','TOSE']</content>
             <content type="fval">//</content>

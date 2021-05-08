@@ -993,7 +993,7 @@
                 <content type="fval">//</content>
                 <content type="enum">['N','Y']</content>
             </Tag>
-            <Tag no="77" name="19A" opt="O" repeat="true" format=":4!c//[N]3!a15d" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Sign&gt;[N]?)(?&lt;CurrencyCode&gt;[${a}]{3})(?&lt;Amount&gt;${d})$">
+            <Tag no="77" name="19A" opt="M" repeat="true" format=":4!c//[N]3!a15d" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Sign&gt;[N]?)(?&lt;CurrencyCode&gt;[${a}]{3})(?&lt;Amount&gt;${d})$">
                 <content type="fval">:</content>
                 <content type="enum">
                     ['ACRU' ,'ANTO' ,'CHAR' ,'COMT' ,'COUN' ,'DEAL' ,'ESTT' ,'EXEC' ,'ISDI' ,'LADT' ,'LEVY' ,'LOCL' ,'LOCO' ,'MARG' ,'OTHR' ,'REGF' ,'SHIP' ,'SPCN' ,'STAM' ,'STEX' ,'TRAN' ,'TRAX' ,'VATA' ,'WITH' ,'COAX' ,'ACCA' ,'RSCH' ,'RESU' ,'OCMT' ]

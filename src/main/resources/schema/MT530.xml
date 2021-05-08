@@ -370,8 +370,8 @@
                 <content type="fval">STAT</content>
             </Tag>
         </SubSequence>
-        <Tag no="35" name="16S" opt="M" regexp="^GENL$" format="16c">
-            <content type="fval">GENL</content>
+        <Tag no="35" name="16S" opt="M" regexp="^ADDINFO$" format="16c">
+            <content type="fval">ADDINFO</content>
         </Tag>
     </Sequence>
 </MT530>

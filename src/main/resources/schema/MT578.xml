@@ -36,7 +36,7 @@
                 </Tag>
             </option>
         </Tag>
-        <SubSequence name="A1" description="Mandatory Repetitive Subsequence A1 Linkages" opt="M" repeat="true">
+        <SubSequence name="A1" description="Mandatory Repetitive Subsequence A1 Linkages" opt="O" repeat="true">
             <Tag no="5" name="16R" opt="M" regexp="^LINK$" format="16c">
                 <content type="fval">LINK</content>
             </Tag>

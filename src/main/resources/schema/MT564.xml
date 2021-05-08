@@ -4,7 +4,7 @@
         <Tag no="1" name="16R" description="Start of Block" opt="M" regexp="^GENL$" format="16c">
             <content type="fval">GENL</content>
         </Tag>
-        <Tag no="2" name="28E" opt="M" format="5n/4!c" regexp="^(?&lt;PageNumber&gt;[${n}]{1,5})\/(?&lt;ContinuationIndicator&gt;[${c}]{4})$">
+        <Tag no="2" name="28E" opt="O" format="5n/4!c" regexp="^(?&lt;PageNumber&gt;[${n}]{1,5})\/(?&lt;ContinuationIndicator&gt;[${c}]{4})$">
             <content type="string" maxlength="5"/>
             <content type="fval">/</content>
             <content type="enum">['LAST','MORE','ONLY']</content>
@@ -713,11 +713,12 @@
                     <content type="fval">//</content>
                     <content type="enum">['UKWN']</content>
                 </Tag>
-                <Tag name="94L" format=":4!c//18!c2!n" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;LegalEntityIdentifier&gt;[${c}]{18}[${c}]{2})$">
+                <Tag name="90L" format=":4!c//[N]15d" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Sign&gt;[N]?)(?&lt;IndexPoints&gt;${d})$">
                     <content type="fval">:</content>
                     <content type="enum">['MAXP','MINP']</content>
                     <content type="fval">//</content>
-                    <content type="string" fixedlength="20"/>
+                    <content type="enum">['N']</content>
+                    <content type="decimal" maxlength="15"/>
                 </Tag>
             </option>
         </Tag>

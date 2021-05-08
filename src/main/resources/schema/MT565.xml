@@ -90,7 +90,7 @@
         <Tag no="12" name="16R" opt="M" regexp="^USECU$" format="16c">
             <content type="fval">USECU</content>
         </Tag>
-        <Tag no="13" name="35B" opt="M" format="[ISIN1!e12!c][4*35x]" regexp="^(?&lt;IdentificationofSecurity&gt;(ISIN [${c}]{12})?)(?&lt;crlf&gt;(\r\n)?)(?&lt;DescriptionofSecurity&gt;(([${x}]{1,35}\r\n){0,3}([${x}]{1,35}){1})?)$">
+        <Tag no="13" name="35B" opt="O" format="[ISIN1!e12!c][4*35x]" regexp="^(?&lt;IdentificationofSecurity&gt;(ISIN [${c}]{12})?)(?&lt;crlf&gt;(\r\n)?)(?&lt;DescriptionofSecurity&gt;(([${x}]{1,35}\r\n){0,3}([${x}]{1,35}){1})?)$">
             <content type="string" fixedlength="17"/>
             <content type="fval">crlf</content>
             <content type="textarea" cols="35" rows="4"/>

@@ -42,7 +42,7 @@
             </content>
             <content type="decimal" maxlength="15"/>
         </Tag>
-        <Tag no="9" name="30" opt="M" format="6!n" regexp="^(?&lt;Date&gt;[${n}]{6})$">
+        <Tag no="9" name="30" opt="O" format="6!n" regexp="^(?&lt;Date&gt;[${n}]{6})$">
             <content type="date" format="yyMMdd"/>
         </Tag>
         <Tag no="10" name="31F" opt="O" format="6!n[/6!n][//35x]" regexp="^(?&lt;Date&gt;[${n}]{6})(?&lt;PeriodDate&gt;(\/[${n}]{6})?)(?&lt;PeriodDetails&gt;(\/\/[${x}]{1,35})?)$">

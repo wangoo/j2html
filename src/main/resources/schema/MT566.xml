@@ -467,11 +467,12 @@
                     <content type="CurrencyCode" fixedlength="3"/>
                     <content type="decimal" maxlength="15"/>
                 </Tag>
-                <Tag name="94L" format=":4!c//18!c2!n" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;LegalEntityIdentifier&gt;[${c}]{18}[${c}]{2})$">
+                <Tag name="90L" format=":4!c//[N]15d" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Sign&gt;[N]?)(?&lt;IndexPoints&gt;${d})$">
                     <content type="fval">:</content>
                     <content type="enum">['MAXP','MINP']</content>
                     <content type="fval">//</content>
-                    <content type="string" fixedlength="20"/>
+                    <content type="enum">['N']</content>
+                    <content type="decimal" maxlength="15"/>
                 </Tag>
             </option>
         </Tag>
