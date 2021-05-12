@@ -9,11 +9,11 @@ import org.dom4j.io.XMLWriter;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.*;
 
 public class ModifySchema {
     public static void main(String[] args) {
-        modifyRegexp("11A","^:(?<Qualifier>[${c}]{4})\\/\\/(?<CurrencyCode>[${a}]{3})$");
+     /*   modifyRegexp("11A","^:(?<Qualifier>[${c}]{4})\\/\\/(?<CurrencyCode>[${a}]{3})$");
         modifyRegexp("12A","^:(?<Qualifier>[${c}]{4})\\/(?<DataSourceScheme>([${c}]{0,8})?)\\/(?<InstrumentCodeorDescription>[${x}]{1,30})$");
         modifyRegexp("12B","^:(?<Qualifier>[${c}]{4})\\/(?<DataSourceScheme>([${c}]{0,8})?)\\/(?<InstrumentTypeCode>[${c}]{4}$)");
         modifyRegexp("12C","^:(?<Qualifier>[${c}]{4})\\/\\/(?<CFICode>[${c}]{6})$");
@@ -140,7 +140,230 @@ public class ModifySchema {
         modifyRegexp("98J","^:(?<Qualifier>[${c}]{4})\\/\\/(?<Date>[${n}]{8})(?<Time>[${n}]{6})\\/(?<IdentifierCode>[${a}]{4}[${a}]{2}[${c}]{2}([${c}]{3})?)$");
         modifyRegexp("98K","^:(?<Qualifier>[${c}]{4})\\/(?<DataSourceScheme>[${c}]{1,8})\\/(?<Date>[${n}]{8})(?<Time>[${n}]{6})\\/(?<ProprietaryCode>[${x}]{1,34})$");
         modifyRegexp("99A","^:(?<Qualifier>[${c}]{4})\\/\\/(?<Sign>[N]?)(?<Number>[${n}]{3})$");
-        modifyRegexp("99B","^:(?<Qualifier>[${c}]{4})\\/\\/(?<Number>[${n}]{3})$");
+        modifyRegexp("99B","^:(?<Qualifier>[${c}]{4})\\/\\/(?<Number>[${n}]{3})$"); */
+        Map<String,String> map = new HashMap<>();
+
+      /*  map.put("1","Qualifier");
+        map.put("3","CurrencyCode");
+        addContentName("11A",map,4);
+        map.clear();
+
+
+        map.put("1","Qualifier");
+        map.put("3","DataSourceScheme");
+        map.put("5","InstrumentCodeorDescription");
+        addContentName("12A",map,6);
+        map.clear();
+
+
+        map.put("1","Qualifier");
+        map.put("3","DataSourceScheme");
+        map.put("5","InstrumentTypeCode");
+        addContentName("12B",map,6);
+        map.clear();
+
+        map.put("1","Qualifier");
+        map.put("3","CFICode");
+        addContentName("12C",map,4);
+        map.clear();
+
+
+        map.put("1","Qualifier");
+        map.put("3","NumberId");
+        addContentName("13A",map,4);
+        map.clear();
+
+
+        map.put("1","Qualifier");
+        map.put("3","DataSourceScheme");
+        map.put("5","Number");
+        addContentName("13B",map,6);
+        map.clear();
+
+        map.put("1","Qualifier");
+        map.put("3","ExtendedNumberId");
+        addContentName("13J",map,4);
+        map.clear();
+
+        map.put("1","Qualifier");
+        map.put("3","NumberId");
+        map.put("5","Quantity");
+        addContentName("13K",map,6);
+        map.clear();
+
+        map.put("1","Qualifier");
+        map.put("3","Flag");
+        addContentName("17B",map,4);
+        map.clear();
+
+        map.put("1","Qualifier");
+        map.put("3","Sign");
+        map.put("4","CurrencyCode");
+        map.put("5","Amount");
+        addContentName("19A",map,6);
+        map.clear();
+
+        map.put("1","Qualifier");
+        map.put("4","CurrencyCode");
+        map.put("5","Amount");
+        addContentName("19B",map,6);
+        map.clear();
+
+        map.put("1","Qualifier");
+        map.put("3","Reference");
+        addContentName("20C",map,4);
+        map.clear();
+
+
+        map.put("1","Qualifier");
+        map.put("3","Reference");
+        addContentName("20D",map,4);
+        map.clear();
+
+        map.put("1","Qualifier");
+        map.put("3","UTIReference");
+        addContentName("20U",map,4);
+        map.clear();
+
+        map.put("1","Qualifier");
+        map.put("3","DataSourceScheme");
+        map.put("5","Indicator");
+        addContentName("22F",map,6);
+        map.clear();
+
+        map.put("1","Qualifier");
+        map.put("3","Indicator");
+        addContentName("22H",map,4);
+        map.clear();
+
+        map.put("0","Function");
+        map.put("1","Subfunction");
+        addContentName("23G",map,2);
+        map.clear();
+
+
+        map.put("1","Qualifier");
+        map.put("3","DataSourceScheme");
+        map.put("5","ReasonCode");
+        addContentName("24B",map,6);
+        map.clear();
+
+        map.put("1","Qualifier");
+        map.put("3","DataSourceScheme");
+        map.put("5","StatusCode");
+        addContentName("25D",map,6);
+        map.clear();
+
+    */
+
+        map.put("0","PageNumber");
+        map.put("2","ContinuationIndicator");
+        addContentName("28E",map,3);
+        map.clear();
+
+
+        map.put("0","Narrative");
+        addContentName("29A",map,1);
+        map.clear();
+
+        map.put("0","Narrative");
+        addContentName("29B",map,1);
+        map.clear();
+
+        map.put("0","Date");
+        addContentName("30",map,1);
+        map.clear();
+
+
+        map.put("0","Date");
+        map.put("1","PeriodDate");
+        map.put("2","PeriodDetails");
+        addContentName("31F",map,3);
+        map.clear();
+
+
+        map.put("0","Date");
+        addContentName("31L",map,1);
+        map.clear();
+
+
+        map.put("0","Date");
+        map.put("1","Place");
+        addContentName("31P",map,2);
+        map.clear();
+
+
+
+        map.put("1","Qualifier");
+        addContentName("36B",map,2);
+        addContentName("36C",map,2);
+        addContentName("36E",map,2);
+        addContentName("69B",map,2);
+        addContentName("69C",map,2);
+        addContentName("69D",map,2);
+        addContentName("69E",map,2);
+        addContentName("69F",map,2);
+        addContentName("69J",map,2);
+        addContentName("70C",map,2);
+        addContentName("70D",map,2);
+        addContentName("70E",map,2);
+        addContentName("70F",map,2);
+        addContentName("70G",map,2);
+        addContentName("70H",map,2);
+        addContentName("90A",map,2);
+        addContentName("90B",map,2);
+        addContentName("90E",map,2);
+        addContentName("90F",map,2);
+        addContentName("90J",map,2);
+        addContentName("90K",map,2);
+        addContentName("90L",map,2);
+        addContentName("92A",map,2);
+        addContentName("92B",map,2);
+        addContentName("92C",map,2);
+        addContentName("92D",map,2);
+        addContentName("92F",map,2);
+        addContentName("92H",map,2);
+        addContentName("92J",map,2);
+        addContentName("92K",map,2);
+        addContentName("92L",map,2);
+        addContentName("92M",map,2);
+        addContentName("92N",map,2);
+        addContentName("92P",map,2);
+        addContentName("92R",map,2);
+        addContentName("93A",map,2);
+        addContentName("93B",map,2);
+        addContentName("93C",map,2);
+        addContentName("93D",map,2);
+        addContentName("94B",map,2);
+        addContentName("94C",map,2);
+        addContentName("94D",map,2);
+        addContentName("94E",map,2);
+        addContentName("94F",map,2);
+        addContentName("94G",map,2);
+        addContentName("94H",map,2);
+        addContentName("94L",map,2);
+        addContentName("95C",map,2);
+        addContentName("95L",map,2);
+        addContentName("95P",map,2);
+        addContentName("95Q",map,2);
+        addContentName("95R",map,2);
+        addContentName("95S",map,2);
+        addContentName("95U",map,2);
+        addContentName("95V",map,2);
+        addContentName("97A",map,2);
+        addContentName("97B",map,2);
+        addContentName("97C",map,2);
+        addContentName("97E",map,2);
+        addContentName("98A",map,2);
+        addContentName("98B",map,2);
+        addContentName("98C",map,2);
+        addContentName("98E",map,2);
+        addContentName("98F",map,2);
+        addContentName("98J",map,2);
+        addContentName("98K",map,2);
+        addContentName("99A",map,2);
+        addContentName("99B",map,2);
+        map.clear();
     }
 
     public static  void modifyRegexp(String tagName ,String newRegexp){
@@ -197,6 +420,70 @@ public class ModifySchema {
         }
     }
 
+    public  static  void  addContentName(String tagName ,Map<String,String> contentNameMap,int normalContentCount){
+
+        String userDir = System.getProperty("user.dir");
+        Path filePath = Paths.get(userDir,"/src/main/resources/schema");
+        System.out.println(userDir);
+        System.out.println(filePath);
+        File schemaDirectory  = new File(filePath.toString());
+        if(schemaDirectory.isDirectory()){
+            File[] files = schemaDirectory.listFiles();
+            for (File file:files){
+                String fileName = file.getName();
+                System.out.println(fileName);
+                if(file.isFile()&&fileName.endsWith(".xml")&&fileName.startsWith("MT5")){
+
+                    SAXReader saxReader  = new SAXReader();
+                    Document document = null;
+                    try {
+                        document = saxReader.read(file);
+                    } catch (DocumentException e) {
+                        e.printStackTrace();
+                    }
+
+                    Element root = document.getRootElement();
+                    List<Element> tagList = root.selectNodes("//Tag[@name='"+tagName+"']");
+                    if(tagList.isEmpty()){
+                        continue;
+                    }
+                    for (int i = 0; i < tagList.size(); i++) {
+                        Element tagElement = tagList.get(i);
+                       List<Element> elementList = tagElement.selectNodes("content");
+                    /*   if(elementList.size()!=normalContentCount){
+                           System.out.println(fileName+"的"+tagName+"格式不统一，未更改");
+                           continue;
+                       }*/
+                        Set<Map.Entry<String,String>> entrySet = contentNameMap.entrySet();
+                        for(Iterator<Map.Entry<String,String>> iterator = entrySet.iterator();iterator.hasNext();){
+                            Map.Entry<String,String> entry = iterator.next();
+                            String contentName_No = entry.getKey();
+                            String contentName  = entry.getValue();
+                            elementList.get(Integer.parseInt(contentName_No)).addAttribute("contentName",contentName);
+                        }
+
+                    }
+
+                    XMLWriter writer = null;
+                    try {
+                        writer = new XMLWriter(new FileOutputStream(file));
+                        writer.write(document);
+                        writer.close();
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+        }
+
+
+    }
 
     public static void  modify92J(){
 

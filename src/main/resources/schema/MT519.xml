@@ -6,31 +6,31 @@
         </Tag>
         <Tag no="2" name="20C" description="Sender's Message Reference" opt="M" format=":4!c//16x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Reference&gt;[${x}]{1,16})$">
             <content type="fval">:</content>
-            <content type="enum">['SEME']</content>
+            <content type="enum" contentName="Qualifier">['SEME']</content>
             <content type="fval">//</content>
-            <content type="string" maxlength="16" characterSet="x"/>
+            <content type="string" maxlength="16" characterSet="x" contentName="Reference"/>
         </Tag>
         <Tag no="3" name="23G" description="Function of the Message" opt="M" format="4!c[/4!c]" regexp="^(?&lt;Function&gt;[${c}]{4})(?&lt;Subfunction&gt;(\/[${c}]{4})?)$">
-            <content type="enum">['CANC','NEWM']</content>
-            <content type="enum">['/CODU','/COPY','/DUPL']</content>
+            <content type="enum" contentName="Function">['CANC','NEWM']</content>
+            <content type="enum" contentName="Subfunction">['/CODU','/COPY','/DUPL']</content>
         </Tag>
         <Tag no="4" name="98a" description="Function of the Message" opt="O">
             <option>
                 <Tag name="98A" format=":4!c//8!n" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Date&gt;[${n}]{8})$">
                     <content type="fval">:</content>
-                    <content type="enum">['PREP']</content>
+                    <content type="enum" contentName="Qualifier">['PREP']</content>
                     <content type="fval">//</content>
                     <content type="date"/>
                 </Tag>
                 <Tag name="98C" format=":4!c//8!n6!n" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Date&gt;[${n}]{8})(?&lt;Time&gt;[${n}]{6})$">
                     <content type="fval">:</content>
-                    <content type="enum">['PREP']</content>
+                    <content type="enum" contentName="Qualifier">['PREP']</content>
                     <content type="fval">//</content>
                     <content type="datetime"/>
                 </Tag>
                 <Tag name="98E" format=":4!c//8!n6!n[,3n][/[N]2!n[2!n]]" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Date&gt;[${n}]{8})(?&lt;Time&gt;[${n}]{6})(?&lt;Decimals&gt;(,[${n}]{1,3})?)(?&lt;UTCIndicator&gt;(/[N]?[${n}]{2}([${n}]{2})?)?)$">
                     <content type="fval">:</content>
-                    <content type="enum">['PREP']</content>
+                    <content type="enum" contentName="Qualifier">['PREP']</content>
                     <content type="fval">//</content>
                     <content type="datetime"/>
                 </Tag>
@@ -42,35 +42,35 @@
             </Tag>
             <Tag no="6" name="22F" opt="O" format=":4!c/[8c]/4!c" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;([${c}]{0,8})?)\/(?&lt;Indicator&gt;[${c}]{4})$">
                 <content type="fval">:</content>
-                <content type="enum">['LINK']</content>
+                <content type="enum" contentName="Qualifier">['LINK']</content>
                 <content type="fval">/</content>
-                <content type="string" maxlength="8" characterSet="c"/>
+                <content type="string" maxlength="8" characterSet="c" contentName="DataSourceScheme"/>
                 <content type="fval">/</content>
-                <content type="enum">['AFTE','BEFO','INFO','WITH']</content>
+                <content type="enum" contentName="Indicator">['AFTE','BEFO','INFO','WITH']</content>
             </Tag>
             <Tag no="7" name="13a" opt="O">
                 <option>
                     <Tag name="13A" format=":4!c//3!c" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;NumberId&gt;[${c}]{3})$">
                         <content type="fval">:</content>
-                        <content type="enum">['LINK']</content>
+                        <content type="enum" contentName="Qualifier">['LINK']</content>
                         <content type="fval">//</content>
-                        <content type="string" fixedlength="3" characterSet="c"/>
+                        <content type="string" fixedlength="3" characterSet="c" contentName="NumberId"/>
                     </Tag>
                     <Tag name="13B" format=":4!c/[8c]/30x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;([${c}]{0,8})?)\/(?&lt;Number&gt;[${x}]{1,30})$">
                         <content type="fval">:</content>
-                        <content type="enum">['LINK']</content>
+                        <content type="enum" contentName="Qualifier">['LINK']</content>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="8" characterSet="c"/>
+                        <content type="string" maxlength="8" characterSet="c" contentName="DataSourceScheme"/>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="30" characterSet="x"/>
+                        <content type="string" maxlength="30" characterSet="x" contentName="Number"/>
                     </Tag>
                 </option>
             </Tag>
             <Tag no="8" name="20C" opt="M" format=":4!c//16x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Reference&gt;[${x}]{1,16})$">
                 <content type="fval">:</content>
-                <content type="enum">['POOL','PREV','RELA']</content>
+                <content type="enum" contentName="Qualifier">['POOL','PREV','RELA']</content>
                 <content type="fval">//</content>
-                <content type="string" maxlength="16" characterSet="x"/>
+                <content type="string" maxlength="16" characterSet="x" contentName="Reference"/>
             </Tag>
             <Tag no="9" name="16S" opt="M" regexp="^LINK$" format="16c">
                 <content type="fval">LINK</content>
@@ -86,20 +86,20 @@
         </Tag>
         <Tag no="12" name="20D" opt="M" repeat="true" format=":4!c//25x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Reference&gt;[${x}]{1,25})$">
             <content type="fval">:</content>
-            <content type="enum">['BREF','BPAR','SHAR']</content>
+            <content type="enum" contentName="Qualifier">['BREF','BPAR','SHAR']</content>
             <content type="fval">//</content>
-            <content type="string" maxlength="25"/>
+            <content type="string" maxlength="25" contentName="Reference"/>
         </Tag>
         <Tag no="13" name="22F" opt="M" repeat="true" format=":4!c/[8c]/4!c" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;([${c}]{0,8})?)\/(?&lt;Indicator&gt;[${c}]{4})$">
             <content type="fval">:</content>
-            <content type="enum-data" datafor="Indicator">
+            <content type="enum-data" datafor="Indicator" contentName="Qualifier">
                 {'OWNT':['NOMI','OWNE','TRUS']
                 ,'BENT':['INDV','LEGL']
                 ,'ADMT':['GIVE','NGIV','TIME']
                 ,'CERT':['NTBK','TOBK']}
             </content>
             <content type="fval">/</content>
-            <content type="string" maxlength="8"/>
+            <content type="string" maxlength="8" contentName="DataSourceScheme"/>
             <content type="fval">/</content>
             <content type="enum" contentName="Indicator"/>
         </Tag>
@@ -107,13 +107,13 @@
             <option>
                 <Tag name="98A" format=":4!c//8!n" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Date&gt;[${n}]{8})$">
                     <content type="fval">:</content>
-                    <content type="enum">['RMOD']</content>
+                    <content type="enum" contentName="Qualifier">['RMOD']</content>
                     <content type="fval">//</content>
                     <content type="date"/>
                 </Tag>
                 <Tag name="98C" format=":4!c//8!n6!n" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Date&gt;[${n}]{8})(?&lt;Time&gt;[${n}]{6})$">
                     <content type="fval">:</content>
-                    <content type="enum">['RMOD']</content>
+                    <content type="enum" contentName="Qualifier">['RMOD']</content>
                     <content type="fval">//</content>
                     <content type="datetime"/>
                 </Tag>
@@ -126,7 +126,7 @@
         </Tag>
         <Tag no="16" name="70C" opt="O" format=":4!c//4*35x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Narrative&gt;([${x}]{1,35}\r\n){0,3}([${x}]{1,35}){1})$">
             <content type="fval">:</content>
-            <content type="enum">['REGI']</content>
+            <content type="enum" contentName="Qualifier">['REGI']</content>
             <content type="fval">//</content>
             <content type="textarea" cols="35" rows="4"/>
         </Tag>
@@ -136,7 +136,7 @@
             </Tag>
             <Tag no="18" name="94B" opt="O" format=":4!c/[8c]/4!c[/30x]" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;([${c}]{0,8})?)\/(?&lt;PlaceCode&gt;[${c}]{4})(?&lt;Narrative&gt;(\/[${x}]{1,30})?)$">
                 <content type="fval">:</content>
-                <content type="enum">['PLIS']</content>
+                <content type="enum" contentName="Qualifier">['PLIS']</content>
                 <content type="fval">/</content>
                 <content type="string" maxlength="8"/>
                 <content type="fval">/</content>
@@ -145,7 +145,7 @@
             </Tag>
             <Tag no="19" name="22F" opt="O" repeat="true" format=":4!c/[8c]/4!c" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;([${c}]{0,8})?)\/(?&lt;Indicator&gt;[${c}]{4})$">
                 <content type="fval">:</content>
-                <content type="enum-data" datafor="Indicator">
+                <content type="enum-data" datafor="Indicator" contentName="Qualifier">
                     {'MICO':['A001','A002','A003','A004','A005','A006','A007','A008','A009','A010','A011','A012','A013','A014','OTHR']
                     ,'FORM':['BEAR','REGD']
                     ,'PFRE':['ANNU','MNTH','QUTR','SEMI','WEEK']
@@ -153,7 +153,7 @@
                     ,'REST':['144A','NRST','RSTR']}
                 </content>
                 <content type="fval">/</content>
-                <content type="string" maxlength="8"/>
+                <content type="string" maxlength="8" contentName="DataSourceScheme"/>
                 <content type="fval">/</content>
                 <content type="enum" contentName="Indicator"/>
             </Tag>
@@ -161,40 +161,40 @@
                 <option>
                     <Tag name="12A" format=":4!c/[8c]/30x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;([${c}]{0,8})?)\/(?&lt;InstrumentCodeorDescription&gt;[${x}]{1,30})$">
                         <content type="fval">:</content>
-                        <content type="enum">['OPST','OPTI']</content>
+                        <content type="enum" contentName="Qualifier">['OPST','OPTI']</content>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="8"/>
+                        <content type="string" maxlength="8" contentName="DataSourceScheme"/>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="30"/>
+                        <content type="string" maxlength="30" contentName="InstrumentCodeorDescription"/>
                     </Tag>
                     <Tag name="12B" format=":4!c/[8c]/4!c" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;([${c}]{0,8})?)\/(?&lt;InstrumentTypeCode&gt;[${c}]{4}$)">
                         <content type="fval">:</content>
-                        <content type="enum-data" datafor="Indicator">
+                        <content type="enum-data" datafor="Indicator" contentName="Qualifier">
                             {'OPST':['AMER','EURO']
                             ,'OPTI':['CALL','PUTO']}
                         </content>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="8"/>
+                        <content type="string" maxlength="8" contentName="DataSourceScheme"/>
                         <content type="fval">/</content>
-                        <content type="enum" contentName="Indicator"/>
+                        <content type="enum" contentName="InstrumentTypeCode"/>
                     </Tag>
                     <Tag name="12C" format=":4!c//6!c" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;CFICode&gt;[${c}]{6})$">
                         <content type="fval">:</content>
-                        <content type="enum">['OPST','OPTI']</content>
+                        <content type="enum" contentName="Qualifier">['OPST','OPTI']</content>
                         <content type="fval">//</content>
-                        <content type="string" fixedlength="6"/>
+                        <content type="string" fixedlength="6" contentName="CFICode"/>
                     </Tag>
                 </option>
             </Tag>
             <Tag no="21" name="11A" opt="O" format=":4!c//3!a" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;CurrencyCode&gt;[${a}]{3})$">
                 <content type="fval">:</content>
-                <content type="enum">['DENO']</content>
+                <content type="enum" contentName="Qualifier">['DENO']</content>
                 <content type="fval">//</content>
-                <content type="CurrencyCode"/>
+                <content type="CurrencyCode" contentName="CurrencyCode"/>
             </Tag>
             <Tag no="22" name="98A" opt="O" repeat="true" format=":4!c//8!n" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Date&gt;[${n}]{8})$">
                 <content type="fval">:</content>
-                <content type="enum">
+                <content type="enum" contentName="Qualifier">
                     ['COUP','EXPI','FRNR','MATU','ISSU','CALD','PUTT','DDTE','FCOU']
                 </content>
                 <content type="fval">//</content>
@@ -202,7 +202,7 @@
             </Tag>
             <Tag no="23" name="92A" opt="O" repeat="true" format=":4!c//[N]15d" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Sign&gt;[N]?)(?&lt;Rate&gt;${d})$">
                 <content type="fval">:</content>
-                <content type="enum">['PRFC','CUFC','NWFC','INTR','NXRT','YTMR']</content>
+                <content type="enum" contentName="Qualifier">['PRFC','CUFC','NWFC','INTR','NXRT','YTMR']</content>
                 <content type="fval">//</content>
                 <content type="enum">['N']</content>
                 <content type="decimal" maxlength="15"/>
@@ -211,31 +211,31 @@
                 <option>
                     <Tag name="13A" format=":4!c//3!c" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;NumberId&gt;[${c}]{3})$">
                         <content type="fval">:</content>
-                        <content type="enum">['COUP']</content>
+                        <content type="enum" contentName="Qualifier">['COUP']</content>
                         <content type="fval">//</content>
-                        <content type="string" fixedlength="3"/>
+                        <content type="string" fixedlength="3" contentName="NumberId"/>
                     </Tag>
                     <Tag name="13B" format=":4!c/[8c]/30x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;([${c}]{0,8})?)\/(?&lt;Number&gt;[${x}]{1,30})$">
                         <content type="fval">:</content>
-                        <content type="enum">['COUP','POOL','LOTS']</content>
+                        <content type="enum" contentName="Qualifier">['COUP','POOL','LOTS']</content>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="8"/>
+                        <content type="string" maxlength="8" contentName="DataSourceScheme"/>
                         <content type="fval">/</content>
-                        <content type="string" maxlength="30"/>
+                        <content type="string" maxlength="30" contentName="Number"/>
                     </Tag>
                 </option>
             </Tag>
             <Tag no="25" name="17B" opt="O" repeat="true" format=":4!c//1!a" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Flag&gt;[${a}]{1})$">
                 <content type="fval">:</content>
-                <content type="enum">['FRNF','CALL','PUTT']</content>
+                <content type="enum" contentName="Qualifier">['FRNF','CALL','PUTT']</content>
                 <content type="fval">//</content>
-                <content type="enum">['N','Y']</content>
+                <content type="enum" contentName="Flag">['N','Y']</content>
             </Tag>
             <Tag no="26" name="90a" opt="O" repeat="true">
                 <option>
                     <Tag name="90A" format=":4!c//4!c/[N]15d" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;PercentageTypeCode&gt;[${c}]{4})\/(?&lt;Sign&gt;[N]?)(?&lt;Price&gt;${d})$">
                         <content type="fval">:</content>
-                        <content type="enum">['INDC','MRKT','EXER']</content>
+                        <content type="enum" contentName="Qualifier">['INDC','MRKT','EXER']</content>
                         <content type="fval">//</content>
                         <content type="enum">['DISC','PRCT','PREM','YIEL']</content>
                         <content type="fval">/</content>
@@ -244,7 +244,7 @@
                     </Tag>
                     <Tag name="90B" format=":4!c//4!c/3!a15d" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;AmountTypeCode&gt;[${c}]{4})\/(?&lt;CurrencyCode&gt;[${a}]{3})(?&lt;Price&gt;${d})$">
                         <content type="fval">:</content>
-                        <content type="enum">['INDC','MRKT','EXER']</content>
+                        <content type="enum" contentName="Qualifier">['INDC','MRKT','EXER']</content>
                         <content type="fval">//</content>
                         <content type="enum">['ACTU','DISC','PREM']</content>
                         <content type="fval">/</content>
@@ -255,7 +255,7 @@
             </Tag>
             <Tag no="27" name="36B" opt="O" repeat="true" format=":4!c//4!c/15d" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;QuantityTypeCode&gt;[${c}]{4})\/(?&lt;Quantity&gt;${d})$">
                 <content type="fval">:</content>
-                <content type="enum">['MINO','SIZE']</content>
+                <content type="enum" contentName="Qualifier">['MINO','SIZE']</content>
                 <content type="fval">//</content>
                 <content type="enum">['AMOR','FAMT','UNIT']</content>
                 <content type="fval">/</content>
@@ -263,7 +263,7 @@
             </Tag>
             <Tag no="28" name="70E" opt="O" format=":4!c//10*35x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Narrative&gt;([${x}]{1,35}\r\n){0,9}([${x}]{1,35}){1})$">
                 <content type="fval">:</content>
-                <content type="enum">['FIAN']</content>
+                <content type="enum" contentName="Qualifier">['FIAN']</content>
                 <content type="fval">//</content>
                 <content type="textarea" cols="35" rows="10"/>
             </Tag>
@@ -279,13 +279,13 @@
                 <option>
                     <Tag name="95P" format=":4!c//4!a2!a2!c[3!c]" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;IdentifierCode&gt;[${a}]{4}[${a}]{2}[${c}]{2}([${c}]{3})?)$">
                         <content type="fval">:</content>
-                        <content type="enum">['ACOW']</content>
+                        <content type="enum" contentName="Qualifier">['ACOW']</content>
                         <content type="fval">//</content>
                         <content type="string" maxlength="11"/>
                     </Tag>
                     <Tag name="95R" format=":4!c/8c/34x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;[${c}]{1,8})\/(?&lt;ProprietaryCode&gt;[${x}]{1,34})$">
                         <content type="fval">:</content>
-                        <content type="enum">['ACOW']</content>
+                        <content type="enum" contentName="Qualifier">['ACOW']</content>
                         <content type="fval">/</content>
                         <content type="string" maxlength="8"/>
                         <content type="fval">/</content>
@@ -295,7 +295,7 @@
             </Tag>
             <Tag no="32" name="97A" opt="O" format=":4!c//35x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;AccountNumber&gt;[${x}]{1,35})$">
                 <content type="fval">:</content>
-                <content type="enum">['SAFE']</content>
+                <content type="enum" contentName="Qualifier">['SAFE']</content>
                 <content type="fval">//</content>
                 <content type="string" maxlength="35"/>
             </Tag>
@@ -318,17 +318,18 @@
             </Tag>
             <Tag no="37" name="17B" opt="M" format=":4!c//1!a" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Flag&gt;[${a}]{1})$">
                 <content type="fval">:</content>
-                <content type="enum">['NEWA' ,'PREV' ,'PERM' ,'MAIL' ]</content>
-                <content type="fval">//Y</content>
+                <content type="enum" contentName="Qualifier">['NEWA' ,'PREV' ,'PERM' ,'MAIL' ]</content>
+                <content type="fval">//</content>
+                <content type="enum" contentName="Flag">['Y']</content>
             </Tag>
             <Tag no="39" name="22F" opt="O" repeat="true" format=":4!c/[8c]/4!c" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;([${c}]{0,8})?)\/(?&lt;Indicator&gt;[${c}]{4})$">
                 <content type="fval">:</content>
-                <content type="enum-data" datafor="Indicator">
+                <content type="enum-data" datafor="Indicator" contentName="Qualifier">
                     {'DIST':['FIDE','PERS']
                     ,'TITL':['ASOC','DR01','FRAU','HERR','MADA','MISS','MR01','MRSS','SIRR']}
                 </content>
                 <content type="fval">/</content>
-                <content type="string" maxlength="8"/>
+                <content type="string" maxlength="8" contentName="DataSourceScheme"/>
                 <content type="fval">/</content>
                 <content type="enum" contentName="Indicator"/>
             </Tag>
@@ -336,13 +337,13 @@
                 <option>
                     <Tag name="95P" format=":4!c//4!a2!a2!c[3!c]" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;IdentifierCode&gt;[${a}]{4}[${a}]{2}[${c}]{2}([${c}]{3})?)$">
                         <content type="fval">:</content>
-                        <content type="enum">['OWND','NOMI','TRUS']</content>
+                        <content type="enum" contentName="Qualifier">['OWND','NOMI','TRUS']</content>
                         <content type="fval">//</content>
                         <content type="IdentifierCode"/>
                     </Tag>
                     <Tag name="95R" format=":4!c/8c/34x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;[${c}]{1,8})\/(?&lt;ProprietaryCode&gt;[${x}]{1,34})$">
                         <content type="fval">:</content>
-                        <content type="enum">['OWND','NOMI','TRUS']</content>
+                        <content type="enum" contentName="Qualifier">['OWND','NOMI','TRUS']</content>
                         <content type="fval">/</content>
                         <content type="string" maxlength="8"/>
                         <content type="fval">/</content>
@@ -350,7 +351,7 @@
                     </Tag>
                     <Tag name="95S" format=":4!c/[8c]/4!c/2!a/30x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;([${c}]{1,8})?)\/(?&lt;TypeofID&gt;[${c}]{4})\/(?&lt;CountryCode&gt;[${a}]{2})\/(?&lt;AlternateID&gt;[${x}]{1,30})$">
                         <content type="fval">:</content>
-                        <content type="enum-data" datafor="TypeofID">
+                        <content type="enum-data" datafor="TypeofID" contentName="Qualifier">
                             {'ALTE':['ARNU','CCPT','CHTY','CORP','DRLC','FIIN','TXID']}
                         </content>
                         <content type="fval">/</content>
@@ -364,7 +365,7 @@
                     </Tag>
                     <Tag name="95U" format=":4!c//3*35x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Name&gt;([${x}]{1,35}\r\n){0,2}([${x}]{1,35}){1})$">
                         <content type="fval">:</content>
-                        <content type="enum">['OWND','NOMI','TRUS']</content>
+                        <content type="enum" contentName="Qualifier">['OWND','NOMI','TRUS']</content>
                         <content type="fval">//</content>
                         <content type="textarea" cols="35" rows="3"/>
                     </Tag>
@@ -374,13 +375,13 @@
                 <option>
                     <Tag name="94C" format=":4!c//2!a" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;CountryCode&gt;[${a}]{2})$">
                         <content type="fval">:</content>
-                        <content type="enum">['DOMI']</content>
+                        <content type="enum" contentName="Qualifier">['DOMI']</content>
                         <content type="fval">//</content>
                         <content type="string" fixedlength="2"/>
                     </Tag>
                     <Tag name="94D" format=":4!c//[2!a]/35x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;CountryCode&gt;([${a}]{2})?)\/(?&lt;Place&gt;[${x}]{1,35})$">
                         <content type="fval">:</content>
-                        <content type="enum">['CITY','LOCA']</content>
+                        <content type="enum" contentName="Qualifier">['CITY','LOCA']</content>
                         <content type="fval">//</content>
                         <content type="string" fixedlength="2"/>
                         <content type="fval">/</content>
@@ -388,7 +389,7 @@
                     </Tag>
                     <Tag name="94G" format=":4!c//2*35x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Address&gt;([${x}]{1,35}\r\n){0,1}([${x}]{1,35}){1})$">
                         <content type="fval">:</content>
-                        <content type="enum">['ADDR','EMAI']</content>
+                        <content type="enum" contentName="Qualifier">['ADDR','EMAI']</content>
                         <content type="fval">//</content>
                         <content type="textarea" cols="35" rows="2"/>
                     </Tag>
@@ -396,15 +397,15 @@
             </Tag>
             <Tag no="41" name="13B" opt="O" repeat="true" format=":4!c/[8c]/30x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;([${c}]{0,8})?)\/(?&lt;Number&gt;[${x}]{1,30})$">
                 <content type="fval">:</content>
-                <content type="enum">['POST','PBOX','SNUM']</content>
+                <content type="enum" contentName="Qualifier">['POST','PBOX','SNUM']</content>
                 <content type="fval">/</content>
-                <content type="string" maxlength="8"/>
+                <content type="string" maxlength="8" contentName="DataSourceScheme"/>
                 <content type="fval">/</content>
-                <content type="string" maxlength="30"/>
+                <content type="string" maxlength="30" contentName="Number"/>
             </Tag>
             <Tag no="42" name="70C" opt="O" repeat="true" format=":4!c//4*35x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Narrative&gt;([${x}]{1,35}\r\n){0,3}([${x}]{1,35}){1})$">
                 <content type="fval">:</content>
-                <content type="enum">['REGI','PACO']</content>
+                <content type="enum" contentName="Qualifier">['REGI','PACO']</content>
                 <content type="fval">//</content>
                 <content type="textarea" cols="35" rows="4"/>
             </Tag>
@@ -418,18 +419,18 @@
             </Tag>
             <Tag no="45" name="22F" opt="O" repeat="true" format=":4!c/[8c]/4!c" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;([${c}]{0,8})?)\/(?&lt;Indicator&gt;[${c}]{4})$">
                 <content type="fval">:</content>
-                <content type="enum-data" datafor="Indicator">
+                <content type="enum-data" datafor="Indicator" contentName="Qualifier">
                     {'OCCU':['']
                     ,'LANG':['DUTH','ENGL','FREN','GERM','ITAL','SPAN']}
                 </content>
                 <content type="fval">/</content>
-                <content type="string" maxlength="8"/>
+                <content type="string" maxlength="8" contentName="DataSourceScheme"/>
                 <content type="fval">/</content>
                 <content type="enum" contentName="Indicator"/>
             </Tag>
             <Tag no="46" name="95U" opt="O" format=":4!c//3*35x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Name&gt;([${x}]{1,35}\r\n){0,2}([${x}]{1,35}){1})$">
                 <content type="fval">:</content>
-                <content type="enum">['BIRT']</content>
+                <content type="enum" contentName="Qualifier">['BIRT']</content>
                 <content type="fval">//</content>
                 <content type="textarea" cols="35" rows="3"/>
             </Tag>
@@ -437,13 +438,13 @@
                 <option>
                     <Tag name="98A" format=":4!c//8!n" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Date&gt;[${n}]{8})$">
                         <content type="fval">:</content>
-                        <content type="enum">['DBIR','DFON']</content>
+                        <content type="enum" contentName="Qualifier">['DBIR','DFON']</content>
                         <content type="fval">//</content>
                         <content type="date"/>
                     </Tag>
                     <Tag name="98C" format=":4!c//8!n6!n" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Date&gt;[${n}]{8})(?&lt;Time&gt;[${n}]{6})$">
                         <content type="fval">:</content>
-                        <content type="enum">['DBIR','DFON']</content>
+                        <content type="enum" contentName="Qualifier">['DBIR','DFON']</content>
                         <content type="fval">//</content>
                         <content type="datetime"/>
                     </Tag>
@@ -451,13 +452,13 @@
             </Tag>
             <Tag no="48" name="94C" opt="O" repeat="true" format=":4!c//2!a" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;CountryCode&gt;[${a}]{2})$">
                 <content type="fval">:</content>
-                <content type="enum">['BIRT','NATO']</content>
+                <content type="enum" contentName="Qualifier">['BIRT','NATO']</content>
                 <content type="fval">//</content>
                 <content type="string" fixedlength="2"/>
             </Tag>
             <Tag no="49" name="70C" opt="O" format=":4!c//4*35x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;Narrative&gt;([${x}]{1,35}\r\n){0,3}([${x}]{1,35}){1})$">
                 <content type="fval">:</content>
-                <content type="enum">['ADTX']</content>
+                <content type="enum" contentName="Qualifier">['ADTX']</content>
                 <content type="fval">//</content>
                 <content type="textarea" cols="35" rows="4"/>
             </Tag>
@@ -478,19 +479,19 @@
             <option>
                 <Tag name="95P" format=":4!c//4!a2!a2!c[3!c]" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;IdentifierCode&gt;[${a}]{4}[${a}]{2}[${c}]{2}([${c}]{3})?)$">
                     <content type="fval">:</content>
-                    <content type="enum">['MEOR','MERE']</content>
+                    <content type="enum" contentName="Qualifier">['MEOR','MERE']</content>
                     <content type="fval">//</content>
                     <content type="string" format="IdentifierCode"/>
                 </Tag>
                 <Tag name="95Q" format=":4!c//4*35x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/\/(?&lt;NameandAddress&gt;([${x}]{1,35}\r\n){0,3}([${x}]{1,35}){1})$">
                     <content type="fval">:</content>
-                    <content type="enum">['MEOR','MERE']</content>
+                    <content type="enum" contentName="Qualifier">['MEOR','MERE']</content>
                     <content type="fval">//</content>
                     <content type="textarea" cols="35" rows="4"/>
                 </Tag>
                 <Tag name="95R" format=":4!c/8c/34x" regexp="^:(?&lt;Qualifier&gt;[${c}]{4})\/(?&lt;DataSourceScheme&gt;[${c}]{1,8})\/(?&lt;ProprietaryCode&gt;[${x}]{1,34})$">
                     <content type="fval">:</content>
-                    <content type="enum">['MEOR','MERE']</content>
+                    <content type="enum" contentName="Qualifier">['MEOR','MERE']</content>
                     <content type="fval">/</content>
                     <content type="string" maxlength="8"/>
                     <content type="fval">/</content>

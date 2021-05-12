@@ -13,8 +13,8 @@
             <content type="enum">[ 'NEWLON' ,'RECALL' ,'RETURN' ]</content>
         </Tag>
         <Tag no="4" name="31P" opt="M" format="6!n[29x]" regexp="^(?&lt;Date&gt;[${n}]{6})(?&lt;Place&gt;([${x}]{1,29})?)$">
-            <content type="date" format="yyMMdd"/>
-            <content type="string" maxlength="29"/>
+            <content type="date" format="yyMMdd" contentName="Date"/>
+            <content type="string" maxlength="29" contentName="Place"/>
         </Tag>
         <Tag no="5" name="83C" opt="O" format="/34x" regexp="^(?&lt;Account&gt;\/[${x}]{1,34})$">
             <content type="fval">/</content>
@@ -30,19 +30,19 @@
             <content type="decimal" maxlength="15"/>
         </Tag>
         <Tag no="8" name="31L" opt="O" format="6!n" regexp="^(?&lt;Date&gt;[${n}]{6})$">
-            <content type="date" format="yyMMdd"/>
+            <content type="date" format="yyMMdd" contentName="Date"/>
         </Tag>
         <Tag no="9" name="31X" opt="O" format="[6!n[4!n]][7!a]" regexp="^((?&lt;Date&gt;[${n}]{6})((?&lt;Time&gt;[${n}]{4}))?)?(?&lt;Code&gt;([${a}]{7})?)$">
             <content type="datetime" format="yyMMddmmss"/>
             <content type="enum">[ 'UNKNOWN' ]</content>
         </Tag>
         <Tag no="10" name="30" opt="M" format="6!n" regexp="^(?&lt;Date&gt;[${n}]{6})$">
-            <content type="date" format="yyMMdd"/>
+            <content type="date" format="yyMMdd" contentName="Date"/>
         </Tag>
         <Tag no="11" name="31F" opt="O" format="6!n[/6!n][//35x]" regexp="^(?&lt;Date&gt;[${n}]{6})(?&lt;PeriodDate&gt;(\/[${n}]{6})?)(?&lt;PeriodDetails&gt;(\/\/[${x}]{1,35})?)$">
-            <content type="date" format="yyMMdd"/>
-            <content type="date" format="yyMMdd" prefix="/"/>
-            <content type="string" maxlength="35" prefix="//"/>
+            <content type="date" format="yyMMdd" contentName="Date"/>
+            <content type="date" format="yyMMdd" prefix="/" contentName="PeriodDate"/>
+            <content type="string" maxlength="35" prefix="//" contentName="PeriodDetails"/>
         </Tag>
         <Tag no="12" name="87a" opt="O">
             <option>`
