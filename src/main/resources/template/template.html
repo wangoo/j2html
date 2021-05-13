@@ -467,6 +467,7 @@
             $(".error").children().remove();
 
 
+            $("[hascontent]").attr("hascontent", "");
             $("table[sequencename]").each(function () {
                 var sequenceElement = $(this);
                 var sequencename = $(this).attr("sequencename");
